@@ -1,3 +1,5 @@
+import TaskCard from './TaskCard'
+
 export interface Task {
   id: string | number
   title: string
@@ -9,7 +11,7 @@ export interface Task {
   dueDate?: string | number
 }
 
-interface TaskListProps {
+export interface TaskListProps {
   tasks?: Task[]
   countText?: string
   onToggle?: (id: string | number) => void
@@ -17,6 +19,24 @@ interface TaskListProps {
   linkToTaskDetail?: boolean
 }
 
-export default function TaskList(_props: TaskListProps) {
-  return <section id="task-list" />
+export default function TaskList() {
+  return (
+    <section id="task-list" >
+      <TaskCard
+        title="Task One "
+        description="First hardcoded task"
+        priority="High"
+      />
+      <TaskCard
+        title="Task Two"
+        description="Second hardcoded task"
+        priority="Medium"
+      />
+      <TaskCard
+        title="Task Three"
+        description="Third hardcoded task"
+        priority="Low"
+      />
+    </section>
+  )
 }
