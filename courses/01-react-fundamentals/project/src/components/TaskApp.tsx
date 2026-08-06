@@ -18,7 +18,11 @@ interface TaskAppProps {
 }
 
 type Filter = 'all' | 'active' | 'completed'
-type SortOrder = 'recent' | 'high-low' | 'low-high' | 'alphabetical'
+type SortOrder =
+  | 'recent'
+  | 'high-low'
+  | 'low-high'
+  | 'alphabetical'
 
 export default function TaskApp({
   tasks = [],
@@ -28,19 +32,32 @@ export default function TaskApp({
   onDelete,
   linkToTaskDetail,
 }: TaskAppProps) {
-  const [filter, setFilter] = useState<Filter>('all')
-  const [sortOrder, setSortOrder] = useState<SortOrder>('recent')
-  const [editingId, setEditingId] = useState<string | number | null>(null)
+  const [filter, setFilter] =
+    useState<Filter>('all')
+
+  const [sortOrder, setSortOrder] =
+    useState<SortOrder>('recent')
+
+  const [searchText, setSearchText] =
+    useState('')
+
+  const [editingId, setEditingId] =
+    useState<string | number | null>(null)
 
   const handleAddTask = (task: Task) => {
     setTasks?.((prev) => [...prev, task])
   }
 
-  const handleToggle = (id: string | number) => {
+  const handleToggle = (
+    id: string | number
+  ) => {
     setTasks?.((prev) =>
       prev.map((task) =>
         task.id === id
-          ? { ...task, completed: !task.completed }
+          ? {
+              ...task,
+              completed: !task.completed,
+            }
           : task
       )
     )
@@ -69,14 +86,35 @@ export default function TaskApp({
     setEditingId(null)
   }
 
-  const filteredTasks =
+  const statusFilteredTasks =
     filter === 'all'
       ? tasks
       : filter === 'active'
-      ? tasks.filter((task) => !task.completed)
-      : tasks.filter((task) => task.completed)
+        ? tasks.filter(
+            (task) => !task.completed
+          )
+        : tasks.filter(
+            (task) => task.completed
+          )
 
-  const priorityValue = (priority: string) => {
+  const searchFilteredTasks =
+    statusFilteredTasks.filter((task) => {
+      const search =
+        searchText.toLowerCase()
+
+      return (
+        task.title
+          .toLowerCase()
+          .includes(search) ||
+        task.description
+          .toLowerCase()
+          .includes(search)
+      )
+    })
+
+  const priorityValue = (
+    priority: string
+  ) => {
     switch (priority.toLowerCase()) {
       case 'high':
         return 3
@@ -89,18 +127,30 @@ export default function TaskApp({
     }
   }
 
-  const sortedTasks = [...filteredTasks].sort((a, b) => {
+  const sortedTasks = [
+    ...searchFilteredTasks,
+  ].sort((a, b) => {
     switch (sortOrder) {
       case 'high-low':
-        return priorityValue(b.priority) - priorityValue(a.priority)
+        return (
+          priorityValue(b.priority) -
+          priorityValue(a.priority)
+        )
 
       case 'low-high':
-        return priorityValue(a.priority) - priorityValue(b.priority)
+        return (
+          priorityValue(a.priority) -
+          priorityValue(b.priority)
+        )
 
       case 'alphabetical':
-        return a.title.localeCompare(b.title, undefined, {
-          sensitivity: 'base',
-        })
+        return a.title.localeCompare(
+          b.title,
+          undefined,
+          {
+            sensitivity: 'base',
+          }
+        )
 
       default:
         return Number(a.id) - Number(b.id)
@@ -109,7 +159,11 @@ export default function TaskApp({
 
   return (
     <>
-      {showForm && <TaskForm onAddTask={handleAddTask} />}
+      {showForm && (
+        <TaskForm
+          onAddTask={handleAddTask}
+        />
+      )}
 
       {showFilterBar && (
         <FilterBar
@@ -117,18 +171,29 @@ export default function TaskApp({
           onFilterChange={setFilter}
           sortOrder={sortOrder}
           onSortChange={setSortOrder}
+          searchText={searchText}
+          onSearchChange={
+            setSearchText
+          }
         />
       )}
 
       <TaskList
         tasks={sortedTasks}
         totalTasks={tasks.length}
+        countText={`Showing ${sortedTasks.length} of ${tasks.length} tasks`}
         onToggle={handleToggle}
         onDelete={onDelete}
         editingId={editingId}
-        setEditingId={setEditingId}
-        onUpdateTask={handleUpdateTask}
-        linkToTaskDetail={linkToTaskDetail}
+        setEditingId={
+          setEditingId
+        }
+        onUpdateTask={
+          handleUpdateTask
+        }
+        linkToTaskDetail={
+          linkToTaskDetail
+        }
       />
     </>
   )

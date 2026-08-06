@@ -75,7 +75,7 @@ export default function TaskList({
     <section id="task-list">
       {list.length === 0 && (
         <p id="filter-empty-message">
-          No tasks match this filter
+          No tasks found
         </p>
       )}
 
@@ -92,7 +92,9 @@ export default function TaskList({
           onUpdateTask={onUpdateTask}
           isEditing={editingId === task.id}
           onEdit={() => setEditingId?.(task.id)}
-          onCancelEdit={() => setEditingId?.(null)}
+          onCancelEdit={() =>
+            setEditingId?.(null)
+          }
         />
       ))}
 

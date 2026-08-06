@@ -1,25 +1,25 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState } from "react";
 
 interface TaskCardProps {
-  id?: string | number
-  taskId?: string | number
-  title: string
-  description: string
-  priority: string
-  completed?: boolean
-  onToggle?: (id: string | number) => void
-  onDelete?: (id: string | number) => void
+  id?: string | number;
+  taskId?: string | number;
+  title: string;
+  description: string;
+  priority: string;
+  completed?: boolean;
+  onToggle?: (id: string | number) => void;
+  onDelete?: (id: string | number) => void;
   onUpdateTask?: (
     id: string | number,
     updates: {
-      title: string
-      description: string
-      priority: string
-    }
-  ) => void
-  isEditing?: boolean
-  onEdit?: () => void
-  onCancelEdit?: () => void
+      title: string;
+      description: string;
+      priority: string;
+    },
+  ) => void;
+  isEditing?: boolean;
+  onEdit?: () => void;
+  onCancelEdit?: () => void;
 }
 
 export default function TaskCard({
@@ -36,45 +36,43 @@ export default function TaskCard({
   onEdit,
   onCancelEdit,
 }: TaskCardProps) {
-  const taskIdValue = taskId ?? id
+  const taskIdValue = taskId ?? id;
 
-  const [editTitle, setEditTitle] = useState(title)
-  const [editDescription, setEditDescription] =
-    useState(description)
-  const [editPriority, setEditPriority] =
-    useState(priority)
+  const [editTitle, setEditTitle] = useState(title);
+  const [editDescription, setEditDescription] = useState(description);
+  const [editPriority, setEditPriority] = useState(priority);
 
   useEffect(() => {
-    setEditTitle(title)
-    setEditDescription(description)
-    setEditPriority(priority)
-  }, [title, description, priority, isEditing])
+    setEditTitle(title);
+    setEditDescription(description);
+    setEditPriority(priority);
+  }, [title, description, priority, isEditing]);
 
   const handleSave = () => {
     if (!editTitle.trim() || taskIdValue === undefined) {
-      return
+      return;
     }
 
     onUpdateTask?.(taskIdValue, {
       title: editTitle,
       description: editDescription,
       priority: editPriority,
-    })
-  }
+    });
+  };
 
   const handleCancel = () => {
-    setEditTitle(title)
-    setEditDescription(description)
-    setEditPriority(priority)
-    onCancelEdit?.()
-  }
+    setEditTitle(title);
+    setEditDescription(description);
+    setEditPriority(priority);
+    onCancelEdit?.();
+  };
 
-    return (
+  return (
     <article
       id="task-card"
       data-completed={completed}
       style={{
-        backgroundColor: completed ? '#e6ffe6' : '#fff',
+        backgroundColor: completed ? "#e6ffe6" : "#fff",
       }}
     >
       <input
@@ -86,9 +84,13 @@ export default function TaskCard({
       {isEditing ? (
         <>
           <input
-            type="text"
-            value={editTitle}
-            onChange={(e) => setEditTitle(e.target.value)}
+            type="checkbox"
+            checked={completed}
+            onChange={() => {
+              if (taskIdValue !== undefined) {
+                onToggle?.(taskIdValue);
+              }
+            }}
           />
 
           <textarea
@@ -105,17 +107,11 @@ export default function TaskCard({
             <option value="Low">Low</option>
           </select>
 
-          <button
-            type="button"
-            onClick={handleSave}
-          >
+          <button type="button" onClick={handleSave}>
             Save
           </button>
 
-          <button
-            type="button"
-            onClick={handleCancel}
-          >
+          <button type="button" onClick={handleCancel}>
             Cancel
           </button>
         </>
@@ -123,9 +119,7 @@ export default function TaskCard({
         <>
           <h2
             style={{
-              textDecoration: completed
-                ? 'line-through'
-                : 'none',
+              textDecoration: completed ? "line-through" : "none",
             }}
           >
             {title}
@@ -133,9 +127,7 @@ export default function TaskCard({
 
           <p
             style={{
-              textDecoration: completed
-                ? 'line-through'
-                : 'none',
+              textDecoration: completed ? "line-through" : "none",
             }}
           >
             {description}
@@ -144,10 +136,7 @@ export default function TaskCard({
           <p>Priority: {priority}</p>
 
           {onUpdateTask && (
-            <button
-              type="button"
-              onClick={onEdit}
-            >
+            <button type="button" onClick={onEdit}>
               Edit
             </button>
           )}
@@ -157,10 +146,10 @@ export default function TaskCard({
               type="button"
               onClick={() => {
                 if (
-                  window.confirm('Are you sure?') &&
+                  window.confirm("Are you sure?") &&
                   taskIdValue !== undefined
                 ) {
-                  onDelete(taskIdValue)
+                  onDelete(taskIdValue);
                 }
               }}
             >
@@ -170,5 +159,5 @@ export default function TaskCard({
         </>
       )}
     </article>
-  )
+  );
 }
