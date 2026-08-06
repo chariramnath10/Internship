@@ -17,6 +17,9 @@ interface TaskAppProps {
   linkToTaskDetail?: boolean
 }
 
+type Filter = 'all' | 'active' | 'completed'
+type SortOrder = 'recent' | 'high-low' | 'low-high' | 'alphabetical'
+
 export default function TaskApp({
   tasks = [],
   setTasks,
@@ -25,7 +28,8 @@ export default function TaskApp({
   onDelete,
   linkToTaskDetail,
 }: TaskAppProps) {
-  const [filter, setFilter] = useState<'all' | 'active' | 'completed'>('all')
+  const [filter, setFilter] = useState<Filter>('all')
+  const [sortOrder, setSortOrder] = useState<SortOrder>('recent')
 
   const handleAddTask = (task: Task) => {
     setTasks?.((prev) => [...prev, task])
@@ -36,8 +40,8 @@ export default function TaskApp({
       prev.map((task) =>
         task.id === id
           ? { ...task, completed: !task.completed }
-          : task,
-      ),
+          : task
+      )
     )
   }
 
@@ -45,8 +49,40 @@ export default function TaskApp({
     filter === 'all'
       ? tasks
       : filter === 'active'
-        ? tasks.filter((task) => !task.completed)
-        : tasks.filter((task) => task.completed)
+      ? tasks.filter((task) => !task.completed)
+      : tasks.filter((task) => task.completed)
+
+  const priorityValue = (priority: string) => {
+    switch (priority.toLowerCase()) {
+      case 'high':
+        return 3
+      case 'medium':
+        return 2
+      case 'low':
+        return 1
+      default:
+        return 0
+    }
+  }
+
+  const sortedTasks = [...filteredTasks].sort((a, b) => {
+    switch (sortOrder) {
+      case 'high-low':
+        return priorityValue(b.priority) - priorityValue(a.priority)
+
+      case 'low-high':
+        return priorityValue(a.priority) - priorityValue(b.priority)
+
+      case 'alphabetical':
+        return a.title.localeCompare(b.title, undefined, {
+          sensitivity: 'base',
+        })
+
+      case 'recent':
+      default:
+        return Number(a.id) - Number(b.id)
+    }
+  })
 
   return (
     <>
@@ -56,11 +92,13 @@ export default function TaskApp({
         <FilterBar
           filter={filter}
           onFilterChange={setFilter}
+          sortOrder={sortOrder}
+          onSortChange={setSortOrder}
         />
       )}
 
       <TaskList
-        tasks={filteredTasks}
+        tasks={sortedTasks}
         totalTasks={tasks.length}
         onToggle={handleToggle}
         onDelete={onDelete}

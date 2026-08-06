@@ -136,5 +136,28 @@
       "maintainability": 90,
       "overall": "The code is well-structured and maintainable, but there are some areas for improvement to make it more robust and accessible. With some refactoring and optimization, the code can reach a higher level of quality and scalability."
     }
+  },
+  {
+    "challengeId": "07-priority-based-sorting",
+    "challengeName": "Priority-Based Sorting",
+    "aiReview": {
+      "challengeId": "07-priority-based-sorting",
+      "timestamp": "2026-08-06T11:50:46.495Z",
+      "score": 88,
+      "feedback": [],
+      "strengths": [
+        "The code is well-organized and easy to follow, with clear separation of concerns between components.",
+        "The use of TypeScript and functional components makes the code more maintainable and efficient.",
+        "The implementation of the sorting logic is clear and concise, with a good use of switch statements and function composition."
+      ],
+      "improvements": [
+        "Some of the variable names could be more descriptive, such as `sortOrder` and `filteredTasks`. Consider using more descriptive names to improve code readability.",
+        "The `priorityValue` function could be simplified by using an object to map priority levels to their corresponding values. This would make the code more concise and easier to maintain.",
+        "Consider adding more comments to explain the purpose of each function and the logic behind the sorting algorithm. This would improve code maintainability and make it easier for others to understand the code."
+      ],
+      "readability": 85,
+      "maintainability": 90,
+      "overall": "The code is well-structured and maintainable, with a good use of TypeScript and functional components. However, there are some areas for improvement, such as variable naming and commenting, to make the code even more readable and maintainable."
+    }
   }
 ]
