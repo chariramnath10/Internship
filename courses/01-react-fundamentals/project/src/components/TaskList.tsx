@@ -45,7 +45,9 @@ const HARDCODED_TASKS: Task[] = [
 
 export default function TaskList({
   tasks,
+  countText,
   onToggle,
+  onDelete,
 }: TaskListProps) {
   const list = tasks && tasks.length > 0 ? tasks : HARDCODED_TASKS
 
@@ -54,7 +56,7 @@ export default function TaskList({
   return (
     <section id="task-list">
       <h2 id="task-count">
-        {completedCount} of {list.length} completed
+        {countText ?? `${completedCount} of ${list.length} completed`}
       </h2>
 
       {list.map((task) => (
@@ -66,6 +68,7 @@ export default function TaskList({
           priority={task.priority}
           completed={task.completed}
           onToggle={onToggle}
+          onDelete={onDelete}
         />
       ))}
     </section>
