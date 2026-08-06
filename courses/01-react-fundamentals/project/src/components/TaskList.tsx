@@ -13,6 +13,7 @@ export interface Task {
 
 export interface TaskListProps {
   tasks?: Task[]
+  totalTasks?: number
   countText?: string
   onToggle?: (id: string | number) => void
   onDelete?: (id: string | number) => void
@@ -45,19 +46,25 @@ const HARDCODED_TASKS: Task[] = [
 
 export default function TaskList({
   tasks,
+  totalTasks,
   countText,
   onToggle,
   onDelete,
 }: TaskListProps) {
-  const list = tasks && tasks.length > 0 ? tasks : HARDCODED_TASKS
-
-  const completedCount = list.filter((t) => t.completed).length
+  const list = tasks && tasks.length >= 0 ? tasks : HARDCODED_TASKS
 
   return (
     <section id="task-list">
       <h2 id="task-count">
-        {countText ?? `${completedCount} of ${list.length} completed`}
+        {countText ??
+          `Showing ${list.length} of ${totalTasks ?? list.length} tasks`}
       </h2>
+
+      {list.length === 0 && (
+        <p id="filter-empty-message">
+          No tasks match this filter
+        </p>
+      )}
 
       {list.map((task) => (
         <TaskCard
