@@ -30,6 +30,7 @@ export default function TaskApp({
 }: TaskAppProps) {
   const [filter, setFilter] = useState<Filter>('all')
   const [sortOrder, setSortOrder] = useState<SortOrder>('recent')
+  const [editingId, setEditingId] = useState<string | number | null>(null)
 
   const handleAddTask = (task: Task) => {
     setTasks?.((prev) => [...prev, task])
@@ -43,6 +44,29 @@ export default function TaskApp({
           : task
       )
     )
+  }
+
+  const handleUpdateTask = (
+    id: string | number,
+    updates: {
+      title: string
+      description: string
+      priority: string
+    }
+  ) => {
+    if (!updates.title.trim()) {
+      return
+    }
+
+    setTasks?.((prev) =>
+      prev.map((task) =>
+        task.id === id
+          ? { ...task, ...updates }
+          : task
+      )
+    )
+
+    setEditingId(null)
   }
 
   const filteredTasks =
@@ -78,7 +102,6 @@ export default function TaskApp({
           sensitivity: 'base',
         })
 
-      case 'recent':
       default:
         return Number(a.id) - Number(b.id)
     }
@@ -102,6 +125,9 @@ export default function TaskApp({
         totalTasks={tasks.length}
         onToggle={handleToggle}
         onDelete={onDelete}
+        editingId={editingId}
+        setEditingId={setEditingId}
+        onUpdateTask={handleUpdateTask}
         linkToTaskDetail={linkToTaskDetail}
       />
     </>
