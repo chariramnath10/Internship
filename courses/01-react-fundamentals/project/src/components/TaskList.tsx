@@ -45,16 +45,17 @@ const HARDCODED_TASKS: Task[] = [
 
 export default function TaskList({
   tasks,
-  countText,
   onToggle,
 }: TaskListProps) {
-  const list =
-  tasks && tasks.length > 0 ? tasks : HARDCODED_TASKS
+  const list = tasks && tasks.length > 0 ? tasks : HARDCODED_TASKS
+
+  const completedCount = list.filter((t) => t.completed).length
+
   return (
     <section id="task-list">
-      {countText && (
-        <h2 id="task-count">{countText}</h2>
-      )}
+      <h2 id="task-count">
+        {completedCount} of {list.length} completed
+      </h2>
 
       {list.map((task) => (
         <TaskCard

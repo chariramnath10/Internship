@@ -23,21 +23,26 @@ export default function TaskApp({
   linkToTaskDetail,
 }: TaskAppProps) {
   const handleAddTask = (task: Task) => {
-    if (setTasks) {
-      setTasks((prev) => [...prev, task])
-    }
+    setTasks?.((prev) => [...prev, task])
+  }
+
+  const handleToggle = (id: string | number) => {
+    setTasks?.((prev) =>
+      prev.map((task) =>
+        task.id === id
+          ? { ...task, completed: !task.completed }
+          : task,
+      ),
+    )
   }
 
   return (
     <>
-      <h2 id="task-count">{tasks.length} Tasks</h2>
-
-      {showForm && (
-        <TaskForm onAddTask={handleAddTask} />
-      )}
+      {showForm && <TaskForm onAddTask={handleAddTask} />}
 
       <TaskList
         tasks={tasks}
+        onToggle={handleToggle}
         onDelete={onDelete}
         linkToTaskDetail={linkToTaskDetail}
       />
