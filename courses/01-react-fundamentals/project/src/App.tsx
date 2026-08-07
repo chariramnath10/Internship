@@ -160,6 +160,7 @@ function AppContent() {
                   showForm
                   countFormat="tasks"
                   showFilterBar
+                  onDelete={handleDelete}
                 />
               }
             />
@@ -173,6 +174,7 @@ function AppContent() {
                   showForm
                   countFormat="tasks"
                   showFilterBar
+                  onDelete={handleDelete}
                 />
               }
             />
@@ -185,6 +187,7 @@ function AppContent() {
                   setTasks={setTasks}
                   showForm
                   countFormat="tasks"
+                  onDelete={handleDelete}
                 />
               }
             />
@@ -211,6 +214,8 @@ function AppContent() {
                   setTasks={setTasks}
                   showForm
                   countFormat="tasks"
+                  showFilterBar
+                  onDelete={handleDelete}
                 />
               }
             />
@@ -224,6 +229,7 @@ function AppContent() {
                   showForm
                   countFormat="tasks"
                   showFilterBar
+                  onDelete={handleDelete}
                 />
               }
             />
@@ -237,6 +243,7 @@ function AppContent() {
                   showForm
                   countFormat="tasks"
                   showFilterBar
+                  onDelete={handleDelete}
                 />
               }
             />
