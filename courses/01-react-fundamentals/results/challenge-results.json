@@ -4747,5 +4747,293 @@
       "maintainability": 90,
       "overall": "The code is well-written and follows good practices, but could benefit from some refactoring to improve maintainability and readability."
     }
+  },
+  {
+    "challengeId": "14-task-statistics-dashboard",
+    "challengeName": "Task Statistics Dashboard",
+    "timestamp": "2026-08-07T12:02:54.789Z",
+    "scores": {
+      "functionalTests": 100,
+      "codeQuality": 100,
+      "architecture": 100,
+      "bestPractices": 100,
+      "e2eTests": 100,
+      "aiReview": 88
+    },
+    "totalScore": 98.2,
+    "passed": true,
+    "errors": [],
+    "warnings": [],
+    "testResults": {
+      "score": 100,
+      "passed": true,
+      "totalTests": 3,
+      "passedTests": 3,
+      "failedTests": 0,
+      "details": [
+        {
+          "assertionResults": [
+            {
+              "ancestorTitles": [
+                "",
+                "Challenge 14: Task Statistics Dashboard"
+              ],
+              "fullName": " Challenge 14: Task Statistics Dashboard StatsPanel should have id=\"stats-panel\"",
+              "status": "passed",
+              "title": "StatsPanel should have id=\"stats-panel\"",
+              "duration": 41,
+              "failureMessages": []
+            },
+            {
+              "ancestorTitles": [
+                "",
+                "Challenge 14: Task Statistics Dashboard"
+              ],
+              "fullName": " Challenge 14: Task Statistics Dashboard StatsPanel should display total and completed",
+              "status": "passed",
+              "title": "StatsPanel should display total and completed",
+              "duration": 17,
+              "failureMessages": []
+            },
+            {
+              "ancestorTitles": [
+                "",
+                "Challenge 14: Task Statistics Dashboard"
+              ],
+              "fullName": " Challenge 14: Task Statistics Dashboard TaskList should render tasks",
+              "status": "passed",
+              "title": "TaskList should render tasks",
+              "duration": 19,
+              "failureMessages": []
+            }
+          ],
+          "startTime": 1786104182977,
+          "endTime": 1786104183055,
+          "status": "passed",
+          "message": "",
+          "name": "C:/Users/chari/OneDrive/Desktop/internship/challenge-engine-react/courses/01-react-fundamentals/project/tests/challenge-14.test.tsx"
+        }
+      ]
+    },
+    "lintResults": {
+      "score": 100,
+      "passed": true,
+      "totalIssues": 0,
+      "errors": 0,
+      "warnings": 0,
+      "details": [
+        {
+          "filePath": "C:\\Users\\chari\\OneDrive\\Desktop\\internship\\challenge-engine-react\\courses\\01-react-fundamentals\\project\\src\\components\\StatsPanel.tsx",
+          "messages": [],
+          "suppressedMessages": [],
+          "errorCount": 0,
+          "fatalErrorCount": 0,
+          "warningCount": 0,
+          "fixableErrorCount": 0,
+          "fixableWarningCount": 0,
+          "usedDeprecatedRules": [
+            {
+              "ruleId": "no-extra-semi",
+              "replacedBy": []
+            },
+            {
+              "ruleId": "no-mixed-spaces-and-tabs",
+              "replacedBy": []
+            }
+          ]
+        },
+        {
+          "filePath": "C:\\Users\\chari\\OneDrive\\Desktop\\internship\\challenge-engine-react\\courses\\01-react-fundamentals\\project\\src\\components\\TaskApp.tsx",
+          "messages": [],
+          "suppressedMessages": [],
+          "errorCount": 0,
+          "fatalErrorCount": 0,
+          "warningCount": 0,
+          "fixableErrorCount": 0,
+          "fixableWarningCount": 0,
+          "usedDeprecatedRules": [
+            {
+              "ruleId": "no-extra-semi",
+              "replacedBy": []
+            },
+            {
+              "ruleId": "no-mixed-spaces-and-tabs",
+              "replacedBy": []
+            }
+          ]
+        }
+      ]
+    },
+    "architectureResults": {
+      "score": 100,
+      "passed": true,
+      "patternsFound": [
+        "functionalComponent",
+        "useMemo",
+        "props"
+      ],
+      "patternsMissing": [],
+      "details": [
+        {
+          "file": "src/components/StatsPanel.tsx",
+          "patternsFound": [
+            "functionalComponent",
+            "useMemo",
+            "props"
+          ],
+          "patternsMissing": []
+        },
+        {
+          "file": "src/components/TaskApp.tsx",
+          "patternsFound": [
+            "functionalComponent",
+            "props"
+          ],
+          "patternsMissing": [
+            "useMemo"
+          ]
+        }
+      ]
+    },
+    "bestPracticesResults": {
+      "score": 100,
+      "passed": true,
+      "issues": [],
+      "details": [],
+      "note": "No best practices requirements specified in challenge"
+    },
+    "e2eResults": {
+      "score": 100,
+      "passed": true,
+      "totalTests": 2,
+      "passedTests": 2,
+      "failedTests": 0,
+      "details": [
+        {
+          "title": "challenge-14.spec.ts",
+          "file": "challenge-14.spec.ts",
+          "column": 0,
+          "line": 0,
+          "specs": [],
+          "suites": [
+            {
+              "title": "Challenge 14: Task Statistics Dashboard - E2E",
+              "file": "challenge-14.spec.ts",
+              "line": 3,
+              "column": 6,
+              "specs": [
+                {
+                  "title": "should display task list",
+                  "ok": true,
+                  "tags": [],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 0,
+                          "parallelIndex": 0,
+                          "status": "passed",
+                          "duration": 1094,
+                          "errors": [],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2026-08-07T12:03:16.267Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "be2334d46d68155f57f3-364480833597fd92a242",
+                  "file": "challenge-14.spec.ts",
+                  "line": 8,
+                  "column": 3
+                },
+                {
+                  "title": "should display stats panel when implemented",
+                  "ok": true,
+                  "tags": [],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 0,
+                          "parallelIndex": 0,
+                          "status": "passed",
+                          "duration": 295,
+                          "errors": [],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2026-08-07T12:03:17.554Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "be2334d46d68155f57f3-3e6d44d38890e704d251",
+                  "file": "challenge-14.spec.ts",
+                  "line": 12,
+                  "column": 3
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "screenshots": []
+    },
+    "aiReviewResults": {
+      "challengeId": "14-task-statistics-dashboard",
+      "timestamp": "2026-08-07T12:03:18.235Z",
+      "score": 88,
+      "feedback": [],
+      "strengths": [
+        "The use of TypeScript and functional components is a strong aspect of this codebase.",
+        "The code is well-structured and easy to follow, with clear and concise variable names.",
+        "The use of `useMemo` to memoize expensive calculations is a good optimization technique."
+      ],
+      "improvements": [
+        "The `StatsPanel` component has a lot of props that are not being used. Consider removing them or making them optional.",
+        "The `TaskApp` component has a lot of state variables and event handlers. Consider breaking it down into smaller, more manageable components.",
+        "The code could benefit from more comments and explanations of the logic behind certain parts of the code."
+      ],
+      "readability": 85,
+      "maintainability": 90,
+      "overall": "This codebase is well-structured and well-maintained, but could benefit from some refactoring and optimization. The use of TypeScript and functional components is a strong aspect, and the code is generally easy to follow. With some further improvement, this codebase could be even more maintainable and efficient."
+    },
+    "aiResults": {
+      "challengeId": "14-task-statistics-dashboard",
+      "timestamp": "2026-08-07T12:03:18.235Z",
+      "score": 88,
+      "feedback": [],
+      "strengths": [
+        "The use of TypeScript and functional components is a strong aspect of this codebase.",
+        "The code is well-structured and easy to follow, with clear and concise variable names.",
+        "The use of `useMemo` to memoize expensive calculations is a good optimization technique."
+      ],
+      "improvements": [
+        "The `StatsPanel` component has a lot of props that are not being used. Consider removing them or making them optional.",
+        "The `TaskApp` component has a lot of state variables and event handlers. Consider breaking it down into smaller, more manageable components.",
+        "The code could benefit from more comments and explanations of the logic behind certain parts of the code."
+      ],
+      "readability": 85,
+      "maintainability": 90,
+      "overall": "This codebase is well-structured and well-maintained, but could benefit from some refactoring and optimization. The use of TypeScript and functional components is a strong aspect, and the code is generally easy to follow. With some further improvement, this codebase could be even more maintainable and efficient."
+    }
   }
 ]

@@ -1,13 +1,20 @@
 import { useEffect, useState } from 'react'
-import type { Dispatch, SetStateAction } from 'react'
+import type {
+  Dispatch,
+  SetStateAction,
+} from 'react'
+
 import type { Task } from './TaskList'
 import TaskList from './TaskList'
 import TaskForm from './TaskForm'
 import FilterBar from './FilterBar'
+import StatsPanel from './StatsPanel'
 
 interface TaskAppProps {
   tasks?: Task[]
-  setTasks?: Dispatch<SetStateAction<Task[]>>
+  setTasks?: Dispatch<
+    SetStateAction<Task[]>
+  >
   dispatch?: (
     action: {
       type: string
@@ -41,6 +48,7 @@ export default function TaskApp({
   setTasks,
   showForm = false,
   showFilterBar = false,
+  showStatsPanel = false,
   onDelete,
   linkToTaskDetail,
 }: TaskAppProps) {
@@ -133,7 +141,8 @@ export default function TaskApp({
               category:
                 updates.category ||
                 'General',
-              tags: updates.tags ?? [],
+              tags:
+                updates.tags ?? [],
             }
           : task
       )
@@ -256,14 +265,22 @@ export default function TaskApp({
     switch (sortOrder) {
       case 'high-low':
         return (
-          priorityValue(b.priority) -
-          priorityValue(a.priority)
+          priorityValue(
+            b.priority
+          ) -
+          priorityValue(
+            a.priority
+          )
         )
 
       case 'low-high':
         return (
-          priorityValue(a.priority) -
-          priorityValue(b.priority)
+          priorityValue(
+            a.priority
+          ) -
+          priorityValue(
+            b.priority
+          )
         )
 
       case 'alphabetical':
@@ -277,10 +294,14 @@ export default function TaskApp({
 
       case 'due-date': {
         const aDate =
-          dueDateValue(a.dueDate)
+          dueDateValue(
+            a.dueDate
+          )
 
         const bDate =
-          dueDateValue(b.dueDate)
+          dueDateValue(
+            b.dueDate
+          )
 
         if (
           aDate === null &&
@@ -317,23 +338,31 @@ export default function TaskApp({
     <>
       {showForm && (
         <TaskForm
-          onAddTask={handleAddTask}
+          onAddTask={
+            handleAddTask
+          }
         />
       )}
 
       {showFilterBar && (
         <FilterBar
           filter={filter}
-          onFilterChange={setFilter}
+          onFilterChange={
+            setFilter
+          }
           categoryFilter={
             categoryFilter
           }
           onCategoryChange={
             setCategoryFilter
           }
-          categories={categories}
+          categories={
+            categories
+          }
           sortOrder={sortOrder}
-          onSortChange={setSortOrder}
+          onSortChange={
+            setSortOrder
+          }
           searchText={searchText}
           onSearchChange={
             setSearchText
@@ -345,6 +374,12 @@ export default function TaskApp({
         <p id="searching-indicator">
           Searching...
         </p>
+      )}
+
+      {showStatsPanel && (
+        <StatsPanel
+          tasks={tasks}
+        />
       )}
 
       <TaskList

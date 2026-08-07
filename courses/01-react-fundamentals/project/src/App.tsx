@@ -258,6 +258,7 @@ function AppContent() {
                   showForm
                   countFormat="tasks"
                   showFilterBar
+                  onDelete={handleDelete}
                 />
               }
             />
@@ -271,6 +272,8 @@ function AppContent() {
                   showForm
                   countFormat="tasks"
                   showStatsPanel
+                  showFilterBar
+                  onDelete={handleDelete}
                 />
               }
             />
