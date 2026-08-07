@@ -8,7 +8,10 @@ import FilterBar from './FilterBar'
 interface TaskAppProps {
   tasks?: Task[]
   setTasks?: Dispatch<SetStateAction<Task[]>>
-  dispatch?: (action: { type: string; payload?: unknown }) => void
+  dispatch?: (action: {
+    type: string
+    payload?: unknown
+  }) => void
   showForm?: boolean
   countFormat?: string
   showFilterBar?: boolean
@@ -45,11 +48,21 @@ export default function TaskApp({
   const [debouncedSearchText, setDebouncedSearchText] =
     useState('')
 
+  const [category, setCategory] =
+    useState('')
+
   const [editingId, setEditingId] =
     useState<string | number | null>(null)
 
   const handleAddTask = (task: Task) => {
-    setTasks?.((prev) => [...prev, task])
+    setTasks?.((prev) => [
+      ...prev,
+      {
+        ...task,
+        category: task.category ?? 'General',
+        tags: task.tags ?? [],
+      },
+    ])
   }
 
   const handleToggle = (
@@ -73,6 +86,8 @@ export default function TaskApp({
       title: string
       description: string
       priority: string
+      category?: string
+      tags?: string[]
     }
   ) => {
     if (!updates.title.trim()) {
@@ -82,7 +97,18 @@ export default function TaskApp({
     setTasks?.((prev) =>
       prev.map((task) =>
         task.id === id
-          ? { ...task, ...updates }
+          ? {
+              ...task,
+              ...updates,
+              category:
+                updates.category ??
+                task.category ??
+                'General',
+              tags:
+                updates.tags ??
+                task.tags ??
+                [],
+            }
           : task
       )
     )
@@ -103,6 +129,18 @@ export default function TaskApp({
   const isSearching =
     searchText !== debouncedSearchText
 
+  const categories = [
+    ...new Set(
+      tasks
+        .map(
+          (task) =>
+            task.category ?? 'General'
+        )
+        .filter(Boolean)
+    ),
+  ]
+
+  // 1. Status filter
   const statusFilteredTasks =
     filter === 'all'
       ? tasks
@@ -114,8 +152,19 @@ export default function TaskApp({
             (task) => task.completed
           )
 
+  // 2. Category filter
+  const categoryFilteredTasks =
+    category === ''
+      ? statusFilteredTasks
+      : statusFilteredTasks.filter(
+          (task) =>
+            (task.category ?? 'General') ===
+            category
+        )
+
+  // 3. Search filter
   const searchFilteredTasks =
-    statusFilteredTasks.filter((task) => {
+    categoryFilteredTasks.filter((task) => {
       const search =
         debouncedSearchText
           .trim()
@@ -153,6 +202,7 @@ export default function TaskApp({
     }
   }
 
+  // 4. Sort
   const sortedTasks = [
     ...searchFilteredTasks,
   ].sort((a, b) => {
@@ -200,6 +250,9 @@ export default function TaskApp({
           onSortChange={setSortOrder}
           searchText={searchText}
           onSearchChange={setSearchText}
+          category={category}
+          categories={categories}
+          onCategoryChange={setCategory}
         />
       )}
 
