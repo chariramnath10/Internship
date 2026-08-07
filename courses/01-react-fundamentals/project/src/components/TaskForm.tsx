@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import type { FormEvent } from 'react'
 import type { Task } from './TaskList'
 
 interface TaskFormProps {
@@ -10,16 +9,16 @@ export default function TaskForm({
   onAddTask,
 }: TaskFormProps) {
   const [title, setTitle] = useState('')
-  const [description, setDescription] =
-    useState('')
-  const [priority, setPriority] =
-    useState('Medium')
-  const [category, setCategory] =
-    useState('General')
+  const [description, setDescription] = useState('')
+  const [priority, setPriority] = useState('Medium')
+  const [category, setCategory] = useState('General')
   const [tags, setTags] = useState('')
+  const [dueDate, setDueDate] = useState('')
   const [error, setError] = useState('')
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = (
+    e: React.FormEvent
+  ) => {
     e.preventDefault()
 
     if (title.trim() === '') {
@@ -37,11 +36,12 @@ export default function TaskForm({
     onAddTask({
       id: Date.now(),
       title: title.trim(),
-      description: description.trim(),
+      description,
       priority,
       completed: false,
       category,
       tags: parsedTags,
+      dueDate: dueDate || undefined,
     })
 
     setTitle('')
@@ -49,6 +49,7 @@ export default function TaskForm({
     setPriority('Medium')
     setCategory('General')
     setTags('')
+    setDueDate('')
   }
 
   return (
@@ -108,7 +109,9 @@ export default function TaskForm({
         <option value="General">
           General
         </option>
-        <option value="Work">Work</option>
+        <option value="Work">
+          Work
+        </option>
         <option value="Personal">
           Personal
         </option>
@@ -125,6 +128,19 @@ export default function TaskForm({
         value={tags}
         onChange={(e) =>
           setTags(e.target.value)
+        }
+      />
+
+      <label htmlFor="task-due-date">
+        Due Date
+      </label>
+
+      <input
+        id="task-due-date"
+        type="date"
+        value={dueDate}
+        onChange={(e) =>
+          setDueDate(e.target.value)
         }
       />
 

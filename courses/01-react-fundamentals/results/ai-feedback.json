@@ -274,5 +274,28 @@
       "maintainability": 90,
       "overall": "The code is well-structured and maintainable, with a good balance between readability and performance. However, there are some areas for improvement, such as more descriptive props and more extensive testing."
     }
+  },
+  {
+    "challengeId": "13-due-dates-and-sorting",
+    "challengeName": "Due Dates and Sorting",
+    "aiReview": {
+      "challengeId": "13-due-dates-and-sorting",
+      "timestamp": "2026-08-07T07:06:07.197Z",
+      "score": 88,
+      "feedback": [],
+      "strengths": [
+        "The code is well-structured and follows a consistent naming convention.",
+        "The use of TypeScript and functional components is a good practice.",
+        "The code is well-commented and easy to understand."
+      ],
+      "improvements": [
+        "Some of the functions are too long and complex. Consider breaking them down into smaller, more manageable functions.",
+        "The use of `useState` hooks for managing state is good, but some of the state variables could be combined or removed to simplify the code.",
+        "The sorting function is complex and could be simplified using a more efficient sorting algorithm or a library like `lodash`."
+      ],
+      "readability": 85,
+      "maintainability": 90,
+      "overall": "The code is well-written and follows good practices, but could benefit from some refactoring to improve maintainability and readability."
+    }
   }
 ]

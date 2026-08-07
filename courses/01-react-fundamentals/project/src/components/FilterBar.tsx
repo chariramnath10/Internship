@@ -1,61 +1,76 @@
-
-
 interface FilterBarProps {
   filter: 'all' | 'active' | 'completed'
   onFilterChange: (
     filter: 'all' | 'active' | 'completed'
   ) => void
+
+  categoryFilter: string
+  onCategoryChange: (
+    category: string
+  ) => void
+
+  categories: string[]
+
   sortOrder:
     | 'recent'
     | 'high-low'
     | 'low-high'
     | 'alphabetical'
+    | 'due-date'
+
   onSortChange: (
     sort:
       | 'recent'
       | 'high-low'
       | 'low-high'
       | 'alphabetical'
+      | 'due-date'
   ) => void
+
   searchText: string
   onSearchChange: (value: string) => void
-  category: string
-  categories: string[]
-  onCategoryChange: (category: string) => void
 }
 
 export default function FilterBar({
   filter,
   onFilterChange,
+  categoryFilter,
+  onCategoryChange,
+  categories,
   sortOrder,
   onSortChange,
   searchText,
   onSearchChange,
-  category,
-  categories,
-  onCategoryChange,
 }: FilterBarProps) {
   return (
     <div id="filter-bar">
       <button
         type="button"
         data-active={filter === 'all'}
-        onClick={() => onFilterChange('all')}
+        onClick={() =>
+          onFilterChange('all')
+        }
       >
         All
       </button>
 
       <button
         type="button"
-        data-active={filter === 'active'}
-        onClick={() => onFilterChange('active')}
+        data-active={
+          filter === 'active'
+        }
+        onClick={() =>
+          onFilterChange('active')
+        }
       >
         Active
       </button>
 
       <button
         type="button"
-        data-active={filter === 'completed'}
+        data-active={
+          filter === 'completed'
+        }
         onClick={() =>
           onFilterChange('completed')
         }
@@ -65,23 +80,27 @@ export default function FilterBar({
 
       <select
         id="category-filter"
-        value={category}
+        value={categoryFilter}
         onChange={(e) =>
-          onCategoryChange(e.target.value)
+          onCategoryChange(
+            e.target.value
+          )
         }
       >
-        <option value="">
+        <option value="all">
           All categories
         </option>
 
-        {categories.map((categoryName) => (
-          <option
-            key={categoryName}
-            value={categoryName}
-          >
-            {categoryName}
-          </option>
-        ))}
+        {categories.map(
+          (category) => (
+            <option
+              key={category}
+              value={category}
+            >
+              {category}
+            </option>
+          )
+        )}
       </select>
 
       <select
@@ -94,20 +113,28 @@ export default function FilterBar({
               | 'high-low'
               | 'low-high'
               | 'alphabetical'
+              | 'due-date'
           )
         }
       >
         <option value="recent">
           Recently Added
         </option>
+
         <option value="high-low">
           Priority: High to Low
         </option>
+
         <option value="low-high">
           Priority: Low to High
         </option>
+
         <option value="alphabetical">
           Alphabetical
+        </option>
+
+        <option value="due-date">
+          Due Date (Soonest First)
         </option>
       </select>
 
@@ -117,7 +144,9 @@ export default function FilterBar({
         placeholder="Search tasks..."
         value={searchText}
         onChange={(e) =>
-          onSearchChange(e.target.value)
+          onSearchChange(
+            e.target.value
+          )
         }
       />
 
@@ -125,7 +154,9 @@ export default function FilterBar({
         <button
           id="clear-search"
           type="button"
-          onClick={() => onSearchChange('')}
+          onClick={() =>
+            onSearchChange('')
+          }
         >
           Clear search
         </button>

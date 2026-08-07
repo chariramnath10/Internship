@@ -8,25 +8,33 @@ import FilterBar from './FilterBar'
 interface TaskAppProps {
   tasks?: Task[]
   setTasks?: Dispatch<SetStateAction<Task[]>>
-  dispatch?: (action: {
-    type: string
-    payload?: unknown
-  }) => void
+  dispatch?: (
+    action: {
+      type: string
+      payload?: unknown
+    }
+  ) => void
   showForm?: boolean
   countFormat?: string
   showFilterBar?: boolean
   showStatsPanel?: boolean
-  onDelete?: (id: string | number) => void
+  onDelete?: (
+    id: string | number
+  ) => void
   linkToTaskDetail?: boolean
 }
 
-type Filter = 'all' | 'active' | 'completed'
+type Filter =
+  | 'all'
+  | 'active'
+  | 'completed'
 
 type SortOrder =
   | 'recent'
   | 'high-low'
   | 'low-high'
   | 'alphabetical'
+  | 'due-date'
 
 export default function TaskApp({
   tasks = [],
@@ -39,27 +47,47 @@ export default function TaskApp({
   const [filter, setFilter] =
     useState<Filter>('all')
 
+  const [categoryFilter, setCategoryFilter] =
+    useState('all')
+
   const [sortOrder, setSortOrder] =
     useState<SortOrder>('recent')
 
   const [searchText, setSearchText] =
     useState('')
 
-  const [debouncedSearchText, setDebouncedSearchText] =
-    useState('')
-
-  const [category, setCategory] =
-    useState('')
+  const [
+    debouncedSearchText,
+    setDebouncedSearchText,
+  ] = useState('')
 
   const [editingId, setEditingId] =
-    useState<string | number | null>(null)
+    useState<
+      string | number | null
+    >(null)
 
-  const handleAddTask = (task: Task) => {
+  useEffect(() => {
+    const timeoutId =
+      window.setTimeout(() => {
+        setDebouncedSearchText(
+          searchText
+        )
+      }, 300)
+
+    return () => {
+      window.clearTimeout(timeoutId)
+    }
+  }, [searchText])
+
+  const handleAddTask = (
+    task: Task
+  ) => {
     setTasks?.((prev) => [
       ...prev,
       {
         ...task,
-        category: task.category ?? 'General',
+        category:
+          task.category || 'General',
         tags: task.tags ?? [],
       },
     ])
@@ -73,7 +101,8 @@ export default function TaskApp({
         task.id === id
           ? {
               ...task,
-              completed: !task.completed,
+              completed:
+                !task.completed,
             }
           : task
       )
@@ -86,8 +115,9 @@ export default function TaskApp({
       title: string
       description: string
       priority: string
-      category?: string
-      tags?: string[]
+      category: string
+      tags: string[]
+      dueDate?: string
     }
   ) => {
     if (!updates.title.trim()) {
@@ -101,13 +131,9 @@ export default function TaskApp({
               ...task,
               ...updates,
               category:
-                updates.category ??
-                task.category ??
+                updates.category ||
                 'General',
-              tags:
-                updates.tags ??
-                task.tags ??
-                [],
+              tags: updates.tags ?? [],
             }
           : task
       )
@@ -116,78 +142,82 @@ export default function TaskApp({
     setEditingId(null)
   }
 
-  useEffect(() => {
-    const timeoutId = window.setTimeout(() => {
-      setDebouncedSearchText(searchText)
-    }, 300)
-
-    return () => {
-      window.clearTimeout(timeoutId)
-    }
-  }, [searchText])
-
-  const isSearching =
-    searchText !== debouncedSearchText
-
   const categories = [
     ...new Set(
       tasks
         .map(
           (task) =>
-            task.category ?? 'General'
+            task.category ||
+            'General'
         )
         .filter(Boolean)
     ),
   ]
 
-  // 1. Status filter
   const statusFilteredTasks =
     filter === 'all'
       ? tasks
       : filter === 'active'
         ? tasks.filter(
-            (task) => !task.completed
+            (task) =>
+              !task.completed
           )
         : tasks.filter(
-            (task) => task.completed
+            (task) =>
+              task.completed
           )
 
-  // 2. Category filter
   const categoryFilteredTasks =
-    category === ''
+    categoryFilter === 'all'
       ? statusFilteredTasks
       : statusFilteredTasks.filter(
           (task) =>
-            (task.category ?? 'General') ===
-            category
+            (task.category ||
+              'General') ===
+            categoryFilter
         )
 
-  // 3. Search filter
   const searchFilteredTasks =
-    categoryFilteredTasks.filter((task) => {
-      const search =
-        debouncedSearchText
-          .trim()
-          .toLowerCase()
+    categoryFilteredTasks.filter(
+      (task) => {
+        const search =
+          debouncedSearchText
+            .trim()
+            .toLowerCase()
 
-      if (!search) {
-        return true
+        if (!search) {
+          return true
+        }
+
+        return (
+          task.title
+            .toLowerCase()
+            .includes(search) ||
+          task.description
+            .toLowerCase()
+            .includes(search) ||
+          (
+            task.category ||
+            'General'
+          )
+            .toLowerCase()
+            .includes(search) ||
+          (task.tags ?? []).some(
+            (tag) =>
+              tag
+                .toLowerCase()
+                .includes(search)
+          )
+        )
       }
-
-      return (
-        task.title
-          .toLowerCase()
-          .includes(search) ||
-        task.description
-          .toLowerCase()
-          .includes(search)
-      )
-    })
+    )
 
   const priorityValue = (
     priority: string
   ) => {
-    switch (priority.toLowerCase()) {
+    switch (
+      priority.toLowerCase()
+    ) {
       case 'high':
         return 3
 
@@ -202,7 +232,24 @@ export default function TaskApp({
     }
   }
 
-  // 4. Sort
+  const dueDateValue = (
+    dueDate?: string | number
+  ) => {
+    if (
+      dueDate === undefined ||
+      dueDate === ''
+    ) {
+      return null
+    }
+
+    const value =
+      new Date(dueDate).getTime()
+
+    return Number.isNaN(value)
+      ? null
+      : value
+  }
+
   const sortedTasks = [
     ...searchFilteredTasks,
   ].sort((a, b) => {
@@ -228,11 +275,43 @@ export default function TaskApp({
           }
         )
 
+      case 'due-date': {
+        const aDate =
+          dueDateValue(a.dueDate)
+
+        const bDate =
+          dueDateValue(b.dueDate)
+
+        if (
+          aDate === null &&
+          bDate === null
+        ) {
+          return 0
+        }
+
+        if (aDate === null) {
+          return 1
+        }
+
+        if (bDate === null) {
+          return -1
+        }
+
+        return aDate - bDate
+      }
+
       case 'recent':
       default:
-        return Number(a.id) - Number(b.id)
+        return (
+          Number(a.id) -
+          Number(b.id)
+        )
     }
   })
+
+  const isSearching =
+    searchText !==
+    debouncedSearchText
 
   return (
     <>
@@ -246,13 +325,19 @@ export default function TaskApp({
         <FilterBar
           filter={filter}
           onFilterChange={setFilter}
+          categoryFilter={
+            categoryFilter
+          }
+          onCategoryChange={
+            setCategoryFilter
+          }
+          categories={categories}
           sortOrder={sortOrder}
           onSortChange={setSortOrder}
           searchText={searchText}
-          onSearchChange={setSearchText}
-          category={category}
-          categories={categories}
-          onCategoryChange={setCategory}
+          onSearchChange={
+            setSearchText
+          }
         />
       )}
 
@@ -269,9 +354,15 @@ export default function TaskApp({
         onToggle={handleToggle}
         onDelete={onDelete}
         editingId={editingId}
-        setEditingId={setEditingId}
-        onUpdateTask={handleUpdateTask}
-        linkToTaskDetail={linkToTaskDetail}
+        setEditingId={
+          setEditingId
+        }
+        onUpdateTask={
+          handleUpdateTask
+        }
+        linkToTaskDetail={
+          linkToTaskDetail
+        }
       />
     </>
   )

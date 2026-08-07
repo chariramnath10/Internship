@@ -187,6 +187,7 @@ function AppContent() {
                   setTasks={setTasks}
                   showForm
                   countFormat="tasks"
+                  showFilterBar
                   onDelete={handleDelete}
                 />
               }
