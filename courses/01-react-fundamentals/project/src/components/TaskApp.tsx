@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import type { Dispatch, SetStateAction } from 'react'
 import type { Task } from './TaskList'
 import TaskList from './TaskList'
@@ -18,6 +18,7 @@ interface TaskAppProps {
 }
 
 type Filter = 'all' | 'active' | 'completed'
+
 type SortOrder =
   | 'recent'
   | 'high-low'
@@ -39,6 +40,9 @@ export default function TaskApp({
     useState<SortOrder>('recent')
 
   const [searchText, setSearchText] =
+    useState('')
+
+  const [debouncedSearchText, setDebouncedSearchText] =
     useState('')
 
   const [editingId, setEditingId] =
@@ -86,6 +90,19 @@ export default function TaskApp({
     setEditingId(null)
   }
 
+  useEffect(() => {
+    const timeoutId = window.setTimeout(() => {
+      setDebouncedSearchText(searchText)
+    }, 300)
+
+    return () => {
+      window.clearTimeout(timeoutId)
+    }
+  }, [searchText])
+
+  const isSearching =
+    searchText !== debouncedSearchText
+
   const statusFilteredTasks =
     filter === 'all'
       ? tasks
@@ -100,7 +117,13 @@ export default function TaskApp({
   const searchFilteredTasks =
     statusFilteredTasks.filter((task) => {
       const search =
-        searchText.toLowerCase()
+        debouncedSearchText
+          .trim()
+          .toLowerCase()
+
+      if (!search) {
+        return true
+      }
 
       return (
         task.title
@@ -118,10 +141,13 @@ export default function TaskApp({
     switch (priority.toLowerCase()) {
       case 'high':
         return 3
+
       case 'medium':
         return 2
+
       case 'low':
         return 1
+
       default:
         return 0
     }
@@ -152,6 +178,7 @@ export default function TaskApp({
           }
         )
 
+      case 'recent':
       default:
         return Number(a.id) - Number(b.id)
     }
@@ -172,10 +199,14 @@ export default function TaskApp({
           sortOrder={sortOrder}
           onSortChange={setSortOrder}
           searchText={searchText}
-          onSearchChange={
-            setSearchText
-          }
+          onSearchChange={setSearchText}
         />
+      )}
+
+      {isSearching && (
+        <p id="searching-indicator">
+          Searching...
+        </p>
       )}
 
       <TaskList
@@ -185,15 +216,9 @@ export default function TaskApp({
         onToggle={handleToggle}
         onDelete={onDelete}
         editingId={editingId}
-        setEditingId={
-          setEditingId
-        }
-        onUpdateTask={
-          handleUpdateTask
-        }
-        linkToTaskDetail={
-          linkToTaskDetail
-        }
+        setEditingId={setEditingId}
+        onUpdateTask={handleUpdateTask}
+        linkToTaskDetail={linkToTaskDetail}
       />
     </>
   )
