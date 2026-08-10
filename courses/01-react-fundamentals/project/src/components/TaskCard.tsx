@@ -1,4 +1,7 @@
 import { useEffect, useState } from 'react'
+import Button from './Button'
+import Badge from './Badge'
+import StatusIndicator from './StatusIndicator'
 
 interface TaskCardProps {
   id?: string | number
@@ -49,14 +52,19 @@ export default function TaskCard({
 
   const [editTitle, setEditTitle] =
     useState(title)
+
   const [editDescription, setEditDescription] =
     useState(description)
+
   const [editPriority, setEditPriority] =
     useState(priority)
+
   const [editCategory, setEditCategory] =
     useState(category)
+
   const [editTags, setEditTags] =
     useState(tags.join(', '))
+
   const [editDueDate, setEditDueDate] =
     useState(
       dueDate
@@ -126,6 +134,7 @@ export default function TaskCard({
             .split('T')[0]
         : ''
     )
+
     onCancelEdit?.()
   }
 
@@ -163,8 +172,20 @@ export default function TaskCard({
   }
 
   const dueStatus = getDueStatus()
+
   const isOverdue =
     dueStatus === 'Overdue'
+
+  const statusValue =
+    dueStatus === 'Overdue'
+      ? 'overdue'
+      : dueStatus === 'Due Today'
+        ? 'due-today'
+        : dueStatus === 'Due Soon'
+          ? 'due-soon'
+          : completed
+            ? 'completed'
+            : ''
 
   return (
     <article
@@ -184,10 +205,11 @@ export default function TaskCard({
       <input
         type="checkbox"
         checked={completed}
-        onChange={() =>
-          taskIdValue !== undefined &&
-          onToggle?.(taskIdValue)
-        }
+        onChange={() => {
+          if (taskIdValue !== undefined) {
+            onToggle?.(taskIdValue)
+          }
+        }}
       />
 
       {isEditing ? (
@@ -266,19 +288,21 @@ export default function TaskCard({
             }
           />
 
-          <button
+          <Button
             type="button"
+            variant="primary"
             onClick={handleSave}
           >
             Save
-          </button>
+          </Button>
 
-          <button
+          <Button
             type="button"
+            variant="secondary"
             onClick={handleCancel}
           >
             Cancel
-          </button>
+          </Button>
         </>
       ) : (
         <>
@@ -303,22 +327,28 @@ export default function TaskCard({
           </p>
 
           <p>
-            Priority: {priority}
+            Priority:{' '}
+            <Badge variant="priority">
+              {priority}
+            </Badge>
           </p>
 
           <p id="task-category">
-            Category: {category}
+            Category:{' '}
+            <Badge variant="category">
+              {category}
+            </Badge>
           </p>
 
           {tags.length > 0 && (
             <div id="task-tags">
               {tags.map((tag) => (
-                <span
+                <Badge
                   key={tag}
-                  data-tag={tag}
+                  variant="tag"
                 >
                   {tag}
-                </span>
+                </Badge>
               ))}
             </div>
           )}
@@ -335,25 +365,34 @@ export default function TaskCard({
               Due Date:{' '}
               {new Date(
                 dueDate
-              ).toLocaleDateString()}
-              {dueStatus && (
-                <> — {dueStatus}</>
-              )}
+              ).toLocaleDateString()}{' '}
+
+              <StatusIndicator
+                status={statusValue}
+              />
             </p>
           )}
 
+          {completed && !dueStatus && (
+            <StatusIndicator
+              status="completed"
+            />
+          )}
+
           {onUpdateTask && (
-            <button
+            <Button
               type="button"
+              variant="secondary"
               onClick={onEdit}
             >
               Edit
-            </button>
+            </Button>
           )}
 
           {onDelete && (
-            <button
+            <Button
               type="button"
+              variant="danger"
               onClick={() => {
                 if (
                   window.confirm(
@@ -366,7 +405,7 @@ export default function TaskCard({
               }}
             >
               Delete
-            </button>
+            </Button>
           )}
         </>
       )}

@@ -1,10 +1,21 @@
+import Button from './Button'
+import FormInput from './FormInput'
+
 interface FilterBarProps {
-  filter: 'all' | 'active' | 'completed'
+  filter:
+    | 'all'
+    | 'active'
+    | 'completed'
+
   onFilterChange: (
-    filter: 'all' | 'active' | 'completed'
+    filter:
+      | 'all'
+      | 'active'
+      | 'completed'
   ) => void
 
   categoryFilter: string
+
   onCategoryChange: (
     category: string
   ) => void
@@ -28,7 +39,10 @@ interface FilterBarProps {
   ) => void
 
   searchText: string
-  onSearchChange: (value: string) => void
+
+  onSearchChange: (
+    value: string
+  ) => void
 }
 
 export default function FilterBar({
@@ -44,39 +58,47 @@ export default function FilterBar({
 }: FilterBarProps) {
   return (
     <div id="filter-bar">
-      <button
+      <Button
         type="button"
-        data-active={filter === 'all'}
+        variant={
+          filter === 'all'
+            ? 'primary'
+            : 'secondary'
+        }
         onClick={() =>
           onFilterChange('all')
         }
       >
         All
-      </button>
+      </Button>
 
-      <button
+      <Button
         type="button"
-        data-active={
+        variant={
           filter === 'active'
+            ? 'primary'
+            : 'secondary'
         }
         onClick={() =>
           onFilterChange('active')
         }
       >
         Active
-      </button>
+      </Button>
 
-      <button
+      <Button
         type="button"
-        data-active={
+        variant={
           filter === 'completed'
+            ? 'primary'
+            : 'secondary'
         }
         onClick={() =>
           onFilterChange('completed')
         }
       >
         Completed
-      </button>
+      </Button>
 
       <select
         id="category-filter"
@@ -138,7 +160,7 @@ export default function FilterBar({
         </option>
       </select>
 
-      <input
+      <FormInput
         id="search-input"
         type="text"
         placeholder="Search tasks..."
@@ -151,15 +173,16 @@ export default function FilterBar({
       />
 
       {searchText && (
-        <button
+        <Button
           id="clear-search"
           type="button"
+          variant="secondary"
           onClick={() =>
             onSearchChange('')
           }
         >
           Clear search
-        </button>
+        </Button>
       )}
     </div>
   )

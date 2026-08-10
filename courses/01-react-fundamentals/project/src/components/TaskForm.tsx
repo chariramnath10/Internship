@@ -1,5 +1,7 @@
 import { useState } from 'react'
 import type { Task } from './TaskList'
+import Button from './Button'
+import FormInput from './FormInput'
 
 interface TaskFormProps {
   onAddTask: (task: Task) => void
@@ -9,12 +11,17 @@ export default function TaskForm({
   onAddTask,
 }: TaskFormProps) {
   const [title, setTitle] = useState('')
-  const [description, setDescription] = useState('')
-  const [priority, setPriority] = useState('Medium')
-  const [category, setCategory] = useState('General')
+  const [description, setDescription] =
+    useState('')
+  const [priority, setPriority] =
+    useState('Medium')
+  const [category, setCategory] =
+    useState('General')
   const [tags, setTags] = useState('')
-  const [dueDate, setDueDate] = useState('')
-  const [error, setError] = useState('')
+  const [dueDate, setDueDate] =
+    useState('')
+  const [error, setError] =
+    useState('')
 
   const handleSubmit = (
     e: React.FormEvent
@@ -41,7 +48,8 @@ export default function TaskForm({
       completed: false,
       category,
       tags: parsedTags,
-      dueDate: dueDate || undefined,
+      dueDate:
+        dueDate || undefined,
     })
 
     setTitle('')
@@ -54,25 +62,21 @@ export default function TaskForm({
 
   return (
     <form onSubmit={handleSubmit}>
-      <label htmlFor="task-title">
-        Title
-      </label>
-
-      <input
+      <FormInput
         id="task-title"
+        label="Title"
         type="text"
         value={title}
         onChange={(e) =>
           setTitle(e.target.value)
         }
+        error={error}
       />
 
-      <label htmlFor="task-description">
-        Description
-      </label>
-
-      <textarea
+      <FormInput
         id="task-description"
+        label="Description"
+        type="textarea"
         value={description}
         onChange={(e) =>
           setDescription(e.target.value)
@@ -91,7 +95,9 @@ export default function TaskForm({
         }
       >
         <option value="Low">Low</option>
-        <option value="Medium">Medium</option>
+        <option value="Medium">
+          Medium
+        </option>
         <option value="High">High</option>
       </select>
 
@@ -109,9 +115,7 @@ export default function TaskForm({
         <option value="General">
           General
         </option>
-        <option value="Work">
-          Work
-        </option>
+        <option value="Work">Work</option>
         <option value="Personal">
           Personal
         </option>
@@ -144,15 +148,12 @@ export default function TaskForm({
         }
       />
 
-      {error && (
-        <p id="task-form-error">
-          {error}
-        </p>
-      )}
-
-      <button type="submit">
+      <Button
+        type="submit"
+        variant="primary"
+      >
         Add Task
-      </button>
+      </Button>
     </form>
   )
 }
