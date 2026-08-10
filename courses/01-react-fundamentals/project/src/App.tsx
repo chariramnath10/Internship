@@ -301,6 +301,10 @@ function AppContent() {
                   setTasks={setTasks}
                   showForm
                   countFormat="tasks"
+                  showStatsPanel
+                  showFilterBar
+                  onDelete={handleDelete}
+                  
                 />
               }
             />
@@ -398,7 +402,9 @@ function AppContent() {
 function App() {
   return (
     <ThemeProvider>
-      <AppContent />
+       
+        <AppContent />
+     
     </ThemeProvider>
   )
 }

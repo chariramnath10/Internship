@@ -2,6 +2,7 @@ import { useState } from 'react'
 import type { Task } from './TaskList'
 import Button from './Button'
 import FormInput from './FormInput'
+import { useTheme } from '../contexts/ThemeContext'
 
 interface TaskFormProps {
   onAddTask: (task: Task) => void
@@ -10,6 +11,8 @@ interface TaskFormProps {
 export default function TaskForm({
   onAddTask,
 }: TaskFormProps) {
+  const { theme } = useTheme()
+
   const [title, setTitle] = useState('')
   const [description, setDescription] =
     useState('')
@@ -60,8 +63,35 @@ export default function TaskForm({
     setDueDate('')
   }
 
+  const formStyle = {
+    backgroundColor:
+      theme === 'dark'
+        ? '#222'
+        : '#fff',
+    color:
+      theme === 'dark'
+        ? '#fff'
+        : '#111',
+    padding: '1rem',
+    borderRadius: '8px',
+  }
+
+  const inputStyle = {
+    backgroundColor:
+      theme === 'dark'
+        ? '#333'
+        : '#fff',
+    color:
+      theme === 'dark'
+        ? '#fff'
+        : '#111',
+  }
+
   return (
-    <form onSubmit={handleSubmit}>
+    <form
+      onSubmit={handleSubmit}
+      style={formStyle}
+    >
       <FormInput
         id="task-title"
         label="Title"
@@ -93,6 +123,7 @@ export default function TaskForm({
         onChange={(e) =>
           setPriority(e.target.value)
         }
+        style={inputStyle}
       >
         <option value="Low">Low</option>
         <option value="Medium">
@@ -111,11 +142,14 @@ export default function TaskForm({
         onChange={(e) =>
           setCategory(e.target.value)
         }
+        style={inputStyle}
       >
         <option value="General">
           General
         </option>
-        <option value="Work">Work</option>
+        <option value="Work">
+          Work
+        </option>
         <option value="Personal">
           Personal
         </option>
@@ -133,6 +167,7 @@ export default function TaskForm({
         onChange={(e) =>
           setTags(e.target.value)
         }
+        style={inputStyle}
       />
 
       <label htmlFor="task-due-date">
@@ -146,6 +181,7 @@ export default function TaskForm({
         onChange={(e) =>
           setDueDate(e.target.value)
         }
+        style={inputStyle}
       />
 
       <Button

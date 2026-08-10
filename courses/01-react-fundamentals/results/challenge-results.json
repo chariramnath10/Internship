@@ -5330,5 +5330,302 @@
       "maintainability": 90,
       "overall": "The code is well-organized, maintainable, and follows best practices. However, there are a few areas that need improvement to make the code more robust and error-free."
     }
+  },
+  {
+    "challengeId": "16-context-api-theme",
+    "challengeName": "Context API - Theme Management",
+    "timestamp": "2026-08-10T05:56:16.270Z",
+    "scores": {
+      "functionalTests": 100,
+      "codeQuality": 96,
+      "architecture": 100,
+      "bestPractices": 100,
+      "e2eTests": 100,
+      "aiReview": 88
+    },
+    "totalScore": 97.60000000000001,
+    "passed": true,
+    "errors": [],
+    "warnings": [],
+    "testResults": {
+      "score": 100,
+      "passed": true,
+      "totalTests": 2,
+      "passedTests": 2,
+      "failedTests": 0,
+      "details": [
+        {
+          "assertionResults": [
+            {
+              "ancestorTitles": [
+                "",
+                "Challenge 16: Context API - Theme Management"
+              ],
+              "fullName": " Challenge 16: Context API - Theme Management App should render without crashing",
+              "status": "passed",
+              "title": "App should render without crashing",
+              "duration": 89,
+              "failureMessages": []
+            },
+            {
+              "ancestorTitles": [
+                "",
+                "Challenge 16: Context API - Theme Management"
+              ],
+              "fullName": " Challenge 16: Context API - Theme Management App should have main content",
+              "status": "passed",
+              "title": "App should have main content",
+              "duration": 13,
+              "failureMessages": []
+            }
+          ],
+          "startTime": 1786341380253,
+          "endTime": 1786341380355,
+          "status": "passed",
+          "message": "",
+          "name": "C:/Users/chari/OneDrive/Desktop/internship/challenge-engine-react/courses/01-react-fundamentals/project/tests/challenge-16.test.tsx"
+        }
+      ]
+    },
+    "lintResults": {
+      "score": 96,
+      "passed": true,
+      "totalIssues": 2,
+      "errors": 0,
+      "warnings": 2,
+      "details": [
+        {
+          "filePath": "C:\\Users\\chari\\OneDrive\\Desktop\\internship\\challenge-engine-react\\courses\\01-react-fundamentals\\project\\src\\App.tsx",
+          "messages": [],
+          "suppressedMessages": [],
+          "errorCount": 0,
+          "fatalErrorCount": 0,
+          "warningCount": 0,
+          "fixableErrorCount": 0,
+          "fixableWarningCount": 0,
+          "usedDeprecatedRules": [
+            {
+              "ruleId": "no-extra-semi",
+              "replacedBy": []
+            },
+            {
+              "ruleId": "no-mixed-spaces-and-tabs",
+              "replacedBy": []
+            }
+          ]
+        },
+        {
+          "filePath": "C:\\Users\\chari\\OneDrive\\Desktop\\internship\\challenge-engine-react\\courses\\01-react-fundamentals\\project\\src\\components\\ChallengeList.tsx",
+          "messages": [],
+          "suppressedMessages": [],
+          "errorCount": 0,
+          "fatalErrorCount": 0,
+          "warningCount": 0,
+          "fixableErrorCount": 0,
+          "fixableWarningCount": 0,
+          "usedDeprecatedRules": [
+            {
+              "ruleId": "no-extra-semi",
+              "replacedBy": []
+            },
+            {
+              "ruleId": "no-mixed-spaces-and-tabs",
+              "replacedBy": []
+            }
+          ]
+        },
+        {
+          "filePath": "C:\\Users\\chari\\OneDrive\\Desktop\\internship\\challenge-engine-react\\courses\\01-react-fundamentals\\project\\src\\contexts\\ThemeContext.tsx",
+          "messages": [
+            {
+              "ruleId": "react-refresh/only-export-components",
+              "severity": 1,
+              "message": "Fast refresh only works when a file only exports components. Move your React context(s) to a separate file.",
+              "line": 17,
+              "column": 14,
+              "nodeType": "Identifier",
+              "messageId": "reactContext",
+              "endLine": 17,
+              "endColumn": 26
+            },
+            {
+              "ruleId": "react-refresh/only-export-components",
+              "severity": 1,
+              "message": "Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.",
+              "line": 69,
+              "column": 17,
+              "nodeType": "Identifier",
+              "messageId": "namedExport",
+              "endLine": 69,
+              "endColumn": 25
+            }
+          ],
+          "suppressedMessages": [],
+          "errorCount": 0,
+          "fatalErrorCount": 0,
+          "warningCount": 2,
+          "fixableErrorCount": 0,
+          "fixableWarningCount": 0,
+          "source": "import {\r\n  createContext,\r\n  useContext,\r\n  useEffect,\r\n  useState,\r\n  type ReactNode,\r\n} from 'react'\r\n\r\nexport type Theme = 'light' | 'dark'\r\n\r\nexport interface ThemeContextValue {\r\n  theme: Theme\r\n  setTheme: (theme: Theme) => void\r\n  toggleTheme: () => void\r\n}\r\n\r\nexport const ThemeContext =\r\n  createContext<ThemeContextValue | null>(null)\r\n\r\nexport function ThemeProvider({\r\n  children,\r\n}: {\r\n  children: ReactNode\r\n}) {\r\n  const [theme, setTheme] = useState<Theme>(() => {\r\n    const savedTheme =\r\n      localStorage.getItem('task-app-theme')\r\n\r\n    if (savedTheme === 'dark') {\r\n      return 'dark'\r\n    }\r\n\r\n    return 'light'\r\n  })\r\n\r\n  useEffect(() => {\r\n    localStorage.setItem(\r\n      'task-app-theme',\r\n      theme\r\n    )\r\n\r\n    document.documentElement.setAttribute(\r\n      'data-theme',\r\n      theme\r\n    )\r\n  }, [theme])\r\n\r\n  const toggleTheme = () => {\r\n    setTheme((currentTheme) =>\r\n      currentTheme === 'light'\r\n        ? 'dark'\r\n        : 'light'\r\n    )\r\n  }\r\n\r\n  const value: ThemeContextValue = {\r\n    theme,\r\n    setTheme,\r\n    toggleTheme,\r\n  }\r\n\r\n  return (\r\n    <ThemeContext.Provider value={value}>\r\n      {children}\r\n    </ThemeContext.Provider>\r\n  )\r\n}\r\n\r\nexport function useTheme(): ThemeContextValue {\r\n  const ctx = useContext(ThemeContext)\r\n\r\n  if (!ctx) {\r\n    throw new Error(\r\n      'useTheme must be used within ThemeProvider'\r\n    )\r\n  }\r\n\r\n  return ctx\r\n}",
+          "usedDeprecatedRules": [
+            {
+              "ruleId": "no-extra-semi",
+              "replacedBy": []
+            },
+            {
+              "ruleId": "no-mixed-spaces-and-tabs",
+              "replacedBy": []
+            }
+          ]
+        }
+      ]
+    },
+    "architectureResults": {
+      "score": 100,
+      "passed": true,
+      "patternsFound": [
+        "functionalComponent",
+        "createContext",
+        "useContext"
+      ],
+      "patternsMissing": [],
+      "details": [
+        {
+          "file": "src/contexts/ThemeContext.tsx",
+          "patternsFound": [
+            "functionalComponent",
+            "createContext",
+            "useContext"
+          ],
+          "patternsMissing": []
+        },
+        {
+          "file": "src/App.tsx",
+          "patternsFound": [
+            "functionalComponent"
+          ],
+          "patternsMissing": [
+            "createContext",
+            "useContext"
+          ]
+        },
+        {
+          "file": "src/components/ChallengeList.tsx",
+          "patternsFound": [
+            "functionalComponent",
+            "useContext"
+          ],
+          "patternsMissing": [
+            "createContext"
+          ]
+        }
+      ]
+    },
+    "bestPracticesResults": {
+      "score": 100,
+      "passed": true,
+      "issues": [],
+      "details": [],
+      "note": "No best practices requirements specified in challenge"
+    },
+    "e2eResults": {
+      "score": 100,
+      "passed": true,
+      "totalTests": 1,
+      "passedTests": 1,
+      "failedTests": 0,
+      "details": [
+        {
+          "title": "challenge-16.spec.ts",
+          "file": "challenge-16.spec.ts",
+          "column": 0,
+          "line": 0,
+          "specs": [],
+          "suites": [
+            {
+              "title": "Challenge 16: Context API Theme - E2E",
+              "file": "challenge-16.spec.ts",
+              "line": 3,
+              "column": 6,
+              "specs": [
+                {
+                  "title": "should display task list",
+                  "ok": true,
+                  "tags": [],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 0,
+                          "parallelIndex": 0,
+                          "status": "passed",
+                          "duration": 334,
+                          "errors": [],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2026-08-10T05:56:28.790Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "3923c1b5135bbbcbba41-0360f6d5a5fe9777b6cf",
+                  "file": "challenge-16.spec.ts",
+                  "line": 8,
+                  "column": 3
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "screenshots": []
+    },
+    "aiReviewResults": {
+      "challengeId": "16-context-api-theme",
+      "timestamp": "2026-08-10T05:56:29.571Z",
+      "score": 88,
+      "feedback": [],
+      "strengths": [
+        "The code is well-structured and follows a consistent naming convention.",
+        "The use of TypeScript and React Context API is well-implemented.",
+        "The code is free of console logs and follows best practices for error handling."
+      ],
+      "improvements": [
+        "In the ThemeContext file, the `toggleTheme` function can be simplified using the ternary operator.",
+        "In the App.tsx file, the `INITIAL_TASKS` array can be moved to a separate file or a constant to avoid duplication.",
+        "In the ChallengeList.tsx file, the `useContext` hook can be memoized using `useCallback` to prevent unnecessary re-renders."
+      ],
+      "readability": 85,
+      "maintainability": 90,
+      "overall": "The code is well-structured, maintainable, and follows best practices. However, there are a few minor improvements that can be made to enhance the code's readability and performance."
+    },
+    "aiResults": {
+      "challengeId": "16-context-api-theme",
+      "timestamp": "2026-08-10T05:56:29.571Z",
+      "score": 88,
+      "feedback": [],
+      "strengths": [
+        "The code is well-structured and follows a consistent naming convention.",
+        "The use of TypeScript and React Context API is well-implemented.",
+        "The code is free of console logs and follows best practices for error handling."
+      ],
+      "improvements": [
+        "In the ThemeContext file, the `toggleTheme` function can be simplified using the ternary operator.",
+        "In the App.tsx file, the `INITIAL_TASKS` array can be moved to a separate file or a constant to avoid duplication.",
+        "In the ChallengeList.tsx file, the `useContext` hook can be memoized using `useCallback` to prevent unnecessary re-renders."
+      ],
+      "readability": 85,
+      "maintainability": 90,
+      "overall": "The code is well-structured, maintainable, and follows best practices. However, there are a few minor improvements that can be made to enhance the code's readability and performance."
+    }
   }
 ]
