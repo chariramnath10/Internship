@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import type { Dispatch, SetStateAction } from "react";
 
 import type { Task } from "./TaskList";
 import TaskList from "./TaskList";
@@ -7,12 +6,19 @@ import TaskForm from "./TaskForm";
 import FilterBar from "./FilterBar";
 import StatsPanel from "./StatsPanel";
 import Button from "./Button";
+
 import { useTheme } from "../contexts/ThemeContext";
+
+import {
+  ADD_TASK,
+  TOGGLE_TASK,
+  UPDATE_TASK,
+  type TaskAction,
+} from "../taskReducer";
 
 interface TaskAppProps {
   tasks?: Task[];
-  setTasks?: Dispatch<SetStateAction<Task[]>>;
-  dispatch?: (action: { type: string; payload?: unknown }) => void;
+  dispatch?: React.Dispatch<TaskAction>;
   showForm?: boolean;
   countFormat?: string;
   showFilterBar?: boolean;
@@ -32,7 +38,7 @@ type SortOrder =
 
 export default function TaskApp({
   tasks = [],
-  setTasks,
+  dispatch,
   showForm = false,
   showFilterBar = false,
   showStatsPanel = false,
@@ -64,27 +70,21 @@ export default function TaskApp({
   }, [searchText]);
 
   const handleAddTask = (task: Task) => {
-    setTasks?.((prev) => [
-      ...prev,
-      {
+    dispatch?.({
+      type: ADD_TASK,
+      payload: {
         ...task,
         category: task.category || "General",
         tags: task.tags ?? [],
       },
-    ]);
+    });
   };
 
   const handleToggle = (id: string | number) => {
-    setTasks?.((prev) =>
-      prev.map((task) =>
-        task.id === id
-          ? {
-              ...task,
-              completed: !task.completed,
-            }
-          : task,
-      ),
-    );
+    dispatch?.({
+      type: TOGGLE_TASK,
+      payload: id,
+    });
   };
 
   const handleUpdateTask = (
@@ -102,18 +102,15 @@ export default function TaskApp({
       return;
     }
 
-    setTasks?.((prev) =>
-      prev.map((task) =>
-        task.id === id
-          ? {
-              ...task,
-              ...updates,
-              category: updates.category || "General",
-              tags: updates.tags ?? [],
-            }
-          : task,
-      ),
-    );
+    dispatch?.({
+      type: UPDATE_TASK,
+      payload: {
+        id,
+        ...updates,
+        category: updates.category || "General",
+        tags: updates.tags ?? [],
+      },
+    });
 
     setEditingId(null);
   };
@@ -235,9 +232,7 @@ export default function TaskApp({
           justifyContent: "flex-end",
           marginBottom: "1rem",
         }}
-      >
-        
-      </div>
+      ></div>
 
       {showForm && <TaskForm onAddTask={handleAddTask} />}
 
