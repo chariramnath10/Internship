@@ -2,43 +2,37 @@ import {
   createContext,
   useContext,
   useEffect,
-  useState,
   type ReactNode,
 } from 'react'
+import { useLocalStorage } from '../hooks/useLocalStorage'
 
-export type Theme = 'light' | 'dark'
+export type AppTheme = 'light' | 'dark'
 
 export interface ThemeContextValue {
-  theme: Theme
-  setTheme: (theme: Theme) => void
+  theme: AppTheme
+  setTheme: (
+    theme: AppTheme
+  ) => void
   toggleTheme: () => void
 }
 
 export const ThemeContext =
-  createContext<ThemeContextValue | null>(null)
+  createContext<ThemeContextValue | null>(
+    null
+  )
 
 export function ThemeProvider({
   children,
 }: {
   children: ReactNode
 }) {
-  const [theme, setTheme] = useState<Theme>(() => {
-    const savedTheme =
-      localStorage.getItem('task-app-theme')
-
-    if (savedTheme === 'dark') {
-      return 'dark'
-    }
-
-    return 'light'
-  })
-
-  useEffect(() => {
-    localStorage.setItem(
+  const [theme, setTheme] =
+    useLocalStorage<AppTheme>(
       'task-app-theme',
-      theme
+      'light'
     )
 
+  useEffect(() => {
     document.documentElement.setAttribute(
       'data-theme',
       theme
@@ -67,13 +61,14 @@ export function ThemeProvider({
 }
 
 export function useTheme(): ThemeContextValue {
-  const ctx = useContext(ThemeContext)
+  const context =
+    useContext(ThemeContext)
 
-  if (!ctx) {
+  if (!context) {
     throw new Error(
       'useTheme must be used within ThemeProvider'
     )
   }
 
-  return ctx
+  return context
 }

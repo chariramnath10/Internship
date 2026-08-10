@@ -1,12 +1,15 @@
 import './App.css'
-import { useEffect, useState } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
+
 import ChallengeList from './components/ChallengeList'
 import TaskList from './components/TaskList'
 import TaskApp from './components/TaskApp'
 import TaskDetailPage from './components/TaskDetailPage'
 import FetchDemoView from './components/FetchDemoView'
+
 import { ThemeProvider } from './contexts/ThemeContext'
+import { useLocalStorage } from './hooks/useLocalStorage'
+
 import type { Task } from './components/TaskList'
 
 const INITIAL_TASKS: Task[] = [
@@ -47,43 +50,20 @@ const INITIAL_TASKS: Task[] = [
   },
 ]
 
-const STORAGE_KEY = 'task-app-tasks'
-
 function AppContent() {
-  const [tasks, setTasks] = useState<Task[]>(() => {
-    try {
-      const storedTasks = localStorage.getItem(STORAGE_KEY)
+  const [tasks, setTasks] =
+    useLocalStorage<Task[]>(
+      'task-app-tasks',
+      INITIAL_TASKS
+    )
 
-      if (!storedTasks) {
-        return INITIAL_TASKS
-      }
-
-      const parsedTasks = JSON.parse(storedTasks)
-
-      if (!Array.isArray(parsedTasks)) {
-        return INITIAL_TASKS
-      }
-
-      return parsedTasks as Task[]
-    } catch {
-      return INITIAL_TASKS
-    }
-  })
-
-  useEffect(() => {
-    try {
-      localStorage.setItem(
-        STORAGE_KEY,
-        JSON.stringify(tasks),
-      )
-    } catch {
-      // Ignore localStorage write errors.
-    }
-  }, [tasks])
-
-  const handleDelete = (id: string | number) => {
+  const handleDelete = (
+    id: string | number
+  ) => {
     setTasks((prev) =>
-      prev.filter((t) => t.id !== id)
+      prev.filter(
+        (task) => task.id !== id
+      )
     )
   }
 
@@ -92,6 +72,7 @@ function AppContent() {
       <div className="App">
         <main>
           <Routes>
+
             <Route
               path="/"
               element={<ChallengeList />}
@@ -304,7 +285,6 @@ function AppContent() {
                   showStatsPanel
                   showFilterBar
                   onDelete={handleDelete}
-                  
                 />
               }
             />
@@ -317,6 +297,9 @@ function AppContent() {
                   setTasks={setTasks}
                   showForm
                   countFormat="tasks"
+                  showStatsPanel
+                  showFilterBar
+                  onDelete={handleDelete}
                 />
               }
             />
@@ -392,6 +375,7 @@ function AppContent() {
                 />
               }
             />
+
           </Routes>
         </main>
       </div>
@@ -402,9 +386,7 @@ function AppContent() {
 function App() {
   return (
     <ThemeProvider>
-       
-        <AppContent />
-     
+      <AppContent />
     </ThemeProvider>
   )
 }
