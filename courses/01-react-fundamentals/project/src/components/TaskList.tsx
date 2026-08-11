@@ -1,3 +1,4 @@
+import { useCallback } from 'react'
 import TaskCard from './TaskCard'
 
 export interface Task {
@@ -80,42 +81,51 @@ export default function TaskList({
       ? tasks
       : HARDCODED_TASKS
 
+  const handleEdit = useCallback(
+    (id: string | number) => {
+      setEditingId?.(id)
+    },
+    [setEditingId]
+  )
+
+  const handleCancelEdit = useCallback(() => {
+    setEditingId?.(null)
+  }, [setEditingId])
+
   return (
-  <section id="task-list">
-    {list.length === 0 && (
-      <p>No tasks found</p>
-    )}
+    <section id="task-list">
+      {list.length === 0 && (
+        <p>No tasks found</p>
+      )}
 
-    {list.map((task) => (
-      <TaskCard
-        key={task.id}
-        taskId={task.id}
-        title={task.title}
-        description={task.description}
-        priority={task.priority}
-        completed={task.completed}
-        category={task.category ?? 'General'}
-        tags={task.tags ?? []}
-        dueDate={task.dueDate}
-        onToggle={onToggle}
-        onDelete={onDelete}
-        onUpdateTask={onUpdateTask}
-        isEditing={editingId === task.id}
-        onEdit={() =>
-          setEditingId?.(task.id)
-        }
-        onCancelEdit={() =>
-          setEditingId?.(null)
-        }
-      />
-    ))}
+      {list.map((task) => (
+        <TaskCard
+          key={task.id}
+          taskId={task.id}
+          title={task.title}
+          description={task.description}
+          priority={task.priority}
+          completed={task.completed}
+          category={
+            task.category ?? 'General'
+          }
+          tags={task.tags ?? []}
+          dueDate={task.dueDate}
+          onToggle={onToggle}
+          onDelete={onDelete}
+          onUpdateTask={onUpdateTask}
+          isEditing={editingId === task.id}
+          onEdit={handleEdit}
+          onCancelEdit={handleCancelEdit}
+        />
+      ))}
 
-    <h2 id="task-count">
-      {countText ??
-        `Showing ${list.length} of ${
-          totalTasks ?? list.length
-        } tasks`}
-    </h2>
-  </section>
-)
+      <h2 id="task-count">
+        {countText ??
+          `Showing ${list.length} of ${
+            totalTasks ?? list.length
+          } tasks`}
+      </h2>
+    </section>
+  )
 }

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Button from './Button'
 import Badge from './Badge'
 import StatusIndicator from './StatusIndicator'
@@ -27,11 +27,11 @@ interface TaskCardProps {
     }
   ) => void
   isEditing?: boolean
-  onEdit?: () => void
+  onEdit?: (id: string | number) => void
   onCancelEdit?: () => void
 }
 
-export default function TaskCard({
+function TaskCard({
   id,
   taskId,
   title,
@@ -50,29 +50,21 @@ export default function TaskCard({
 }: TaskCardProps) {
   const taskIdValue = taskId ?? id
 
-  const [editTitle, setEditTitle] =
-    useState(title)
-
+  const [editTitle, setEditTitle] = useState(title)
   const [editDescription, setEditDescription] =
     useState(description)
-
   const [editPriority, setEditPriority] =
     useState(priority)
-
   const [editCategory, setEditCategory] =
     useState(category)
-
   const [editTags, setEditTags] =
     useState(tags.join(', '))
 
-  const [editDueDate, setEditDueDate] =
-    useState(
-      dueDate
-        ? new Date(dueDate)
-            .toISOString()
-            .split('T')[0]
-        : ''
-    )
+  const [editDueDate, setEditDueDate] = useState(
+    dueDate
+      ? new Date(dueDate).toISOString().split('T')[0]
+      : ''
+  )
 
   useEffect(() => {
     setEditTitle(title)
@@ -82,9 +74,7 @@ export default function TaskCard({
     setEditTags(tags.join(', '))
     setEditDueDate(
       dueDate
-        ? new Date(dueDate)
-            .toISOString()
-            .split('T')[0]
+        ? new Date(dueDate).toISOString().split('T')[0]
         : ''
     )
   }, [
@@ -116,8 +106,7 @@ export default function TaskCard({
       priority: editPriority,
       category: editCategory,
       tags: parsedTags,
-      dueDate:
-        editDueDate || undefined,
+      dueDate: editDueDate || undefined,
     })
   }
 
@@ -129,9 +118,7 @@ export default function TaskCard({
     setEditTags(tags.join(', '))
     setEditDueDate(
       dueDate
-        ? new Date(dueDate)
-            .toISOString()
-            .split('T')[0]
+        ? new Date(dueDate).toISOString().split('T')[0]
         : ''
     )
 
@@ -153,8 +140,7 @@ export default function TaskCard({
       due.getTime() - today.getTime()
 
     const daysUntil =
-      difference /
-      (1000 * 60 * 60 * 24)
+      difference / (1000 * 60 * 60 * 24)
 
     if (daysUntil < 0) {
       return 'Overdue'
@@ -225,18 +211,14 @@ export default function TaskCard({
           <textarea
             value={editDescription}
             onChange={(e) =>
-              setEditDescription(
-                e.target.value
-              )
+              setEditDescription(e.target.value)
             }
           />
 
           <select
             value={editPriority}
             onChange={(e) =>
-              setEditPriority(
-                e.target.value
-              )
+              setEditPriority(e.target.value)
             }
           >
             <option value="High">
@@ -253,9 +235,7 @@ export default function TaskCard({
           <select
             value={editCategory}
             onChange={(e) =>
-              setEditCategory(
-                e.target.value
-              )
+              setEditCategory(e.target.value)
             }
           >
             <option value="General">
@@ -282,9 +262,7 @@ export default function TaskCard({
             type="date"
             value={editDueDate}
             onChange={(e) =>
-              setEditDueDate(
-                e.target.value
-              )
+              setEditDueDate(e.target.value)
             }
           />
 
@@ -357,9 +335,7 @@ export default function TaskCard({
             <p
               id="task-due-date"
               data-overdue={
-                isOverdue
-                  ? 'true'
-                  : 'false'
+                isOverdue ? 'true' : 'false'
               }
             >
               Due Date:{' '}
@@ -383,7 +359,11 @@ export default function TaskCard({
             <Button
               type="button"
               variant="secondary"
-              onClick={onEdit}
+              onClick={() => {
+                if (taskIdValue !== undefined) {
+                  onEdit?.(taskIdValue)
+                }
+              }}
             >
               Edit
             </Button>
@@ -412,3 +392,5 @@ export default function TaskCard({
     </article>
   )
 }
+
+export default React.memo(TaskCard)

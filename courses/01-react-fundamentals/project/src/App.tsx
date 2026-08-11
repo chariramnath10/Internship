@@ -1,6 +1,6 @@
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { useEffect, useReducer } from "react";
+import { useCallback, useEffect, useReducer } from "react";
 
 import ChallengeList from "./components/ChallengeList";
 import TaskList from "./components/TaskList";
@@ -78,12 +78,15 @@ function AppContent() {
     setStoredTasks(tasks);
   }, [tasks, setStoredTasks]);
 
-  const handleDelete = (id: string | number) => {
-    dispatch({
-      type: "DELETE_TASK",
-      payload: id,
-    });
-  };
+  const handleDelete = useCallback(
+    (id: string | number) => {
+      dispatch({
+        type: "DELETE_TASK",
+        payload: id,
+      });
+    },
+    [dispatch],
+  );
 
   return (
     <BrowserRouter>
