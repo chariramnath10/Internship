@@ -74,8 +74,12 @@ export default function TaskList({
   onUpdateTask,
   editingId,
   setEditingId,
+  linkToTaskDetail,
 }: TaskListProps) {
-  const list = tasks && tasks.length >= 0 ? tasks : HARDCODED_TASKS;
+  const list =
+    tasks && tasks.length >= 0
+      ? tasks
+      : HARDCODED_TASKS;
 
   const handleEdit = useCallback(
     (id: string | number) => {
@@ -109,13 +113,16 @@ export default function TaskList({
             isEditing={editingId === task.id}
             onEdit={handleEdit}
             onCancelEdit={handleCancelEdit}
+            linkToTaskDetail={linkToTaskDetail}
           />
         </ErrorBoundary>
       ))}
 
       <h2 id="task-count">
         {countText ??
-          `Showing ${list.length} of ${totalTasks ?? list.length} tasks`}
+          `Showing ${list.length} of ${
+            totalTasks ?? list.length
+          } tasks`}
       </h2>
     </section>
   );

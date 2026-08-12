@@ -7,7 +7,6 @@ import TaskList from "./components/TaskList";
 import TaskApp from "./components/TaskApp";
 import TaskDetailPage from "./components/TaskDetailPage";
 import FetchDemoView from "./components/FetchDemoView";
-import ErrorBoundary from "./components/ErrorBoundary";
 
 import { ThemeProvider } from "./contexts/ThemeContext";
 import { useLocalStorage } from "./hooks/useLocalStorage";
@@ -67,27 +66,18 @@ function AppContent() {
 
   /*
    * Challenge 18:
-   * useReducer controls all task state changes.
+   * useReducer now controls all task state changes.
    */
-  const [tasks, dispatch] = useReducer(
-    taskReducer,
-    storedTasks,
-  );
+  const [tasks, dispatch] = useReducer(taskReducer, storedTasks);
 
   /*
-   * Keep reducer state synchronized
-   * with localStorage.
+   * Keep reducer state synchronized with
+   * localStorage through useLocalStorage.
    */
   useEffect(() => {
     setStoredTasks(tasks);
   }, [tasks, setStoredTasks]);
 
-  /*
-   * Challenge 19:
-   * Keep the delete handler stable so memoized
-   * child components do not receive a new
-   * callback on every render.
-   */
   const handleDelete = useCallback(
     (id: string | number) => {
       dispatch({
@@ -95,7 +85,7 @@ function AppContent() {
         payload: id,
       });
     },
-    [],
+    [dispatch],
   );
 
   return (
@@ -103,18 +93,11 @@ function AppContent() {
       <div id="app">
         <main>
           <Routes>
-            <Route
-              path="/"
-              element={<ChallengeList />}
-            />
+            <Route path="/" element={<ChallengeList />} />
 
             <Route
               path="/challenge/01-static-task-display"
-              element={
-                <ErrorBoundary>
-                  <TaskList />
-                </ErrorBoundary>
-              }
+              element={<TaskList />}
             />
 
             <Route
@@ -363,6 +346,7 @@ function AppContent() {
                   countFormat="tasks"
                   showFilterBar
                   onDelete={handleDelete}
+                  showStatsPanel
                 />
               }
             />
@@ -370,16 +354,16 @@ function AppContent() {
             <Route
               path="/challenge/20-error-boundaries"
               element={
-                <ErrorBoundary>
-                  <TaskApp
-                    tasks={tasks}
-                    dispatch={dispatch}
-                    showForm
-                    countFormat="tasks"
-                    showFilterBar
-                    onDelete={handleDelete}
-                  />
-                </ErrorBoundary>
+                <TaskApp
+                  tasks={tasks}
+                  dispatch={dispatch}
+                  showForm
+                  countFormat="tasks"
+                  showFilterBar
+                  onDelete={handleDelete}
+                  showStatsPanel
+                  
+                />
               }
             />
 
@@ -393,6 +377,8 @@ function AppContent() {
                   countFormat="tasks"
                   linkToTaskDetail
                   onDelete={handleDelete}
+                  showFilterBar
+                  showStatsPanel
                 />
               }
             />
