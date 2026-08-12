@@ -1,26 +1,34 @@
+import { forwardRef } from "react";
+
 interface FormInputProps {
-  id?: string
-  value?: string
+  id?: string;
+  value?: string;
   onChange?: (
     e: React.ChangeEvent<
       HTMLInputElement | HTMLTextAreaElement
-    >
-  ) => void
-  label?: string
-  type?: string
-  placeholder?: string
-  error?: string
+    >,
+  ) => void;
+  label?: string;
+  type?: string;
+  placeholder?: string;
+  error?: string;
 }
 
-export default function FormInput({
-  id,
-  value = '',
-  onChange,
-  label,
-  type = 'text',
-  placeholder,
-  error,
-}: FormInputProps) {
+const FormInput = forwardRef<
+  HTMLInputElement,
+  FormInputProps
+>(function FormInput(
+  {
+    id,
+    value = "",
+    onChange,
+    label,
+    type = "text",
+    placeholder,
+    error,
+  },
+  ref,
+) {
   return (
     <div>
       {label && (
@@ -29,7 +37,7 @@ export default function FormInput({
         </label>
       )}
 
-      {type === 'textarea' ? (
+      {type === "textarea" ? (
         <textarea
           id={id}
           value={value}
@@ -38,6 +46,7 @@ export default function FormInput({
         />
       ) : (
         <input
+          ref={ref}
           id={id}
           type={type}
           value={value}
@@ -52,5 +61,7 @@ export default function FormInput({
         </p>
       )}
     </div>
-  )
-}
+  );
+});
+
+export default FormInput;

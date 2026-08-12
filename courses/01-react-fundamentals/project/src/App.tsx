@@ -403,6 +403,7 @@ function AppContent() {
                   countFormat="tasks"
                   showFilterBar
                   onDelete={handleDelete}
+                  showStatsPanel
                 />
               }
             />
