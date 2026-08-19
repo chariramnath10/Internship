@@ -1,1 +1,581 @@
-[]
+[
+  {
+    "challengeId": "01-store-setup",
+    "challengeName": "Store Setup with configureStore",
+    "timestamp": "2026-08-19T06:46:36.799Z",
+    "scores": {
+      "functionalTests": 100,
+      "codeQuality": 100,
+      "architecture": 100,
+      "bestPractices": 100,
+      "e2eTests": 100,
+      "aiReview": 88
+    },
+    "totalScore": 98.2,
+    "passed": true,
+    "errors": [],
+    "warnings": [],
+    "testResults": {
+      "score": 100,
+      "passed": true,
+      "totalTests": 3,
+      "passedTests": 3,
+      "failedTests": 0,
+      "details": [
+        {
+          "assertionResults": [
+            {
+              "ancestorTitles": [
+                "",
+                "Challenge 01: Store Setup with configureStore"
+              ],
+              "fullName": " Challenge 01: Store Setup with configureStore store uses configureStore",
+              "status": "passed",
+              "title": "store uses configureStore",
+              "duration": 2,
+              "failureMessages": []
+            },
+            {
+              "ancestorTitles": [
+                "",
+                "Challenge 01: Store Setup with configureStore"
+              ],
+              "fullName": " Challenge 01: Store Setup with configureStore store exports RootState and AppDispatch",
+              "status": "passed",
+              "title": "store exports RootState and AppDispatch",
+              "duration": 1,
+              "failureMessages": []
+            },
+            {
+              "ancestorTitles": [
+                "",
+                "Challenge 01: Store Setup with configureStore"
+              ],
+              "fullName": " Challenge 01: Store Setup with configureStore main.tsx wraps App with Provider and passes store",
+              "status": "passed",
+              "title": "main.tsx wraps App with Provider and passes store",
+              "duration": 1,
+              "failureMessages": []
+            }
+          ],
+          "startTime": 1787121999919,
+          "endTime": 1787121999923,
+          "status": "passed",
+          "message": "",
+          "name": "C:/Users/chari/OneDrive/Desktop/internship/challenge-engine-react/courses/02-redux-rtk-query/project/tests/challenge-01.test.tsx"
+        }
+      ]
+    },
+    "lintResults": {
+      "score": 100,
+      "passed": true,
+      "totalIssues": 0,
+      "errors": 0,
+      "warnings": 0,
+      "details": [
+        {
+          "filePath": "C:\\Users\\chari\\OneDrive\\Desktop\\internship\\challenge-engine-react\\courses\\02-redux-rtk-query\\project\\src\\main.tsx",
+          "messages": [],
+          "suppressedMessages": [],
+          "errorCount": 0,
+          "fatalErrorCount": 0,
+          "warningCount": 0,
+          "fixableErrorCount": 0,
+          "fixableWarningCount": 0,
+          "usedDeprecatedRules": [
+            {
+              "ruleId": "no-extra-semi",
+              "replacedBy": []
+            },
+            {
+              "ruleId": "no-mixed-spaces-and-tabs",
+              "replacedBy": []
+            }
+          ]
+        },
+        {
+          "filePath": "C:\\Users\\chari\\OneDrive\\Desktop\\internship\\challenge-engine-react\\courses\\02-redux-rtk-query\\project\\src\\store\\store.ts",
+          "messages": [],
+          "suppressedMessages": [],
+          "errorCount": 0,
+          "fatalErrorCount": 0,
+          "warningCount": 0,
+          "fixableErrorCount": 0,
+          "fixableWarningCount": 0,
+          "usedDeprecatedRules": [
+            {
+              "ruleId": "no-extra-semi",
+              "replacedBy": []
+            },
+            {
+              "ruleId": "no-mixed-spaces-and-tabs",
+              "replacedBy": []
+            }
+          ]
+        }
+      ]
+    },
+    "architectureResults": {
+      "score": 100,
+      "passed": true,
+      "patternsFound": [
+        "reducer",
+        "middleware",
+        "Provider"
+      ],
+      "patternsMissing": [],
+      "details": [
+        {
+          "file": "src/store/store.ts",
+          "patternsFound": [
+            "reducer",
+            "middleware"
+          ],
+          "patternsMissing": []
+        },
+        {
+          "file": "src/main.tsx",
+          "patternsFound": [
+            "Provider"
+          ],
+          "patternsMissing": []
+        }
+      ]
+    },
+    "bestPracticesResults": {
+      "score": 100,
+      "passed": true,
+      "issues": [],
+      "details": [],
+      "note": "No best practices requirements specified in challenge"
+    },
+    "e2eResults": {
+      "score": 100,
+      "passed": true,
+      "totalTests": 2,
+      "passedTests": 2,
+      "failedTests": 0,
+      "details": [
+        {
+          "title": "challenge-01.spec.ts",
+          "file": "challenge-01.spec.ts",
+          "column": 0,
+          "line": 0,
+          "specs": [],
+          "suites": [
+            {
+              "title": "Challenge 01: Store Setup - E2E",
+              "file": "challenge-01.spec.ts",
+              "line": 3,
+              "column": 6,
+              "specs": [
+                {
+                  "title": "should load challenge 01 page",
+                  "ok": true,
+                  "tags": [],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 0,
+                          "parallelIndex": 0,
+                          "status": "passed",
+                          "duration": 282,
+                          "errors": [],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2026-08-19T06:46:47.890Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "77d07a436f655ce05c79-b2daf7d916cc74047b42",
+                  "file": "challenge-01.spec.ts",
+                  "line": 8,
+                  "column": 3
+                },
+                {
+                  "title": "should have challenge content",
+                  "ok": true,
+                  "tags": [],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 0,
+                          "parallelIndex": 0,
+                          "status": "passed",
+                          "duration": 200,
+                          "errors": [],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2026-08-19T06:46:48.281Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "77d07a436f655ce05c79-41ccc5c1139901d7300c",
+                  "file": "challenge-01.spec.ts",
+                  "line": 13,
+                  "column": 3
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "screenshots": []
+    },
+    "aiReviewResults": {
+      "challengeId": "01-store-setup",
+      "timestamp": "2026-08-19T06:46:48.732Z",
+      "score": 88,
+      "feedback": [],
+      "strengths": [
+        "Correct use of `configureStore` with a reducer object and exported `store`, `RootState`, and `AppDispatch` types.",
+        "Provider is properly set up in `src/main.tsx`, making the Redux store available throughout the app.",
+        "Typed custom hooks (`useAppDispatch`, `useAppSelector`) provide a clean API for components."
+      ],
+      "improvements": [
+        "In `src/store/store.ts`, the `middleware` option is redundant (`(getDefaultMiddleware) => getDefaultMiddleware()`). Remove it or add custom middleware if needed.",
+        "The `useAppDispatch` type annotation in `src/store/hooks.ts` is incorrect. It should be `export const useAppDispatch = useDispatch as () => AppDispatch;` or simply `export const useAppDispatch = useDispatch;` to match the dispatch function type.",
+        "Ensure that `./slices/counterSlice` exists before importing it. If the slice is not yet implemented, use an empty reducer or a placeholder to avoid build errors.",
+        "Add brief comments explaining the purpose of each exported type and hook for future maintainers.",
+        "Consider removing the `.ts` extension from the import of `App` in `src/main.tsx` for consistency (`import App from './App';`)."
+      ],
+      "readability": 85,
+      "maintainability": 80,
+      "overall": "The implementation satisfies all functional requirements for setting up the Redux store and Provider. The code follows best practices for store configuration and type safety, though a few minor type and configuration tweaks would improve clarity and robustness.",
+      "requirementCompliance": 95
+    },
+    "aiResults": {
+      "challengeId": "01-store-setup",
+      "timestamp": "2026-08-19T06:46:48.732Z",
+      "score": 88,
+      "feedback": [],
+      "strengths": [
+        "Correct use of `configureStore` with a reducer object and exported `store`, `RootState`, and `AppDispatch` types.",
+        "Provider is properly set up in `src/main.tsx`, making the Redux store available throughout the app.",
+        "Typed custom hooks (`useAppDispatch`, `useAppSelector`) provide a clean API for components."
+      ],
+      "improvements": [
+        "In `src/store/store.ts`, the `middleware` option is redundant (`(getDefaultMiddleware) => getDefaultMiddleware()`). Remove it or add custom middleware if needed.",
+        "The `useAppDispatch` type annotation in `src/store/hooks.ts` is incorrect. It should be `export const useAppDispatch = useDispatch as () => AppDispatch;` or simply `export const useAppDispatch = useDispatch;` to match the dispatch function type.",
+        "Ensure that `./slices/counterSlice` exists before importing it. If the slice is not yet implemented, use an empty reducer or a placeholder to avoid build errors.",
+        "Add brief comments explaining the purpose of each exported type and hook for future maintainers.",
+        "Consider removing the `.ts` extension from the import of `App` in `src/main.tsx` for consistency (`import App from './App';`)."
+      ],
+      "readability": 85,
+      "maintainability": 80,
+      "overall": "The implementation satisfies all functional requirements for setting up the Redux store and Provider. The code follows best practices for store configuration and type safety, though a few minor type and configuration tweaks would improve clarity and robustness.",
+      "requirementCompliance": 95
+    }
+  },
+  {
+    "challengeId": "02-first-slice",
+    "challengeName": "First Slice with createSlice",
+    "timestamp": "2026-08-19T06:46:05.660Z",
+    "scores": {
+      "functionalTests": 100,
+      "codeQuality": 100,
+      "architecture": 100,
+      "bestPractices": 100,
+      "e2eTests": 100,
+      "aiReview": 88
+    },
+    "totalScore": 98.2,
+    "passed": true,
+    "errors": [],
+    "warnings": [],
+    "testResults": {
+      "score": 100,
+      "passed": true,
+      "totalTests": 3,
+      "passedTests": 3,
+      "failedTests": 0,
+      "details": [
+        {
+          "assertionResults": [
+            {
+              "ancestorTitles": [
+                "",
+                "Challenge 02: First Slice with createSlice"
+              ],
+              "fullName": " Challenge 02: First Slice with createSlice counterSlice exists and uses createSlice",
+              "status": "passed",
+              "title": "counterSlice exists and uses createSlice",
+              "duration": 1,
+              "failureMessages": []
+            },
+            {
+              "ancestorTitles": [
+                "",
+                "Challenge 02: First Slice with createSlice"
+              ],
+              "fullName": " Challenge 02: First Slice with createSlice counterSlice has increment and decrement reducers",
+              "status": "passed",
+              "title": "counterSlice has increment and decrement reducers",
+              "duration": 2,
+              "failureMessages": []
+            },
+            {
+              "ancestorTitles": [
+                "",
+                "Challenge 02: First Slice with createSlice"
+              ],
+              "fullName": " Challenge 02: First Slice with createSlice store includes counter reducer",
+              "status": "passed",
+              "title": "store includes counter reducer",
+              "duration": 1,
+              "failureMessages": []
+            }
+          ],
+          "startTime": 1787121968781,
+          "endTime": 1787121968785,
+          "status": "passed",
+          "message": "",
+          "name": "C:/Users/chari/OneDrive/Desktop/internship/challenge-engine-react/courses/02-redux-rtk-query/project/tests/challenge-02.test.tsx"
+        }
+      ]
+    },
+    "lintResults": {
+      "score": 100,
+      "passed": true,
+      "totalIssues": 0,
+      "errors": 0,
+      "warnings": 0,
+      "details": [
+        {
+          "filePath": "C:\\Users\\chari\\OneDrive\\Desktop\\internship\\challenge-engine-react\\courses\\02-redux-rtk-query\\project\\src\\store\\slices\\counterSlice.ts",
+          "messages": [],
+          "suppressedMessages": [],
+          "errorCount": 0,
+          "fatalErrorCount": 0,
+          "warningCount": 0,
+          "fixableErrorCount": 0,
+          "fixableWarningCount": 0,
+          "usedDeprecatedRules": [
+            {
+              "ruleId": "no-extra-semi",
+              "replacedBy": []
+            },
+            {
+              "ruleId": "no-mixed-spaces-and-tabs",
+              "replacedBy": []
+            }
+          ]
+        },
+        {
+          "filePath": "C:\\Users\\chari\\OneDrive\\Desktop\\internship\\challenge-engine-react\\courses\\02-redux-rtk-query\\project\\src\\store\\store.ts",
+          "messages": [],
+          "suppressedMessages": [],
+          "errorCount": 0,
+          "fatalErrorCount": 0,
+          "warningCount": 0,
+          "fixableErrorCount": 0,
+          "fixableWarningCount": 0,
+          "usedDeprecatedRules": [
+            {
+              "ruleId": "no-extra-semi",
+              "replacedBy": []
+            },
+            {
+              "ruleId": "no-mixed-spaces-and-tabs",
+              "replacedBy": []
+            }
+          ]
+        }
+      ]
+    },
+    "architectureResults": {
+      "score": 100,
+      "passed": true,
+      "patternsFound": [
+        "reducer",
+        "middleware"
+      ],
+      "patternsMissing": [],
+      "details": [
+        {
+          "file": "src/store/store.ts",
+          "patternsFound": [
+            "reducer",
+            "middleware"
+          ],
+          "patternsMissing": []
+        },
+        {
+          "file": "src/store/slices/counterSlice.ts",
+          "patternsFound": [],
+          "patternsMissing": []
+        }
+      ]
+    },
+    "bestPracticesResults": {
+      "score": 100,
+      "passed": true,
+      "issues": [],
+      "details": [],
+      "note": "No best practices requirements specified in challenge"
+    },
+    "e2eResults": {
+      "score": 100,
+      "passed": true,
+      "totalTests": 2,
+      "passedTests": 2,
+      "failedTests": 0,
+      "details": [
+        {
+          "title": "challenge-02.spec.ts",
+          "file": "challenge-02.spec.ts",
+          "column": 0,
+          "line": 0,
+          "specs": [],
+          "suites": [
+            {
+              "title": "Challenge 02: First Slice - E2E",
+              "file": "challenge-02.spec.ts",
+              "line": 3,
+              "column": 6,
+              "specs": [
+                {
+                  "title": "should load challenge 02 page",
+                  "ok": true,
+                  "tags": [],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 0,
+                          "parallelIndex": 0,
+                          "status": "passed",
+                          "duration": 283,
+                          "errors": [],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2026-08-19T06:46:16.768Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "42dc79384a61c0717494-cd5d6b44ef034207bdd7",
+                  "file": "challenge-02.spec.ts",
+                  "line": 8,
+                  "column": 3
+                },
+                {
+                  "title": "should have challenge content",
+                  "ok": true,
+                  "tags": [],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 0,
+                          "parallelIndex": 0,
+                          "status": "passed",
+                          "duration": 202,
+                          "errors": [],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2026-08-19T06:46:17.169Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "42dc79384a61c0717494-ada37f2201a3b538d9de",
+                  "file": "challenge-02.spec.ts",
+                  "line": 13,
+                  "column": 3
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "screenshots": []
+    },
+    "aiReviewResults": {
+      "challengeId": "02-first-slice",
+      "timestamp": "2026-08-19T06:46:17.630Z",
+      "score": 88,
+      "feedback": [],
+      "strengths": [
+        "Correct use of `createSlice` with proper name, initialState, and reducers.",
+        "Store configuration is concise and includes the counter reducer.",
+        "Typed hooks (`useAppDispatch`, `useAppSelector`) provide type safety across the app.",
+        "No console statements and code passes ESLint."
+      ],
+      "improvements": [
+        "In `counterSlice.ts`, use Immer‑style mutation for clarity: `increment: (state) => state += 1` and `decrement: (state) => state -= 1`.",
+        "In `hooks.ts`, type the dispatch hook more explicitly: `export const useAppDispatch = () => useDispatch<AppDispatch>();`.",
+        "Add a selector for the counter value (e.g., `export const selectCounter = (state: RootState) => state.counter;`) to keep component logic clean.",
+        "Export the store as a default export (`export default store;`) for easier imports elsewhere.",
+        "Add a brief comment block above the slice explaining its purpose and how it fits into the store."
+      ],
+      "readability": 85,
+      "maintainability": 80,
+      "overall": "The implementation meets all functional requirements and follows Redux Toolkit conventions. The code is readable and maintainable, though a few small adjustments (Immer mutation style, typed dispatch, selectors) would improve clarity and future extensibility.",
+      "requirementCompliance": 95
+    },
+    "aiResults": {
+      "challengeId": "02-first-slice",
+      "timestamp": "2026-08-19T06:46:17.630Z",
+      "score": 88,
+      "feedback": [],
+      "strengths": [
+        "Correct use of `createSlice` with proper name, initialState, and reducers.",
+        "Store configuration is concise and includes the counter reducer.",
+        "Typed hooks (`useAppDispatch`, `useAppSelector`) provide type safety across the app.",
+        "No console statements and code passes ESLint."
+      ],
+      "improvements": [
+        "In `counterSlice.ts`, use Immer‑style mutation for clarity: `increment: (state) => state += 1` and `decrement: (state) => state -= 1`.",
+        "In `hooks.ts`, type the dispatch hook more explicitly: `export const useAppDispatch = () => useDispatch<AppDispatch>();`.",
+        "Add a selector for the counter value (e.g., `export const selectCounter = (state: RootState) => state.counter;`) to keep component logic clean.",
+        "Export the store as a default export (`export default store;`) for easier imports elsewhere.",
+        "Add a brief comment block above the slice explaining its purpose and how it fits into the store."
+      ],
+      "readability": 85,
+      "maintainability": 80,
+      "overall": "The implementation meets all functional requirements and follows Redux Toolkit conventions. The code is readable and maintainable, though a few small adjustments (Immer mutation style, typed dispatch, selectors) would improve clarity and future extensibility.",
+      "requirementCompliance": 95
+    }
+  }
+]

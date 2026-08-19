@@ -7,21 +7,24 @@ import traverse from '@babel/traverse';
  * File-specific pattern rules
  */
 function getFileSpecificPatterns(file) {
-  if (file.includes("api/usersApi")) {
-    return ["createApi", "fetchBaseQuery", "endpoints"];
+  if (file.includes('api/usersApi')) {
+    return ['createApi', 'fetchBaseQuery', 'endpoints']
   }
-  if (file.includes("store")) {
-    return ["reducer", "middleware"];
-  }
-  if (file.includes("UsersList")) {
-    return ["useQueryHook"];
-  }
-  if (file.includes("main") || file.includes("index")) {
-    return ["Provider"];
-  }
-  return [];
-}
 
+  if (file.endsWith('/store.ts') || file.endsWith('\\store.ts')) {
+    return ['reducer', 'middleware']
+  }
+
+  if (file.includes('UsersList')) {
+    return ['useQueryHook']
+  }
+
+  if (file.includes('main') || file.includes('index')) {
+    return ['Provider']
+  }
+
+  return []
+}
 /**
  * Main checker
  */
