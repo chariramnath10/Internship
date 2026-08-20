@@ -128,5 +128,31 @@
       "overall": "The implementation satisfies all functional requirements and follows the Redux Toolkit pattern for async logic. The code is clean and well‑typed, though adding explicit thunk types and selectors would enhance maintainability and future extensibility. RTK Query is not used here, which is acceptable for this challenge but could be introduced later for a more streamlined API layer.",
       "requirementCompliance": 95
     }
+  },
+  {
+    "challengeId": "06-rtk-query-setup",
+    "challengeName": "RTK Query Setup and API Slice",
+    "aiReview": {
+      "challengeId": "06-rtk-query-setup",
+      "timestamp": "2026-08-20T11:35:54.210Z",
+      "score": 69,
+      "feedback": [],
+      "strengths": [
+        "Clear separation of concerns: API logic lives in `src/api/apiSlice.ts`, mock data in `src/api/mockServer.ts`, and store configuration in `src/store/store.ts`.",
+        "Consistent use of TypeScript types and interfaces (`User`, `Post`, `RootState`, `AppDispatch`).",
+        "Implementation of a custom `queryFn` that directly calls the mock API, making the slice independent of a real backend."
+      ],
+      "improvements": [
+        "Add the RTK Query middleware to the store: `middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(apiSlice.middleware)` in `src/store/store.ts`.",
+        "Replace `fakeBaseQuery` with the recommended `fetchBaseQuery` (or a custom baseQuery that uses the mock server). For example: `baseQuery: fetchBaseQuery({ baseUrl: '/' })` and then use `query: 'users'` instead of `queryFn`.",
+        "Provide a base URL or custom baseQuery that can be swapped out for a real API in production, improving future extensibility.",
+        "Add comments or documentation in `apiSlice.ts` explaining why a custom `queryFn` is used, which will aid future developers.",
+        "Consider adding a `selectFromResult` or `providesTags` to enable cache invalidation if the challenge expands to mutations."
+      ],
+      "readability": 80,
+      "maintainability": 70,
+      "overall": "The implementation demonstrates a solid grasp of RTK Query fundamentals and TypeScript, but it falls short of the challenge requirements by omitting the essential middleware integration. Once the middleware is added and the baseQuery is aligned with best practices, the solution will fully satisfy the task.",
+      "requirementCompliance": 60
+    }
   }
 ]
