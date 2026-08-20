@@ -104,5 +104,29 @@
       "overall": "The implementation satisfies the core functional requirements for reading and dispatching state in a component. The typed hooks are correctly set up and the component follows best practices for Redux Toolkit usage. Minor missing pieces—particularly the route configuration—should be added to ensure the component is reachable in the application.",
       "requirementCompliance": 85
     }
+  },
+  {
+    "challengeId": "05-async-thunks",
+    "challengeName": "Async Logic with createAsyncThunk",
+    "aiReview": {
+      "challengeId": "05-async-thunks",
+      "timestamp": "2026-08-20T11:21:01.184Z",
+      "score": 91,
+      "feedback": [],
+      "strengths": [
+        "Correct implementation of `createAsyncThunk` and `extraReducers` to handle async states.",
+        "Clear separation of concerns: API call, slice logic, and store configuration are in distinct files.",
+        "TypeScript types are used consistently (e.g., `UsersState`, `User` interface)."
+      ],
+      "improvements": [
+        "Add explicit type parameters to `createAsyncThunk` (e.g., `createAsyncThunk<User[], void, { rejectValue: string }>('users/fetchUsers', async () => { ... })`) to improve type safety and make the payload type obvious.",
+        "Export selectors (e.g., `selectUsers`, `selectUsersLoading`, `selectUsersError`) from `usersSlice.ts` to encapsulate state access and make components easier to test.",
+        "Consider adding RTK Query (`createApi` + `fetchBaseQuery`) for future API interactions. While not required for this challenge, it would reduce boilerplate and automatically provide loading/error handling hooks."
+      ],
+      "readability": 90,
+      "maintainability": 85,
+      "overall": "The implementation satisfies all functional requirements and follows the Redux Toolkit pattern for async logic. The code is clean and well‑typed, though adding explicit thunk types and selectors would enhance maintainability and future extensibility. RTK Query is not used here, which is acceptable for this challenge but could be introduced later for a more streamlined API layer.",
+      "requirementCompliance": 95
+    }
   }
 ]
