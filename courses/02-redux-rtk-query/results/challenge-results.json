@@ -577,5 +577,623 @@
       "overall": "The implementation meets all functional requirements and follows Redux Toolkit conventions. The code is readable and maintainable, though a few small adjustments (Immer mutation style, typed dispatch, selectors) would improve clarity and future extensibility.",
       "requirementCompliance": 95
     }
+  },
+  {
+    "challengeId": "03-reading-dispatching",
+    "challengeName": "Reading and Dispatching in Components",
+    "timestamp": "2026-08-20T11:08:26.480Z",
+    "scores": {
+      "functionalTests": 100,
+      "codeQuality": 100,
+      "architecture": 100,
+      "bestPractices": 100,
+      "e2eTests": 100,
+      "aiReview": 87
+    },
+    "totalScore": 98.05,
+    "passed": true,
+    "errors": [],
+    "warnings": [],
+    "testResults": {
+      "score": 100,
+      "passed": true,
+      "totalTests": 3,
+      "passedTests": 3,
+      "failedTests": 0,
+      "details": [
+        {
+          "assertionResults": [
+            {
+              "ancestorTitles": [
+                "",
+                "Challenge 03: Reading and Dispatching"
+              ],
+              "fullName": " Challenge 03: Reading and Dispatching hooks.ts exports useAppSelector and useAppDispatch",
+              "status": "passed",
+              "title": "hooks.ts exports useAppSelector and useAppDispatch",
+              "duration": 3,
+              "failureMessages": []
+            },
+            {
+              "ancestorTitles": [
+                "",
+                "Challenge 03: Reading and Dispatching"
+              ],
+              "fullName": " Challenge 03: Reading and Dispatching CounterView uses useSelector or useAppSelector",
+              "status": "passed",
+              "title": "CounterView uses useSelector or useAppSelector",
+              "duration": 1,
+              "failureMessages": []
+            },
+            {
+              "ancestorTitles": [
+                "",
+                "Challenge 03: Reading and Dispatching"
+              ],
+              "fullName": " Challenge 03: Reading and Dispatching CounterView has required data-testids",
+              "status": "passed",
+              "title": "CounterView has required data-testids",
+              "duration": 1,
+              "failureMessages": []
+            }
+          ],
+          "startTime": 1787224111922,
+          "endTime": 1787224111927,
+          "status": "passed",
+          "message": "",
+          "name": "C:/Users/chari/OneDrive/Desktop/internship/challenge-engine-react/courses/02-redux-rtk-query/project/tests/challenge-03.test.tsx"
+        }
+      ]
+    },
+    "lintResults": {
+      "score": 100,
+      "passed": true,
+      "totalIssues": 0,
+      "errors": 0,
+      "warnings": 0,
+      "details": [
+        {
+          "filePath": "C:\\Users\\chari\\OneDrive\\Desktop\\internship\\challenge-engine-react\\courses\\02-redux-rtk-query\\project\\src\\components\\CounterView.tsx",
+          "messages": [],
+          "suppressedMessages": [],
+          "errorCount": 0,
+          "fatalErrorCount": 0,
+          "warningCount": 0,
+          "fixableErrorCount": 0,
+          "fixableWarningCount": 0,
+          "usedDeprecatedRules": [
+            {
+              "ruleId": "no-extra-semi",
+              "replacedBy": []
+            },
+            {
+              "ruleId": "no-mixed-spaces-and-tabs",
+              "replacedBy": []
+            }
+          ]
+        },
+        {
+          "filePath": "C:\\Users\\chari\\OneDrive\\Desktop\\internship\\challenge-engine-react\\courses\\02-redux-rtk-query\\project\\src\\store\\hooks.ts",
+          "messages": [],
+          "suppressedMessages": [],
+          "errorCount": 0,
+          "fatalErrorCount": 0,
+          "warningCount": 0,
+          "fixableErrorCount": 0,
+          "fixableWarningCount": 0,
+          "usedDeprecatedRules": [
+            {
+              "ruleId": "no-extra-semi",
+              "replacedBy": []
+            },
+            {
+              "ruleId": "no-mixed-spaces-and-tabs",
+              "replacedBy": []
+            }
+          ]
+        }
+      ]
+    },
+    "architectureResults": {
+      "score": 100,
+      "passed": true,
+      "patternsFound": [],
+      "patternsMissing": [],
+      "details": [
+        {
+          "file": "src/store/hooks.ts",
+          "patternsFound": [],
+          "patternsMissing": []
+        },
+        {
+          "file": "src/components/CounterView.tsx",
+          "patternsFound": [],
+          "patternsMissing": []
+        }
+      ]
+    },
+    "bestPracticesResults": {
+      "score": 100,
+      "passed": true,
+      "issues": [],
+      "details": [],
+      "note": "No best practices requirements specified in challenge"
+    },
+    "e2eResults": {
+      "score": 100,
+      "passed": true,
+      "totalTests": 3,
+      "passedTests": 3,
+      "failedTests": 0,
+      "details": [
+        {
+          "title": "challenge-03.spec.ts",
+          "file": "challenge-03.spec.ts",
+          "column": 0,
+          "line": 0,
+          "specs": [],
+          "suites": [
+            {
+              "title": "Challenge 03: Reading and Dispatching - E2E",
+              "file": "challenge-03.spec.ts",
+              "line": 3,
+              "column": 6,
+              "specs": [
+                {
+                  "title": "should load challenge 03 page with CounterView",
+                  "ok": true,
+                  "tags": [],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 0,
+                          "parallelIndex": 0,
+                          "status": "passed",
+                          "duration": 1227,
+                          "errors": [],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2026-08-20T11:08:44.067Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "abe74fb7538c55bf8146-a9e2bcc4dcd9ae6d41c6",
+                  "file": "challenge-03.spec.ts",
+                  "line": 8,
+                  "column": 3
+                },
+                {
+                  "title": "should have increment and decrement buttons",
+                  "ok": true,
+                  "tags": [],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 0,
+                          "parallelIndex": 0,
+                          "status": "passed",
+                          "duration": 262,
+                          "errors": [],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2026-08-20T11:08:45.438Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "abe74fb7538c55bf8146-91f3cfc4cae7e88835d8",
+                  "file": "challenge-03.spec.ts",
+                  "line": 13,
+                  "column": 3
+                },
+                {
+                  "title": "should show counter value",
+                  "ok": true,
+                  "tags": [],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 0,
+                          "parallelIndex": 0,
+                          "status": "passed",
+                          "duration": 267,
+                          "errors": [],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2026-08-20T11:08:45.718Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "abe74fb7538c55bf8146-8ff95ebba2f8c85e1bcd",
+                  "file": "challenge-03.spec.ts",
+                  "line": 18,
+                  "column": 3
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "screenshots": []
+    },
+    "aiReviewResults": {
+      "challengeId": "03-reading-dispatching",
+      "timestamp": "2026-08-20T11:08:46.310Z",
+      "score": 87,
+      "feedback": [],
+      "strengths": [
+        "Typed hooks (`useAppDispatch`, `useAppSelector`) are correctly implemented in `src/store/hooks.ts`.",
+        "The `CounterView` component cleanly reads state and dispatches actions using the typed hooks.",
+        "All required `data-testid` attributes are present and the component is self‑contained.",
+        "No console statements or ESLint violations are visible in the provided files."
+      ],
+      "improvements": [
+        "Add the route configuration for `/challenge/03-reading-dispatching` in the main router (likely `src/App.tsx`). Without this, the component will not be rendered automatically.",
+        "Confirm the shape of the counter slice state. If the slice returns an object (e.g., `{ value: number }`), adjust the selector to `state.counter.value` to avoid type mismatches.",
+        "Add a brief comment in `hooks.ts` explaining why the hooks are typed and how they should be used throughout the app.",
+        "Consider exporting the hooks as named exports from an `index.ts` in the `store` folder for easier imports.",
+        "Add a simple unit test for `CounterView` to verify that the counter value updates correctly when the buttons are clicked."
+      ],
+      "readability": 90,
+      "maintainability": 85,
+      "overall": "The implementation satisfies the core functional requirements for reading and dispatching state in a component. The typed hooks are correctly set up and the component follows best practices for Redux Toolkit usage. Minor missing pieces—particularly the route configuration—should be added to ensure the component is reachable in the application.",
+      "requirementCompliance": 85
+    },
+    "aiResults": {
+      "challengeId": "03-reading-dispatching",
+      "timestamp": "2026-08-20T11:08:46.310Z",
+      "score": 87,
+      "feedback": [],
+      "strengths": [
+        "Typed hooks (`useAppDispatch`, `useAppSelector`) are correctly implemented in `src/store/hooks.ts`.",
+        "The `CounterView` component cleanly reads state and dispatches actions using the typed hooks.",
+        "All required `data-testid` attributes are present and the component is self‑contained.",
+        "No console statements or ESLint violations are visible in the provided files."
+      ],
+      "improvements": [
+        "Add the route configuration for `/challenge/03-reading-dispatching` in the main router (likely `src/App.tsx`). Without this, the component will not be rendered automatically.",
+        "Confirm the shape of the counter slice state. If the slice returns an object (e.g., `{ value: number }`), adjust the selector to `state.counter.value` to avoid type mismatches.",
+        "Add a brief comment in `hooks.ts` explaining why the hooks are typed and how they should be used throughout the app.",
+        "Consider exporting the hooks as named exports from an `index.ts` in the `store` folder for easier imports.",
+        "Add a simple unit test for `CounterView` to verify that the counter value updates correctly when the buttons are clicked."
+      ],
+      "readability": 90,
+      "maintainability": 85,
+      "overall": "The implementation satisfies the core functional requirements for reading and dispatching state in a component. The typed hooks are correctly set up and the component follows best practices for Redux Toolkit usage. Minor missing pieces—particularly the route configuration—should be added to ensure the component is reachable in the application.",
+      "requirementCompliance": 85
+    }
+  },
+  {
+    "challengeId": "04-multiple-slices",
+    "challengeName": "Multiple Slices in the Store",
+    "timestamp": "2026-08-20T11:07:07.086Z",
+    "scores": {
+      "functionalTests": 100,
+      "codeQuality": 100,
+      "architecture": 100,
+      "bestPractices": 100,
+      "e2eTests": 100,
+      "aiReview": 91
+    },
+    "totalScore": 98.65,
+    "passed": true,
+    "errors": [],
+    "warnings": [],
+    "testResults": {
+      "score": 100,
+      "passed": true,
+      "totalTests": 2,
+      "passedTests": 2,
+      "failedTests": 0,
+      "details": [
+        {
+          "assertionResults": [
+            {
+              "ancestorTitles": [
+                "",
+                "Challenge 04: Multiple Slices"
+              ],
+              "fullName": " Challenge 04: Multiple Slices uiSlice exists and uses createSlice",
+              "status": "passed",
+              "title": "uiSlice exists and uses createSlice",
+              "duration": 2,
+              "failureMessages": []
+            },
+            {
+              "ancestorTitles": [
+                "",
+                "Challenge 04: Multiple Slices"
+              ],
+              "fullName": " Challenge 04: Multiple Slices store includes both counter and ui reducers",
+              "status": "passed",
+              "title": "store includes both counter and ui reducers",
+              "duration": 1,
+              "failureMessages": []
+            }
+          ],
+          "startTime": 1787224032504,
+          "endTime": 1787224032507,
+          "status": "passed",
+          "message": "",
+          "name": "C:/Users/chari/OneDrive/Desktop/internship/challenge-engine-react/courses/02-redux-rtk-query/project/tests/challenge-04.test.tsx"
+        }
+      ]
+    },
+    "lintResults": {
+      "score": 100,
+      "passed": true,
+      "totalIssues": 0,
+      "errors": 0,
+      "warnings": 0,
+      "details": [
+        {
+          "filePath": "C:\\Users\\chari\\OneDrive\\Desktop\\internship\\challenge-engine-react\\courses\\02-redux-rtk-query\\project\\src\\store\\slices\\counterSlice.ts",
+          "messages": [],
+          "suppressedMessages": [],
+          "errorCount": 0,
+          "fatalErrorCount": 0,
+          "warningCount": 0,
+          "fixableErrorCount": 0,
+          "fixableWarningCount": 0,
+          "usedDeprecatedRules": [
+            {
+              "ruleId": "no-extra-semi",
+              "replacedBy": []
+            },
+            {
+              "ruleId": "no-mixed-spaces-and-tabs",
+              "replacedBy": []
+            }
+          ]
+        },
+        {
+          "filePath": "C:\\Users\\chari\\OneDrive\\Desktop\\internship\\challenge-engine-react\\courses\\02-redux-rtk-query\\project\\src\\store\\slices\\uiSlice.ts",
+          "messages": [],
+          "suppressedMessages": [],
+          "errorCount": 0,
+          "fatalErrorCount": 0,
+          "warningCount": 0,
+          "fixableErrorCount": 0,
+          "fixableWarningCount": 0,
+          "usedDeprecatedRules": [
+            {
+              "ruleId": "no-extra-semi",
+              "replacedBy": []
+            },
+            {
+              "ruleId": "no-mixed-spaces-and-tabs",
+              "replacedBy": []
+            }
+          ]
+        },
+        {
+          "filePath": "C:\\Users\\chari\\OneDrive\\Desktop\\internship\\challenge-engine-react\\courses\\02-redux-rtk-query\\project\\src\\store\\store.ts",
+          "messages": [],
+          "suppressedMessages": [],
+          "errorCount": 0,
+          "fatalErrorCount": 0,
+          "warningCount": 0,
+          "fixableErrorCount": 0,
+          "fixableWarningCount": 0,
+          "usedDeprecatedRules": [
+            {
+              "ruleId": "no-extra-semi",
+              "replacedBy": []
+            },
+            {
+              "ruleId": "no-mixed-spaces-and-tabs",
+              "replacedBy": []
+            }
+          ]
+        }
+      ]
+    },
+    "architectureResults": {
+      "score": 100,
+      "passed": true,
+      "patternsFound": [
+        "reducer",
+        "middleware"
+      ],
+      "patternsMissing": [],
+      "details": [
+        {
+          "file": "src/store/store.ts",
+          "patternsFound": [
+            "reducer",
+            "middleware"
+          ],
+          "patternsMissing": []
+        },
+        {
+          "file": "src/store/slices/counterSlice.ts",
+          "patternsFound": [],
+          "patternsMissing": []
+        },
+        {
+          "file": "src/store/slices/uiSlice.ts",
+          "patternsFound": [],
+          "patternsMissing": []
+        }
+      ]
+    },
+    "bestPracticesResults": {
+      "score": 100,
+      "passed": true,
+      "issues": [],
+      "details": [],
+      "note": "No best practices requirements specified in challenge"
+    },
+    "e2eResults": {
+      "score": 100,
+      "passed": true,
+      "totalTests": 2,
+      "passedTests": 2,
+      "failedTests": 0,
+      "details": [
+        {
+          "title": "challenge-04.spec.ts",
+          "file": "challenge-04.spec.ts",
+          "column": 0,
+          "line": 0,
+          "specs": [],
+          "suites": [
+            {
+              "title": "Challenge 04: Multiple Slices - E2E",
+              "file": "challenge-04.spec.ts",
+              "line": 3,
+              "column": 6,
+              "specs": [
+                {
+                  "title": "should load challenge 04 page",
+                  "ok": true,
+                  "tags": [],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 0,
+                          "parallelIndex": 0,
+                          "status": "passed",
+                          "duration": 1219,
+                          "errors": [],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2026-08-20T11:07:23.702Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "0401c8ab289c6ab836d0-873390d60fea24599250",
+                  "file": "challenge-04.spec.ts",
+                  "line": 8,
+                  "column": 3
+                },
+                {
+                  "title": "should have challenge content",
+                  "ok": true,
+                  "tags": [],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 0,
+                          "parallelIndex": 0,
+                          "status": "passed",
+                          "duration": 257,
+                          "errors": [],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2026-08-20T11:07:25.076Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "0401c8ab289c6ab836d0-24401b46065f449c1869",
+                  "file": "challenge-04.spec.ts",
+                  "line": 13,
+                  "column": 3
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "screenshots": []
+    },
+    "aiReviewResults": {
+      "challengeId": "04-multiple-slices",
+      "timestamp": "2026-08-20T11:07:25.704Z",
+      "score": 91,
+      "feedback": [],
+      "strengths": [
+        "Correct use of `createSlice` for both counter and UI slices, with clear reducer logic.",
+        "Store configuration via `configureStore` correctly registers both slices under distinct keys.",
+        "Custom hooks (`useAppDispatch`, `useAppSelector`) are defined and typed, promoting consistent usage across the app."
+      ],
+      "improvements": [
+        "Add explicit type for the counter state (e.g., `export type CounterState = number;`) to improve type safety and documentation.",
+        "Remove the redundant `middleware` configuration in `store.ts` – the default middleware is sufficient unless custom middleware is needed.",
+        "Consider exporting the reducer as a named export (e.g., `export const uiReducer = uiSlice.reducer;`) for clarity and easier imports in tests or other modules.",
+        "Add brief JSDoc comments to the slice files to describe the purpose of each slice and its state shape.",
+        "If the project grows, move slice files into a dedicated folder (e.g., `src/store/slices/counter` and `src/store/slices/ui`) to keep the file structure scalable."
+      ],
+      "readability": 90,
+      "maintainability": 85,
+      "overall": "The implementation satisfies all functional requirements: a second UI slice is created, both slices are registered in the store, and TypeScript is used correctly. The code follows Redux Toolkit conventions and is easy to read. Minor type and organizational tweaks would further improve maintainability.",
+      "requirementCompliance": 95
+    },
+    "aiResults": {
+      "challengeId": "04-multiple-slices",
+      "timestamp": "2026-08-20T11:07:25.704Z",
+      "score": 91,
+      "feedback": [],
+      "strengths": [
+        "Correct use of `createSlice` for both counter and UI slices, with clear reducer logic.",
+        "Store configuration via `configureStore` correctly registers both slices under distinct keys.",
+        "Custom hooks (`useAppDispatch`, `useAppSelector`) are defined and typed, promoting consistent usage across the app."
+      ],
+      "improvements": [
+        "Add explicit type for the counter state (e.g., `export type CounterState = number;`) to improve type safety and documentation.",
+        "Remove the redundant `middleware` configuration in `store.ts` – the default middleware is sufficient unless custom middleware is needed.",
+        "Consider exporting the reducer as a named export (e.g., `export const uiReducer = uiSlice.reducer;`) for clarity and easier imports in tests or other modules.",
+        "Add brief JSDoc comments to the slice files to describe the purpose of each slice and its state shape.",
+        "If the project grows, move slice files into a dedicated folder (e.g., `src/store/slices/counter` and `src/store/slices/ui`) to keep the file structure scalable."
+      ],
+      "readability": 90,
+      "maintainability": 85,
+      "overall": "The implementation satisfies all functional requirements: a second UI slice is created, both slices are registered in the store, and TypeScript is used correctly. The code follows Redux Toolkit conventions and is easy to read. Minor type and organizational tweaks would further improve maintainability.",
+      "requirementCompliance": 95
+    }
   }
 ]
