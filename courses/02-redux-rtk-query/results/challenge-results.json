@@ -2052,5 +2052,258 @@
       "overall": "The implementation satisfies the core functional requirements: a `getUsers` query endpoint, a component that consumes the generated hook, and proper loading/error handling. The code follows RTK Query patterns and TypeScript best practices, though a few small refactors and store integration steps would make it more robust and maintainable.",
       "requirementCompliance": 85
     }
+  },
+  {
+    "challengeId": "08-caching-refetch",
+    "challengeName": "Caching and Cache Tags",
+    "timestamp": "2026-08-21T06:25:51.266Z",
+    "scores": {
+      "functionalTests": 100,
+      "codeQuality": 100,
+      "architecture": 100,
+      "bestPractices": 100,
+      "e2eTests": 100,
+      "aiReview": 90
+    },
+    "totalScore": 98.5,
+    "passed": true,
+    "errors": [],
+    "warnings": [],
+    "testResults": {
+      "score": 100,
+      "passed": true,
+      "totalTests": 2,
+      "passedTests": 2,
+      "failedTests": 0,
+      "details": [
+        {
+          "assertionResults": [
+            {
+              "ancestorTitles": [
+                "",
+                "Challenge 08: Caching and Cache Tags"
+              ],
+              "fullName": " Challenge 08: Caching and Cache Tags API slice has providesTags on query endpoint",
+              "status": "passed",
+              "title": "API slice has providesTags on query endpoint",
+              "duration": 1,
+              "failureMessages": []
+            },
+            {
+              "ancestorTitles": [
+                "",
+                "Challenge 08: Caching and Cache Tags"
+              ],
+              "fullName": " Challenge 08: Caching and Cache Tags API slice has invalidatesTags on mutation or tagTypes",
+              "status": "passed",
+              "title": "API slice has invalidatesTags on mutation or tagTypes",
+              "duration": 1,
+              "failureMessages": []
+            }
+          ],
+          "startTime": 1787293554463,
+          "endTime": 1787293554465,
+          "status": "passed",
+          "message": "",
+          "name": "C:/Users/chari/OneDrive/Desktop/internship/challenge-engine-react/courses/02-redux-rtk-query/project/tests/challenge-08.test.tsx"
+        }
+      ]
+    },
+    "lintResults": {
+      "score": 100,
+      "passed": true,
+      "totalIssues": 0,
+      "errors": 0,
+      "warnings": 0,
+      "details": [
+        {
+          "filePath": "C:\\Users\\chari\\OneDrive\\Desktop\\internship\\challenge-engine-react\\courses\\02-redux-rtk-query\\project\\src\\api\\apiSlice.ts",
+          "messages": [],
+          "suppressedMessages": [],
+          "errorCount": 0,
+          "fatalErrorCount": 0,
+          "warningCount": 0,
+          "fixableErrorCount": 0,
+          "fixableWarningCount": 0,
+          "usedDeprecatedRules": [
+            {
+              "ruleId": "no-extra-semi",
+              "replacedBy": []
+            },
+            {
+              "ruleId": "no-mixed-spaces-and-tabs",
+              "replacedBy": []
+            }
+          ]
+        }
+      ]
+    },
+    "architectureResults": {
+      "score": 100,
+      "passed": true,
+      "patternsFound": [],
+      "patternsMissing": [],
+      "details": [
+        {
+          "file": "src/api/apiSlice.ts",
+          "patternsFound": [],
+          "patternsMissing": []
+        }
+      ]
+    },
+    "bestPracticesResults": {
+      "score": 100,
+      "passed": true,
+      "issues": [],
+      "details": [],
+      "note": "No best practices requirements specified in challenge"
+    },
+    "e2eResults": {
+      "score": 100,
+      "passed": true,
+      "totalTests": 2,
+      "passedTests": 2,
+      "failedTests": 0,
+      "details": [
+        {
+          "title": "challenge-08.spec.ts",
+          "file": "challenge-08.spec.ts",
+          "column": 0,
+          "line": 0,
+          "specs": [],
+          "suites": [
+            {
+              "title": "Challenge 08: Caching and Cache Tags - E2E",
+              "file": "challenge-08.spec.ts",
+              "line": 3,
+              "column": 6,
+              "specs": [
+                {
+                  "title": "should load challenge 08 page",
+                  "ok": true,
+                  "tags": [],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 0,
+                          "parallelIndex": 0,
+                          "status": "passed",
+                          "duration": 292,
+                          "errors": [],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2026-08-21T06:26:02.595Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "cc4b1dfc0eb6cfe77aae-a520006593dc32b158d9",
+                  "file": "challenge-08.spec.ts",
+                  "line": 8,
+                  "column": 3
+                },
+                {
+                  "title": "should have posts list or content",
+                  "ok": true,
+                  "tags": [],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 0,
+                          "parallelIndex": 0,
+                          "status": "passed",
+                          "duration": 216,
+                          "errors": [],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2026-08-21T06:26:02.994Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "cc4b1dfc0eb6cfe77aae-f2f94d63d4b9c539a5e4",
+                  "file": "challenge-08.spec.ts",
+                  "line": 13,
+                  "column": 3
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "screenshots": []
+    },
+    "aiReviewResults": {
+      "challengeId": "08-caching-refetch",
+      "timestamp": "2026-08-21T06:26:03.475Z",
+      "score": 90,
+      "feedback": [],
+      "strengths": [
+        "Tag system is correctly implemented: `tagTypes`, `providesTags`, and `invalidatesTags` are all present and typed.",
+        "The API slice is cleanly organized with separate query and mutation endpoints, and each endpoint handles errors consistently.",
+        "TypeScript types are used throughout (`User`, `Post`, and mutation argument types), ensuring type safety."
+      ],
+      "improvements": [
+        "src/api/apiSlice.ts – Replace `queryFn` with the simpler `query` option where possible (e.g., `query: () => 'users'`). This reduces boilerplate and makes the intent clearer.",
+        "src/api/apiSlice.ts – Extract the tag type strings (`'User'`, `'Post'`) into a shared enum or constant to avoid magic strings and make refactoring safer.",
+        "src/api/apiSlice.ts – Add a `deletePost` mutation that also invalidates the `Post` LIST tag. This demonstrates a full CRUD cycle and ensures the cache is refreshed after deletions.",
+        "src/api/apiSlice.ts – Consider using `fetchBaseQuery` instead of `fakeBaseQuery` for a more realistic base query. If `fakeBaseQuery` is intentional for the challenge, add a comment explaining its purpose.",
+        "src/api/apiSlice.ts – Add JSDoc comments for each endpoint to clarify expected arguments and return types, improving developer onboarding.",
+        "src/api/mockServer.ts – Add a `deleteUser` mutation to mirror the post deletion and demonstrate tag invalidation for users.",
+        "src/api/mockServer.ts – Export the `users` and `posts` arrays as read‑only or provide a reset function to aid in unit tests.",
+        "src/api/apiSlice.ts – Use a generic `Tag` type (e.g., `type Tag = { type: 'User' | 'Post'; id: number | 'LIST' }`) to avoid repetitive `as const` casts.",
+        "src/api/apiSlice.ts – Add a comment or documentation block explaining why `as const` is used for tag objects."
+      ],
+      "readability": 88,
+      "maintainability": 85,
+      "overall": "The implementation satisfies all functional requirements and demonstrates a solid grasp of RTK Query’s tag system. The code is readable and well‑typed, though a few refactorings (simplifying queries, centralizing tag constants, and adding complementary mutations) would improve maintainability and align even more closely with best practices.",
+      "requirementCompliance": 95
+    },
+    "aiResults": {
+      "challengeId": "08-caching-refetch",
+      "timestamp": "2026-08-21T06:26:03.475Z",
+      "score": 90,
+      "feedback": [],
+      "strengths": [
+        "Tag system is correctly implemented: `tagTypes`, `providesTags`, and `invalidatesTags` are all present and typed.",
+        "The API slice is cleanly organized with separate query and mutation endpoints, and each endpoint handles errors consistently.",
+        "TypeScript types are used throughout (`User`, `Post`, and mutation argument types), ensuring type safety."
+      ],
+      "improvements": [
+        "src/api/apiSlice.ts – Replace `queryFn` with the simpler `query` option where possible (e.g., `query: () => 'users'`). This reduces boilerplate and makes the intent clearer.",
+        "src/api/apiSlice.ts – Extract the tag type strings (`'User'`, `'Post'`) into a shared enum or constant to avoid magic strings and make refactoring safer.",
+        "src/api/apiSlice.ts – Add a `deletePost` mutation that also invalidates the `Post` LIST tag. This demonstrates a full CRUD cycle and ensures the cache is refreshed after deletions.",
+        "src/api/apiSlice.ts – Consider using `fetchBaseQuery` instead of `fakeBaseQuery` for a more realistic base query. If `fakeBaseQuery` is intentional for the challenge, add a comment explaining its purpose.",
+        "src/api/apiSlice.ts – Add JSDoc comments for each endpoint to clarify expected arguments and return types, improving developer onboarding.",
+        "src/api/mockServer.ts – Add a `deleteUser` mutation to mirror the post deletion and demonstrate tag invalidation for users.",
+        "src/api/mockServer.ts – Export the `users` and `posts` arrays as read‑only or provide a reset function to aid in unit tests.",
+        "src/api/apiSlice.ts – Use a generic `Tag` type (e.g., `type Tag = { type: 'User' | 'Post'; id: number | 'LIST' }`) to avoid repetitive `as const` casts.",
+        "src/api/apiSlice.ts – Add a comment or documentation block explaining why `as const` is used for tag objects."
+      ],
+      "readability": 88,
+      "maintainability": 85,
+      "overall": "The implementation satisfies all functional requirements and demonstrates a solid grasp of RTK Query’s tag system. The code is readable and well‑typed, though a few refactorings (simplifying queries, centralizing tag constants, and adding complementary mutations) would improve maintainability and align even more closely with best practices.",
+      "requirementCompliance": 95
+    }
   }
 ]

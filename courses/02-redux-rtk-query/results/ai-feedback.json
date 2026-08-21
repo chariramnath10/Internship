@@ -181,5 +181,35 @@
       "overall": "The implementation satisfies the core functional requirements: a `getUsers` query endpoint, a component that consumes the generated hook, and proper loading/error handling. The code follows RTK Query patterns and TypeScript best practices, though a few small refactors and store integration steps would make it more robust and maintainable.",
       "requirementCompliance": 85
     }
+  },
+  {
+    "challengeId": "08-caching-refetch",
+    "challengeName": "Caching and Cache Tags",
+    "aiReview": {
+      "challengeId": "08-caching-refetch",
+      "timestamp": "2026-08-21T06:26:03.475Z",
+      "score": 90,
+      "feedback": [],
+      "strengths": [
+        "Tag system is correctly implemented: `tagTypes`, `providesTags`, and `invalidatesTags` are all present and typed.",
+        "The API slice is cleanly organized with separate query and mutation endpoints, and each endpoint handles errors consistently.",
+        "TypeScript types are used throughout (`User`, `Post`, and mutation argument types), ensuring type safety."
+      ],
+      "improvements": [
+        "src/api/apiSlice.ts – Replace `queryFn` with the simpler `query` option where possible (e.g., `query: () => 'users'`). This reduces boilerplate and makes the intent clearer.",
+        "src/api/apiSlice.ts – Extract the tag type strings (`'User'`, `'Post'`) into a shared enum or constant to avoid magic strings and make refactoring safer.",
+        "src/api/apiSlice.ts – Add a `deletePost` mutation that also invalidates the `Post` LIST tag. This demonstrates a full CRUD cycle and ensures the cache is refreshed after deletions.",
+        "src/api/apiSlice.ts – Consider using `fetchBaseQuery` instead of `fakeBaseQuery` for a more realistic base query. If `fakeBaseQuery` is intentional for the challenge, add a comment explaining its purpose.",
+        "src/api/apiSlice.ts – Add JSDoc comments for each endpoint to clarify expected arguments and return types, improving developer onboarding.",
+        "src/api/mockServer.ts – Add a `deleteUser` mutation to mirror the post deletion and demonstrate tag invalidation for users.",
+        "src/api/mockServer.ts – Export the `users` and `posts` arrays as read‑only or provide a reset function to aid in unit tests.",
+        "src/api/apiSlice.ts – Use a generic `Tag` type (e.g., `type Tag = { type: 'User' | 'Post'; id: number | 'LIST' }`) to avoid repetitive `as const` casts.",
+        "src/api/apiSlice.ts – Add a comment or documentation block explaining why `as const` is used for tag objects."
+      ],
+      "readability": 88,
+      "maintainability": 85,
+      "overall": "The implementation satisfies all functional requirements and demonstrates a solid grasp of RTK Query’s tag system. The code is readable and well‑typed, though a few refactorings (simplifying queries, centralizing tag constants, and adding complementary mutations) would improve maintainability and align even more closely with best practices.",
+      "requirementCompliance": 95
+    }
   }
 ]
