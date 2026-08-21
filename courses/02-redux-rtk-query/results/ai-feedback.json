@@ -239,5 +239,31 @@
       "overall": "The implementation satisfies the core requirements: a mutation endpoint, a form that uses `useMutation`, and proper tag invalidation. The code follows RTK Query best practices and is well‑typed, though minor refactors (simplifying the mutation definition, adding error handling, and ensuring route rendering) would tighten the solution.",
       "requirementCompliance": 90
     }
+  },
+  {
+    "challengeId": "10-optimistic-updates",
+    "challengeName": "Optimistic Updates",
+    "aiReview": {
+      "challengeId": "10-optimistic-updates",
+      "timestamp": "2026-08-21T06:52:31.663Z",
+      "score": 0,
+      "feedback": [],
+      "strengths": [
+        "Implemented optimistic update in `addPost` using `onQueryStarted` and `updateQueryData`.\",",
+        "Properly undo the optimistic change with `patchResult.undo()` inside the error catch block.\",",
+        "Clean TypeScript usage with explicit `Post` and `User` types and no console statements.",
+        "improvements\": [",
+        "Use the resolved data from `queryFulfilled` to replace the optimistic post with the real server response. This ensures the cache stays in sync with the backend and avoids duplicate IDs.\","
+      ],
+      "improvements": [
+        "Use the resolved data from `queryFulfilled` to replace the optimistic post with the real server response. This ensures the cache stays in sync with the backend and avoids duplicate IDs.\",",
+        "Add explicit error handling or user feedback in the catch block (e.g., dispatch an error toast) so the UI can inform the user when the mutation fails.\",",
+        "Consider using `getState` to read the current posts list before pushing the optimistic post, which can help avoid race conditions when multiple mutations are"
+      ],
+      "readability": 0,
+      "maintainability": 0,
+      "overall": "```json\n{\n  \"readability\": 85,\n  \"maintainability\": 80,\n  \"strengths\": [\n    \"Implemented optimistic update in `addPost` using `onQueryStarted` and `updateQueryData`.\",\n    \"Properly undo the optimistic change with `patchResult.undo()` inside the error catch block.\",\n    \"Clean TypeScript usage with explicit `Post` and `User` types and no console statements.\"\n  ],\n  \"improvements\": [\n    \"Use the resolved data from `queryFulfilled` to replace the optimistic post with the real server response. Th",
+      "requirementCompliance": 0
+    }
   }
 ]

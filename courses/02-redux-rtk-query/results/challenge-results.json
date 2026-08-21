@@ -2590,5 +2590,227 @@
       "overall": "The implementation satisfies the core requirements: a mutation endpoint, a form that uses `useMutation`, and proper tag invalidation. The code follows RTK Query best practices and is well‑typed, though minor refactors (simplifying the mutation definition, adding error handling, and ensuring route rendering) would tighten the solution.",
       "requirementCompliance": 90
     }
+  },
+  {
+    "challengeId": "10-optimistic-updates",
+    "challengeName": "Optimistic Updates",
+    "timestamp": "2026-08-21T06:52:19.896Z",
+    "scores": {
+      "functionalTests": 100,
+      "codeQuality": 100,
+      "architecture": 100,
+      "bestPractices": 100,
+      "e2eTests": 100,
+      "aiReview": 0
+    },
+    "totalScore": 85,
+    "passed": true,
+    "errors": [],
+    "warnings": [],
+    "testResults": {
+      "score": 100,
+      "passed": true,
+      "totalTests": 3,
+      "passedTests": 3,
+      "failedTests": 0,
+      "details": [
+        {
+          "assertionResults": [
+            {
+              "ancestorTitles": [
+                "",
+                "Challenge 10: Optimistic Updates"
+              ],
+              "fullName": " Challenge 10: Optimistic Updates API slice mutation has onQueryStarted",
+              "status": "passed",
+              "title": "API slice mutation has onQueryStarted",
+              "duration": 2,
+              "failureMessages": []
+            },
+            {
+              "ancestorTitles": [
+                "",
+                "Challenge 10: Optimistic Updates"
+              ],
+              "fullName": " Challenge 10: Optimistic Updates optimistic update uses queryFulfilled or updateQueryData",
+              "status": "passed",
+              "title": "optimistic update uses queryFulfilled or updateQueryData",
+              "duration": 0,
+              "failureMessages": []
+            },
+            {
+              "ancestorTitles": [
+                "",
+                "Challenge 10: Optimistic Updates"
+              ],
+              "fullName": " Challenge 10: Optimistic Updates has rollback or undo on error",
+              "status": "passed",
+              "title": "has rollback or undo on error",
+              "duration": 0,
+              "failureMessages": []
+            }
+          ],
+          "startTime": 1787295143005,
+          "endTime": 1787295143007,
+          "status": "passed",
+          "message": "",
+          "name": "C:/Users/chari/OneDrive/Desktop/internship/challenge-engine-react/courses/02-redux-rtk-query/project/tests/challenge-10.test.tsx"
+        }
+      ]
+    },
+    "lintResults": {
+      "score": 100,
+      "passed": true,
+      "totalIssues": 0,
+      "errors": 0,
+      "warnings": 0,
+      "details": [
+        {
+          "filePath": "C:\\Users\\chari\\OneDrive\\Desktop\\internship\\challenge-engine-react\\courses\\02-redux-rtk-query\\project\\src\\api\\apiSlice.ts",
+          "messages": [],
+          "suppressedMessages": [],
+          "errorCount": 0,
+          "fatalErrorCount": 0,
+          "warningCount": 0,
+          "fixableErrorCount": 0,
+          "fixableWarningCount": 0,
+          "usedDeprecatedRules": [
+            {
+              "ruleId": "no-extra-semi",
+              "replacedBy": []
+            },
+            {
+              "ruleId": "no-mixed-spaces-and-tabs",
+              "replacedBy": []
+            }
+          ]
+        }
+      ]
+    },
+    "architectureResults": {
+      "score": 100,
+      "passed": true,
+      "patternsFound": [],
+      "patternsMissing": [],
+      "details": [
+        {
+          "file": "src/api/apiSlice.ts",
+          "patternsFound": [],
+          "patternsMissing": []
+        }
+      ]
+    },
+    "bestPracticesResults": {
+      "score": 100,
+      "passed": true,
+      "issues": [],
+      "details": [],
+      "note": "No best practices requirements specified in challenge"
+    },
+    "e2eResults": {
+      "score": 100,
+      "passed": true,
+      "totalTests": 1,
+      "passedTests": 1,
+      "failedTests": 0,
+      "details": [
+        {
+          "title": "challenge-10.spec.ts",
+          "file": "challenge-10.spec.ts",
+          "column": 0,
+          "line": 0,
+          "specs": [],
+          "suites": [
+            {
+              "title": "Challenge 10: Optimistic Updates - E2E",
+              "file": "challenge-10.spec.ts",
+              "line": 3,
+              "column": 6,
+              "specs": [
+                {
+                  "title": "should load challenge 10 page with content",
+                  "ok": true,
+                  "tags": [],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 0,
+                          "parallelIndex": 0,
+                          "status": "passed",
+                          "duration": 288,
+                          "errors": [],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2026-08-21T06:52:31.015Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "2b6a150d93e258235d20-c73851f46778bc6eb125",
+                  "file": "challenge-10.spec.ts",
+                  "line": 8,
+                  "column": 3
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "screenshots": []
+    },
+    "aiReviewResults": {
+      "challengeId": "10-optimistic-updates",
+      "timestamp": "2026-08-21T06:52:31.663Z",
+      "score": 0,
+      "feedback": [],
+      "strengths": [
+        "Implemented optimistic update in `addPost` using `onQueryStarted` and `updateQueryData`.\",",
+        "Properly undo the optimistic change with `patchResult.undo()` inside the error catch block.\",",
+        "Clean TypeScript usage with explicit `Post` and `User` types and no console statements.",
+        "improvements\": [",
+        "Use the resolved data from `queryFulfilled` to replace the optimistic post with the real server response. This ensures the cache stays in sync with the backend and avoids duplicate IDs.\","
+      ],
+      "improvements": [
+        "Use the resolved data from `queryFulfilled` to replace the optimistic post with the real server response. This ensures the cache stays in sync with the backend and avoids duplicate IDs.\",",
+        "Add explicit error handling or user feedback in the catch block (e.g., dispatch an error toast) so the UI can inform the user when the mutation fails.\",",
+        "Consider using `getState` to read the current posts list before pushing the optimistic post, which can help avoid race conditions when multiple mutations are"
+      ],
+      "readability": 0,
+      "maintainability": 0,
+      "overall": "```json\n{\n  \"readability\": 85,\n  \"maintainability\": 80,\n  \"strengths\": [\n    \"Implemented optimistic update in `addPost` using `onQueryStarted` and `updateQueryData`.\",\n    \"Properly undo the optimistic change with `patchResult.undo()` inside the error catch block.\",\n    \"Clean TypeScript usage with explicit `Post` and `User` types and no console statements.\"\n  ],\n  \"improvements\": [\n    \"Use the resolved data from `queryFulfilled` to replace the optimistic post with the real server response. Th",
+      "requirementCompliance": 0
+    },
+    "aiResults": {
+      "challengeId": "10-optimistic-updates",
+      "timestamp": "2026-08-21T06:52:31.663Z",
+      "score": 0,
+      "feedback": [],
+      "strengths": [
+        "Implemented optimistic update in `addPost` using `onQueryStarted` and `updateQueryData`.\",",
+        "Properly undo the optimistic change with `patchResult.undo()` inside the error catch block.\",",
+        "Clean TypeScript usage with explicit `Post` and `User` types and no console statements.",
+        "improvements\": [",
+        "Use the resolved data from `queryFulfilled` to replace the optimistic post with the real server response. This ensures the cache stays in sync with the backend and avoids duplicate IDs.\","
+      ],
+      "improvements": [
+        "Use the resolved data from `queryFulfilled` to replace the optimistic post with the real server response. This ensures the cache stays in sync with the backend and avoids duplicate IDs.\",",
+        "Add explicit error handling or user feedback in the catch block (e.g., dispatch an error toast) so the UI can inform the user when the mutation fails.\",",
+        "Consider using `getState` to read the current posts list before pushing the optimistic post, which can help avoid race conditions when multiple mutations are"
+      ],
+      "readability": 0,
+      "maintainability": 0,
+      "overall": "```json\n{\n  \"readability\": 85,\n  \"maintainability\": 80,\n  \"strengths\": [\n    \"Implemented optimistic update in `addPost` using `onQueryStarted` and `updateQueryData`.\",\n    \"Properly undo the optimistic change with `patchResult.undo()` inside the error catch block.\",\n    \"Clean TypeScript usage with explicit `Post` and `User` types and no console statements.\"\n  ],\n  \"improvements\": [\n    \"Use the resolved data from `queryFulfilled` to replace the optimistic post with the real server response. Th",
+      "requirementCompliance": 0
+    }
   }
 ]
