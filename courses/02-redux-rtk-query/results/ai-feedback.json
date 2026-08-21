@@ -293,5 +293,21 @@
       "overall": "{\n  \"readability\": 85,\n  \"maintainability\": 80,\n  \"strengths\": [\n    \"Implemented optimistic update with `onQueryStarted` and `patchResult.undo()` for the `addPost` mutation, satisfying the core requirement.\",\n    \"Used TypeScript throughout, defining clear interfaces (`User`, `Post`) and typing all API endpoints and mutations.\",\n    \"Clean separation of concerns: API logic lives in `apiSlice.ts`, mock data and server logic in `mockServer.ts`, keeping the codebase modular.\"\n  ],\n  \"improvements\"",
       "requirementCompliance": 0
     }
+  },
+  {
+    "challengeId": "12-error-loading-ux",
+    "challengeName": "Error and Loading UX",
+    "aiReview": {
+      "challengeId": "12-error-loading-ux",
+      "timestamp": "2026-08-21T07:15:37.563Z",
+      "score": 0,
+      "feedback": [],
+      "strengths": [],
+      "improvements": [],
+      "readability": 0,
+      "maintainability": 0,
+      "overall": "",
+      "requirementCompliance": 0
+    }
   }
 ]

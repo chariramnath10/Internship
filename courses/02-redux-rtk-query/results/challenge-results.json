@@ -3128,5 +3128,270 @@
       "overall": "The implementation satisfies the core functional requirements: a filter/sort slice is added to the store, `PostsWithFilters` consumes both RTK Query data and local state, and the UI correctly renders filtered and sorted posts. The code follows RTK Query best practices and is well‑structured, though a missing route and a few small refactor opportunities remain.",
       "requirementCompliance": 92
     }
+  },
+  {
+    "challengeId": "12-error-loading-ux",
+    "challengeName": "Error and Loading UX",
+    "timestamp": "2026-08-21T07:15:24.601Z",
+    "scores": {
+      "functionalTests": 100,
+      "codeQuality": 100,
+      "architecture": 100,
+      "bestPractices": 100,
+      "e2eTests": 100,
+      "aiReview": 0
+    },
+    "totalScore": 85,
+    "passed": true,
+    "errors": [],
+    "warnings": [],
+    "testResults": {
+      "score": 100,
+      "passed": true,
+      "totalTests": 3,
+      "passedTests": 3,
+      "failedTests": 0,
+      "details": [
+        {
+          "assertionResults": [
+            {
+              "ancestorTitles": [
+                "",
+                "Challenge 12: Error and Loading UX"
+              ],
+              "fullName": " Challenge 12: Error and Loading UX ErrorDisplay exists with error-display and retry-btn data-testids",
+              "status": "passed",
+              "title": "ErrorDisplay exists with error-display and retry-btn data-testids",
+              "duration": 1,
+              "failureMessages": []
+            },
+            {
+              "ancestorTitles": [
+                "",
+                "Challenge 12: Error and Loading UX"
+              ],
+              "fullName": " Challenge 12: Error and Loading UX UsersList or main list uses refetch",
+              "status": "passed",
+              "title": "UsersList or main list uses refetch",
+              "duration": 1,
+              "failureMessages": []
+            },
+            {
+              "ancestorTitles": [
+                "",
+                "Challenge 12: Error and Loading UX"
+              ],
+              "fullName": " Challenge 12: Error and Loading UX loading or error state has visible indicator",
+              "status": "passed",
+              "title": "loading or error state has visible indicator",
+              "duration": 0,
+              "failureMessages": []
+            }
+          ],
+          "startTime": 1787296527721,
+          "endTime": 1787296527723,
+          "status": "passed",
+          "message": "",
+          "name": "C:/Users/chari/OneDrive/Desktop/internship/challenge-engine-react/courses/02-redux-rtk-query/project/tests/challenge-12.test.tsx"
+        }
+      ]
+    },
+    "lintResults": {
+      "score": 100,
+      "passed": true,
+      "totalIssues": 0,
+      "errors": 0,
+      "warnings": 0,
+      "details": [
+        {
+          "filePath": "C:\\Users\\chari\\OneDrive\\Desktop\\internship\\challenge-engine-react\\courses\\02-redux-rtk-query\\project\\src\\components\\ErrorDisplay.tsx",
+          "messages": [],
+          "suppressedMessages": [],
+          "errorCount": 0,
+          "fatalErrorCount": 0,
+          "warningCount": 0,
+          "fixableErrorCount": 0,
+          "fixableWarningCount": 0,
+          "usedDeprecatedRules": [
+            {
+              "ruleId": "no-extra-semi",
+              "replacedBy": []
+            },
+            {
+              "ruleId": "no-mixed-spaces-and-tabs",
+              "replacedBy": []
+            }
+          ]
+        },
+        {
+          "filePath": "C:\\Users\\chari\\OneDrive\\Desktop\\internship\\challenge-engine-react\\courses\\02-redux-rtk-query\\project\\src\\components\\UsersList.tsx",
+          "messages": [],
+          "suppressedMessages": [],
+          "errorCount": 0,
+          "fatalErrorCount": 0,
+          "warningCount": 0,
+          "fixableErrorCount": 0,
+          "fixableWarningCount": 0,
+          "usedDeprecatedRules": [
+            {
+              "ruleId": "no-extra-semi",
+              "replacedBy": []
+            },
+            {
+              "ruleId": "no-mixed-spaces-and-tabs",
+              "replacedBy": []
+            }
+          ]
+        }
+      ]
+    },
+    "architectureResults": {
+      "score": 100,
+      "passed": true,
+      "patternsFound": [
+        "useQueryHook"
+      ],
+      "patternsMissing": [],
+      "details": [
+        {
+          "file": "src/components/UsersList.tsx",
+          "patternsFound": [
+            "useQueryHook"
+          ],
+          "patternsMissing": []
+        },
+        {
+          "file": "src/components/ErrorDisplay.tsx",
+          "patternsFound": [],
+          "patternsMissing": []
+        }
+      ]
+    },
+    "bestPracticesResults": {
+      "score": 100,
+      "passed": true,
+      "issues": [],
+      "details": [],
+      "note": "No best practices requirements specified in challenge"
+    },
+    "e2eResults": {
+      "score": 100,
+      "passed": true,
+      "totalTests": 2,
+      "passedTests": 2,
+      "failedTests": 0,
+      "details": [
+        {
+          "title": "challenge-12.spec.ts",
+          "file": "challenge-12.spec.ts",
+          "column": 0,
+          "line": 0,
+          "specs": [],
+          "suites": [
+            {
+              "title": "Challenge 12: Error and Loading UX - E2E",
+              "file": "challenge-12.spec.ts",
+              "line": 3,
+              "column": 6,
+              "specs": [
+                {
+                  "title": "should load challenge 12 page",
+                  "ok": true,
+                  "tags": [],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 0,
+                          "parallelIndex": 0,
+                          "status": "passed",
+                          "duration": 289,
+                          "errors": [],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2026-08-21T07:15:35.816Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "f77a26b762255a776dfc-79ffb81e877800e3fec0",
+                  "file": "challenge-12.spec.ts",
+                  "line": 8,
+                  "column": 3
+                },
+                {
+                  "title": "should show users list area",
+                  "ok": true,
+                  "tags": [],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 0,
+                          "parallelIndex": 0,
+                          "status": "passed",
+                          "duration": 1103,
+                          "errors": [],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2026-08-21T07:15:36.209Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "f77a26b762255a776dfc-e4bccb413d7d0fea7ad3",
+                  "file": "challenge-12.spec.ts",
+                  "line": 13,
+                  "column": 3
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "screenshots": []
+    },
+    "aiReviewResults": {
+      "challengeId": "12-error-loading-ux",
+      "timestamp": "2026-08-21T07:15:37.563Z",
+      "score": 0,
+      "feedback": [],
+      "strengths": [],
+      "improvements": [],
+      "readability": 0,
+      "maintainability": 0,
+      "overall": "",
+      "requirementCompliance": 0
+    },
+    "aiResults": {
+      "challengeId": "12-error-loading-ux",
+      "timestamp": "2026-08-21T07:15:37.563Z",
+      "score": 0,
+      "feedback": [],
+      "strengths": [],
+      "improvements": [],
+      "readability": 0,
+      "maintainability": 0,
+      "overall": "",
+      "requirementCompliance": 0
+    }
   }
 ]
