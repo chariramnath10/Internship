@@ -154,5 +154,32 @@
       "overall": "The implementation demonstrates a solid grasp of RTK Query fundamentals and TypeScript, but it falls short of the challenge requirements by omitting the essential middleware integration. Once the middleware is added and the baseQuery is aligned with best practices, the solution will fully satisfy the task.",
       "requirementCompliance": 60
     }
+  },
+  {
+    "challengeId": "07-queries",
+    "challengeName": "Query Endpoints and useQuery Hooks",
+    "aiReview": {
+      "challengeId": "07-queries",
+      "timestamp": "2026-08-21T06:10:58.046Z",
+      "score": 85,
+      "feedback": [],
+      "strengths": [
+        "Implemented a clean `getUsers` query endpoint in `apiSlice.ts` using `builder.query` and a mock API.",
+        "UsersList component correctly consumes the generated `useGetUsersQuery` hook and handles loading, error, and data states with appropriate `data-testid` attributes.",
+        "TypeScript types are used consistently (e.g., `User` interface) and the code passes ESLint with no console statements."
+      ],
+      "improvements": [
+        "In `UsersList.tsx`, replace the indirection `const useQueryHook = useGetUsersQuery; const { ... } = useQueryHook();` with a direct call: `const { data, isLoading, isError, error } = useGetUsersQuery();` to simplify the code.",
+        "Consider using `fetchBaseQuery` instead of `fakeBaseQuery` for a more realistic base query implementation, or at least document why `fakeBaseQuery` is chosen.",
+        "Ensure that the `apiSlice.reducer` is added to the Redux store (e.g., `store.ts`) and that the `apiSlice.middleware` is included. This is not shown in the provided files but is required for RTK Query to work.",
+        "Add a type guard for the error object to satisfy TypeScript stricter settings: `const isCustomError = (e: unknown): e is { error: string } => typeof e === 'object' && e !== null && 'error' in e;` and use it when rendering the error message.",
+        "Add a `data-testid` for the `<ul>` element inside the list container to make the test selector more granular if needed.",
+        "Remove the unused `useQueryHook` variable to avoid confusion and potential lint warnings about unused variables."
+      ],
+      "readability": 88,
+      "maintainability": 82,
+      "overall": "The implementation satisfies the core functional requirements: a `getUsers` query endpoint, a component that consumes the generated hook, and proper loading/error handling. The code follows RTK Query patterns and TypeScript best practices, though a few small refactors and store integration steps would make it more robust and maintainable.",
+      "requirementCompliance": 85
+    }
   }
 ]

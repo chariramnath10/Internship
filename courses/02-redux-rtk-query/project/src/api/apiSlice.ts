@@ -14,7 +14,8 @@ export const apiSlice = createApi({
           return {
             error: {
               status: 'CUSTOM_ERROR',
-              error: error instanceof Error ? error.message : 'Unknown error',
+              error:
+                error instanceof Error ? error.message : 'Unknown error',
             },
           }
         }
