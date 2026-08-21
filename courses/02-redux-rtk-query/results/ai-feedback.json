@@ -211,5 +211,33 @@
       "overall": "The implementation satisfies all functional requirements and demonstrates a solid grasp of RTK Query’s tag system. The code is readable and well‑typed, though a few refactorings (simplifying queries, centralizing tag constants, and adding complementary mutations) would improve maintainability and align even more closely with best practices.",
       "requirementCompliance": 95
     }
+  },
+  {
+    "challengeId": "09-mutations",
+    "challengeName": "Mutations with useMutation",
+    "aiReview": {
+      "challengeId": "09-mutations",
+      "timestamp": "2026-08-21T06:37:43.745Z",
+      "score": 86,
+      "feedback": [],
+      "strengths": [
+        "Clear separation of API logic in `apiSlice.ts` with proper tagTypes and invalidatesTags.",
+        "AddPostForm uses `useAddPostMutation` correctly and provides user feedback via `isLoading`, `isSuccess`, and `isError`.",
+        "TypeScript is consistently used across the API and component layers, with explicit types for payloads and responses."
+      ],
+      "improvements": [
+        "In `apiSlice.ts`, replace the `queryFn` implementation for `addPost` with the simpler `query` property: `query: (post) => ({ url: '/posts', method: 'POST', body: post })`. This reduces boilerplate and aligns with the standard RTK Query pattern.",
+        "Add explicit error handling in `AddPostForm.tsx`. Wrap the `await addPost(...)` call in a try/catch block and display the error message returned by RTK Query (`error?.data?.message` or `error?.error`). This gives users clearer feedback.",
+        "Use a `useEffect` hook in `AddPostForm` to automatically clear the success message after a short delay (e.g., 3 s). This improves UX by not requiring a manual refresh.",
+        "Consider renaming the mutation hook to `useCreatePostMutation` for semantic clarity, and update the export accordingly.",
+        "Ensure the route `/challenge/09-mutations` actually renders `AddPostForm`. If not, add a route component in the router configuration.",
+        "Add a small unit test for `AddPostForm` that verifies the mutation is triggered with the correct payload and that the form resets on success.",
+        "Document the `invalidatesTags` usage in a comment within `apiSlice.ts` so future contributors understand why the list query is refreshed."
+      ],
+      "readability": 85,
+      "maintainability": 80,
+      "overall": "The implementation satisfies the core requirements: a mutation endpoint, a form that uses `useMutation`, and proper tag invalidation. The code follows RTK Query best practices and is well‑typed, though minor refactors (simplifying the mutation definition, adding error handling, and ensuring route rendering) would tighten the solution.",
+      "requirementCompliance": 90
+    }
   }
 ]

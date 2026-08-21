@@ -2305,5 +2305,290 @@
       "overall": "The implementation satisfies all functional requirements and demonstrates a solid grasp of RTK Query’s tag system. The code is readable and well‑typed, though a few refactorings (simplifying queries, centralizing tag constants, and adding complementary mutations) would improve maintainability and align even more closely with best practices.",
       "requirementCompliance": 95
     }
+  },
+  {
+    "challengeId": "09-mutations",
+    "challengeName": "Mutations with useMutation",
+    "timestamp": "2026-08-21T06:37:31.600Z",
+    "scores": {
+      "functionalTests": 100,
+      "codeQuality": 100,
+      "architecture": 100,
+      "bestPractices": 100,
+      "e2eTests": 100,
+      "aiReview": 86
+    },
+    "totalScore": 97.9,
+    "passed": true,
+    "errors": [],
+    "warnings": [],
+    "testResults": {
+      "score": 100,
+      "passed": true,
+      "totalTests": 3,
+      "passedTests": 3,
+      "failedTests": 0,
+      "details": [
+        {
+          "assertionResults": [
+            {
+              "ancestorTitles": [
+                "",
+                "Challenge 09: Mutations with useMutation"
+              ],
+              "fullName": " Challenge 09: Mutations with useMutation API slice has builder.mutation endpoint",
+              "status": "passed",
+              "title": "API slice has builder.mutation endpoint",
+              "duration": 1,
+              "failureMessages": []
+            },
+            {
+              "ancestorTitles": [
+                "",
+                "Challenge 09: Mutations with useMutation"
+              ],
+              "fullName": " Challenge 09: Mutations with useMutation AddPostForm uses useMutation hook",
+              "status": "passed",
+              "title": "AddPostForm uses useMutation hook",
+              "duration": 1,
+              "failureMessages": []
+            },
+            {
+              "ancestorTitles": [
+                "",
+                "Challenge 09: Mutations with useMutation"
+              ],
+              "fullName": " Challenge 09: Mutations with useMutation AddPostForm has add-post-form and add-post-submit data-testids",
+              "status": "passed",
+              "title": "AddPostForm has add-post-form and add-post-submit data-testids",
+              "duration": 0,
+              "failureMessages": []
+            }
+          ],
+          "startTime": 1787294254730,
+          "endTime": 1787294254732,
+          "status": "passed",
+          "message": "",
+          "name": "C:/Users/chari/OneDrive/Desktop/internship/challenge-engine-react/courses/02-redux-rtk-query/project/tests/challenge-09.test.tsx"
+        }
+      ]
+    },
+    "lintResults": {
+      "score": 100,
+      "passed": true,
+      "totalIssues": 0,
+      "errors": 0,
+      "warnings": 0,
+      "details": [
+        {
+          "filePath": "C:\\Users\\chari\\OneDrive\\Desktop\\internship\\challenge-engine-react\\courses\\02-redux-rtk-query\\project\\src\\api\\apiSlice.ts",
+          "messages": [],
+          "suppressedMessages": [],
+          "errorCount": 0,
+          "fatalErrorCount": 0,
+          "warningCount": 0,
+          "fixableErrorCount": 0,
+          "fixableWarningCount": 0,
+          "usedDeprecatedRules": [
+            {
+              "ruleId": "no-extra-semi",
+              "replacedBy": []
+            },
+            {
+              "ruleId": "no-mixed-spaces-and-tabs",
+              "replacedBy": []
+            }
+          ]
+        },
+        {
+          "filePath": "C:\\Users\\chari\\OneDrive\\Desktop\\internship\\challenge-engine-react\\courses\\02-redux-rtk-query\\project\\src\\components\\AddPostForm.tsx",
+          "messages": [],
+          "suppressedMessages": [],
+          "errorCount": 0,
+          "fatalErrorCount": 0,
+          "warningCount": 0,
+          "fixableErrorCount": 0,
+          "fixableWarningCount": 0,
+          "usedDeprecatedRules": [
+            {
+              "ruleId": "no-extra-semi",
+              "replacedBy": []
+            },
+            {
+              "ruleId": "no-mixed-spaces-and-tabs",
+              "replacedBy": []
+            }
+          ]
+        }
+      ]
+    },
+    "architectureResults": {
+      "score": 100,
+      "passed": true,
+      "patternsFound": [],
+      "patternsMissing": [],
+      "details": [
+        {
+          "file": "src/api/apiSlice.ts",
+          "patternsFound": [],
+          "patternsMissing": []
+        },
+        {
+          "file": "src/components/AddPostForm.tsx",
+          "patternsFound": [],
+          "patternsMissing": []
+        }
+      ]
+    },
+    "bestPracticesResults": {
+      "score": 100,
+      "passed": true,
+      "issues": [],
+      "details": [],
+      "note": "No best practices requirements specified in challenge"
+    },
+    "e2eResults": {
+      "score": 100,
+      "passed": true,
+      "totalTests": 2,
+      "passedTests": 2,
+      "failedTests": 0,
+      "details": [
+        {
+          "title": "challenge-09.spec.ts",
+          "file": "challenge-09.spec.ts",
+          "column": 0,
+          "line": 0,
+          "specs": [],
+          "suites": [
+            {
+              "title": "Challenge 09: Mutations - E2E",
+              "file": "challenge-09.spec.ts",
+              "line": 3,
+              "column": 6,
+              "specs": [
+                {
+                  "title": "should load challenge 09 page with AddPostForm",
+                  "ok": true,
+                  "tags": [],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 0,
+                          "parallelIndex": 0,
+                          "status": "passed",
+                          "duration": 333,
+                          "errors": [],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2026-08-21T06:37:42.836Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "a1b04685a79f6082459c-828951cbe0f5663062a7",
+                  "file": "challenge-09.spec.ts",
+                  "line": 8,
+                  "column": 3
+                },
+                {
+                  "title": "should have add post submit button",
+                  "ok": true,
+                  "tags": [],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 0,
+                          "parallelIndex": 0,
+                          "status": "passed",
+                          "duration": 218,
+                          "errors": [],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2026-08-21T06:37:43.281Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "a1b04685a79f6082459c-d4f659a4cefad71b2896",
+                  "file": "challenge-09.spec.ts",
+                  "line": 13,
+                  "column": 3
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "screenshots": []
+    },
+    "aiReviewResults": {
+      "challengeId": "09-mutations",
+      "timestamp": "2026-08-21T06:37:43.745Z",
+      "score": 86,
+      "feedback": [],
+      "strengths": [
+        "Clear separation of API logic in `apiSlice.ts` with proper tagTypes and invalidatesTags.",
+        "AddPostForm uses `useAddPostMutation` correctly and provides user feedback via `isLoading`, `isSuccess`, and `isError`.",
+        "TypeScript is consistently used across the API and component layers, with explicit types for payloads and responses."
+      ],
+      "improvements": [
+        "In `apiSlice.ts`, replace the `queryFn` implementation for `addPost` with the simpler `query` property: `query: (post) => ({ url: '/posts', method: 'POST', body: post })`. This reduces boilerplate and aligns with the standard RTK Query pattern.",
+        "Add explicit error handling in `AddPostForm.tsx`. Wrap the `await addPost(...)` call in a try/catch block and display the error message returned by RTK Query (`error?.data?.message` or `error?.error`). This gives users clearer feedback.",
+        "Use a `useEffect` hook in `AddPostForm` to automatically clear the success message after a short delay (e.g., 3 s). This improves UX by not requiring a manual refresh.",
+        "Consider renaming the mutation hook to `useCreatePostMutation` for semantic clarity, and update the export accordingly.",
+        "Ensure the route `/challenge/09-mutations` actually renders `AddPostForm`. If not, add a route component in the router configuration.",
+        "Add a small unit test for `AddPostForm` that verifies the mutation is triggered with the correct payload and that the form resets on success.",
+        "Document the `invalidatesTags` usage in a comment within `apiSlice.ts` so future contributors understand why the list query is refreshed."
+      ],
+      "readability": 85,
+      "maintainability": 80,
+      "overall": "The implementation satisfies the core requirements: a mutation endpoint, a form that uses `useMutation`, and proper tag invalidation. The code follows RTK Query best practices and is well‑typed, though minor refactors (simplifying the mutation definition, adding error handling, and ensuring route rendering) would tighten the solution.",
+      "requirementCompliance": 90
+    },
+    "aiResults": {
+      "challengeId": "09-mutations",
+      "timestamp": "2026-08-21T06:37:43.745Z",
+      "score": 86,
+      "feedback": [],
+      "strengths": [
+        "Clear separation of API logic in `apiSlice.ts` with proper tagTypes and invalidatesTags.",
+        "AddPostForm uses `useAddPostMutation` correctly and provides user feedback via `isLoading`, `isSuccess`, and `isError`.",
+        "TypeScript is consistently used across the API and component layers, with explicit types for payloads and responses."
+      ],
+      "improvements": [
+        "In `apiSlice.ts`, replace the `queryFn` implementation for `addPost` with the simpler `query` property: `query: (post) => ({ url: '/posts', method: 'POST', body: post })`. This reduces boilerplate and aligns with the standard RTK Query pattern.",
+        "Add explicit error handling in `AddPostForm.tsx`. Wrap the `await addPost(...)` call in a try/catch block and display the error message returned by RTK Query (`error?.data?.message` or `error?.error`). This gives users clearer feedback.",
+        "Use a `useEffect` hook in `AddPostForm` to automatically clear the success message after a short delay (e.g., 3 s). This improves UX by not requiring a manual refresh.",
+        "Consider renaming the mutation hook to `useCreatePostMutation` for semantic clarity, and update the export accordingly.",
+        "Ensure the route `/challenge/09-mutations` actually renders `AddPostForm`. If not, add a route component in the router configuration.",
+        "Add a small unit test for `AddPostForm` that verifies the mutation is triggered with the correct payload and that the form resets on success.",
+        "Document the `invalidatesTags` usage in a comment within `apiSlice.ts` so future contributors understand why the list query is refreshed."
+      ],
+      "readability": 85,
+      "maintainability": 80,
+      "overall": "The implementation satisfies the core requirements: a mutation endpoint, a form that uses `useMutation`, and proper tag invalidation. The code follows RTK Query best practices and is well‑typed, though minor refactors (simplifying the mutation definition, adding error handling, and ensuring route rendering) would tighten the solution.",
+      "requirementCompliance": 90
+    }
   }
 ]
