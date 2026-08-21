@@ -2594,7 +2594,7 @@
   {
     "challengeId": "10-optimistic-updates",
     "challengeName": "Optimistic Updates",
-    "timestamp": "2026-08-21T06:52:19.896Z",
+    "timestamp": "2026-08-21T07:06:20.119Z",
     "scores": {
       "functionalTests": 100,
       "codeQuality": 100,
@@ -2646,12 +2646,12 @@
               "fullName": " Challenge 10: Optimistic Updates has rollback or undo on error",
               "status": "passed",
               "title": "has rollback or undo on error",
-              "duration": 0,
+              "duration": 1,
               "failureMessages": []
             }
           ],
-          "startTime": 1787295143005,
-          "endTime": 1787295143007,
+          "startTime": 1787295983237,
+          "endTime": 1787295983240,
           "status": "passed",
           "message": "",
           "name": "C:/Users/chari/OneDrive/Desktop/internship/challenge-engine-react/courses/02-redux-rtk-query/project/tests/challenge-10.test.tsx"
@@ -2743,12 +2743,12 @@
                           "workerIndex": 0,
                           "parallelIndex": 0,
                           "status": "passed",
-                          "duration": 288,
+                          "duration": 284,
                           "errors": [],
                           "stdout": [],
                           "stderr": [],
                           "retry": 0,
-                          "startTime": "2026-08-21T06:52:31.015Z",
+                          "startTime": "2026-08-21T07:06:31.338Z",
                           "annotations": [],
                           "attachments": []
                         }
@@ -2770,47 +2770,363 @@
     },
     "aiReviewResults": {
       "challengeId": "10-optimistic-updates",
-      "timestamp": "2026-08-21T06:52:31.663Z",
+      "timestamp": "2026-08-21T07:06:31.980Z",
       "score": 0,
       "feedback": [],
       "strengths": [
-        "Implemented optimistic update in `addPost` using `onQueryStarted` and `updateQueryData`.\",",
-        "Properly undo the optimistic change with `patchResult.undo()` inside the error catch block.\",",
-        "Clean TypeScript usage with explicit `Post` and `User` types and no console statements.",
+        "Implemented optimistic update with `onQueryStarted` and `patchResult.undo()` for the `addPost` mutation, satisfying the core requirement.\",",
+        "Used TypeScript throughout, defining clear interfaces (`User`, `Post`) and typing all API endpoints and mutations.\",",
+        "Clean separation of concerns: API logic lives in `apiSlice.ts`, mock data and server logic in `mockServer.ts`, keeping the codebase modular.",
         "improvements\": [",
-        "Use the resolved data from `queryFulfilled` to replace the optimistic post with the real server response. This ensures the cache stays in sync with the backend and avoids duplicate IDs.\","
+        "After a successful `addPost` mutation, replace the optimistic post (with `Date.now()` id) with the server‑returned post to keep the cache consistent.  Add a `queryFulfilled.then(...)` block that updates the cache with the real id.  (src/api/apiSlice.ts)\","
       ],
       "improvements": [
-        "Use the resolved data from `queryFulfilled` to replace the optimistic post with the real server response. This ensures the cache stays in sync with the backend and avoids duplicate IDs.\",",
-        "Add explicit error handling or user feedback in the catch block (e.g., dispatch an error toast) so the UI can inform the user when the mutation fails.\",",
-        "Consider using `getState` to read the current posts list before pushing the optimistic post, which can help avoid race conditions when multiple mutations are"
+        "After a successful `addPost` mutation, replace the optimistic post (with `Date.now()` id) with the server‑returned post to keep the cache consistent.  Add a `queryFulfilled.then(...)` block that updates the cache with the real id.  (src/api/apiSlice.ts)\",",
+        "Extract the repeated error‑handling pattern from each `queryFn` into a small helper (e.g., `handleQueryError`) to reduce duplication and improve readability.  (src/api/apiSlice.ts)\",",
+        "Add a minimal Redux store configuration that imports `apiSlice.reducer` and applies the middleware.  This makes the slice immediately usable in a real app and demonstrates the full RTK Query integration.  (src/store.ts or equivalent)",
+        "overall\": \"The implementation correctly demonstrates optimistic updates using RTK Query’s `"
       ],
       "readability": 0,
       "maintainability": 0,
-      "overall": "```json\n{\n  \"readability\": 85,\n  \"maintainability\": 80,\n  \"strengths\": [\n    \"Implemented optimistic update in `addPost` using `onQueryStarted` and `updateQueryData`.\",\n    \"Properly undo the optimistic change with `patchResult.undo()` inside the error catch block.\",\n    \"Clean TypeScript usage with explicit `Post` and `User` types and no console statements.\"\n  ],\n  \"improvements\": [\n    \"Use the resolved data from `queryFulfilled` to replace the optimistic post with the real server response. Th",
+      "overall": "{\n  \"readability\": 85,\n  \"maintainability\": 80,\n  \"strengths\": [\n    \"Implemented optimistic update with `onQueryStarted` and `patchResult.undo()` for the `addPost` mutation, satisfying the core requirement.\",\n    \"Used TypeScript throughout, defining clear interfaces (`User`, `Post`) and typing all API endpoints and mutations.\",\n    \"Clean separation of concerns: API logic lives in `apiSlice.ts`, mock data and server logic in `mockServer.ts`, keeping the codebase modular.\"\n  ],\n  \"improvements\"",
       "requirementCompliance": 0
     },
     "aiResults": {
       "challengeId": "10-optimistic-updates",
-      "timestamp": "2026-08-21T06:52:31.663Z",
+      "timestamp": "2026-08-21T07:06:31.980Z",
       "score": 0,
       "feedback": [],
       "strengths": [
-        "Implemented optimistic update in `addPost` using `onQueryStarted` and `updateQueryData`.\",",
-        "Properly undo the optimistic change with `patchResult.undo()` inside the error catch block.\",",
-        "Clean TypeScript usage with explicit `Post` and `User` types and no console statements.",
+        "Implemented optimistic update with `onQueryStarted` and `patchResult.undo()` for the `addPost` mutation, satisfying the core requirement.\",",
+        "Used TypeScript throughout, defining clear interfaces (`User`, `Post`) and typing all API endpoints and mutations.\",",
+        "Clean separation of concerns: API logic lives in `apiSlice.ts`, mock data and server logic in `mockServer.ts`, keeping the codebase modular.",
         "improvements\": [",
-        "Use the resolved data from `queryFulfilled` to replace the optimistic post with the real server response. This ensures the cache stays in sync with the backend and avoids duplicate IDs.\","
+        "After a successful `addPost` mutation, replace the optimistic post (with `Date.now()` id) with the server‑returned post to keep the cache consistent.  Add a `queryFulfilled.then(...)` block that updates the cache with the real id.  (src/api/apiSlice.ts)\","
       ],
       "improvements": [
-        "Use the resolved data from `queryFulfilled` to replace the optimistic post with the real server response. This ensures the cache stays in sync with the backend and avoids duplicate IDs.\",",
-        "Add explicit error handling or user feedback in the catch block (e.g., dispatch an error toast) so the UI can inform the user when the mutation fails.\",",
-        "Consider using `getState` to read the current posts list before pushing the optimistic post, which can help avoid race conditions when multiple mutations are"
+        "After a successful `addPost` mutation, replace the optimistic post (with `Date.now()` id) with the server‑returned post to keep the cache consistent.  Add a `queryFulfilled.then(...)` block that updates the cache with the real id.  (src/api/apiSlice.ts)\",",
+        "Extract the repeated error‑handling pattern from each `queryFn` into a small helper (e.g., `handleQueryError`) to reduce duplication and improve readability.  (src/api/apiSlice.ts)\",",
+        "Add a minimal Redux store configuration that imports `apiSlice.reducer` and applies the middleware.  This makes the slice immediately usable in a real app and demonstrates the full RTK Query integration.  (src/store.ts or equivalent)",
+        "overall\": \"The implementation correctly demonstrates optimistic updates using RTK Query’s `"
       ],
       "readability": 0,
       "maintainability": 0,
-      "overall": "```json\n{\n  \"readability\": 85,\n  \"maintainability\": 80,\n  \"strengths\": [\n    \"Implemented optimistic update in `addPost` using `onQueryStarted` and `updateQueryData`.\",\n    \"Properly undo the optimistic change with `patchResult.undo()` inside the error catch block.\",\n    \"Clean TypeScript usage with explicit `Post` and `User` types and no console statements.\"\n  ],\n  \"improvements\": [\n    \"Use the resolved data from `queryFulfilled` to replace the optimistic post with the real server response. Th",
+      "overall": "{\n  \"readability\": 85,\n  \"maintainability\": 80,\n  \"strengths\": [\n    \"Implemented optimistic update with `onQueryStarted` and `patchResult.undo()` for the `addPost` mutation, satisfying the core requirement.\",\n    \"Used TypeScript throughout, defining clear interfaces (`User`, `Post`) and typing all API endpoints and mutations.\",\n    \"Clean separation of concerns: API logic lives in `apiSlice.ts`, mock data and server logic in `mockServer.ts`, keeping the codebase modular.\"\n  ],\n  \"improvements\"",
       "requirementCompliance": 0
+    }
+  },
+  {
+    "challengeId": "11-api-local-state",
+    "challengeName": "API and Local State Together",
+    "timestamp": "2026-08-21T07:05:47.343Z",
+    "scores": {
+      "functionalTests": 100,
+      "codeQuality": 100,
+      "architecture": 100,
+      "bestPractices": 100,
+      "e2eTests": 100,
+      "aiReview": 89
+    },
+    "totalScore": 98.35,
+    "passed": true,
+    "errors": [],
+    "warnings": [],
+    "testResults": {
+      "score": 100,
+      "passed": true,
+      "totalTests": 3,
+      "passedTests": 3,
+      "failedTests": 0,
+      "details": [
+        {
+          "assertionResults": [
+            {
+              "ancestorTitles": [
+                "",
+                "Challenge 11: API and Local State Together"
+              ],
+              "fullName": " Challenge 11: API and Local State Together filtersSlice exists and is in store",
+              "status": "passed",
+              "title": "filtersSlice exists and is in store",
+              "duration": 2,
+              "failureMessages": []
+            },
+            {
+              "ancestorTitles": [
+                "",
+                "Challenge 11: API and Local State Together"
+              ],
+              "fullName": " Challenge 11: API and Local State Together PostsWithFilters uses useSelector and useGetPostsQuery or query hook",
+              "status": "passed",
+              "title": "PostsWithFilters uses useSelector and useGetPostsQuery or query hook",
+              "duration": 1,
+              "failureMessages": []
+            },
+            {
+              "ancestorTitles": [
+                "",
+                "Challenge 11: API and Local State Together"
+              ],
+              "fullName": " Challenge 11: API and Local State Together PostsWithFilters has posts-with-filters and filter-controls data-testids",
+              "status": "passed",
+              "title": "PostsWithFilters has posts-with-filters and filter-controls data-testids",
+              "duration": 0,
+              "failureMessages": []
+            }
+          ],
+          "startTime": 1787295950505,
+          "endTime": 1787295950508,
+          "status": "passed",
+          "message": "",
+          "name": "C:/Users/chari/OneDrive/Desktop/internship/challenge-engine-react/courses/02-redux-rtk-query/project/tests/challenge-11.test.tsx"
+        }
+      ]
+    },
+    "lintResults": {
+      "score": 100,
+      "passed": true,
+      "totalIssues": 0,
+      "errors": 0,
+      "warnings": 0,
+      "details": [
+        {
+          "filePath": "C:\\Users\\chari\\OneDrive\\Desktop\\internship\\challenge-engine-react\\courses\\02-redux-rtk-query\\project\\src\\components\\PostsWithFilters.tsx",
+          "messages": [],
+          "suppressedMessages": [],
+          "errorCount": 0,
+          "fatalErrorCount": 0,
+          "warningCount": 0,
+          "fixableErrorCount": 0,
+          "fixableWarningCount": 0,
+          "usedDeprecatedRules": [
+            {
+              "ruleId": "no-extra-semi",
+              "replacedBy": []
+            },
+            {
+              "ruleId": "no-mixed-spaces-and-tabs",
+              "replacedBy": []
+            }
+          ]
+        },
+        {
+          "filePath": "C:\\Users\\chari\\OneDrive\\Desktop\\internship\\challenge-engine-react\\courses\\02-redux-rtk-query\\project\\src\\store\\slices\\filtersSlice.ts",
+          "messages": [],
+          "suppressedMessages": [],
+          "errorCount": 0,
+          "fatalErrorCount": 0,
+          "warningCount": 0,
+          "fixableErrorCount": 0,
+          "fixableWarningCount": 0,
+          "usedDeprecatedRules": [
+            {
+              "ruleId": "no-extra-semi",
+              "replacedBy": []
+            },
+            {
+              "ruleId": "no-mixed-spaces-and-tabs",
+              "replacedBy": []
+            }
+          ]
+        },
+        {
+          "filePath": "C:\\Users\\chari\\OneDrive\\Desktop\\internship\\challenge-engine-react\\courses\\02-redux-rtk-query\\project\\src\\store\\store.ts",
+          "messages": [],
+          "suppressedMessages": [],
+          "errorCount": 0,
+          "fatalErrorCount": 0,
+          "warningCount": 0,
+          "fixableErrorCount": 0,
+          "fixableWarningCount": 0,
+          "usedDeprecatedRules": [
+            {
+              "ruleId": "no-extra-semi",
+              "replacedBy": []
+            },
+            {
+              "ruleId": "no-mixed-spaces-and-tabs",
+              "replacedBy": []
+            }
+          ]
+        }
+      ]
+    },
+    "architectureResults": {
+      "score": 100,
+      "passed": true,
+      "patternsFound": [
+        "reducer",
+        "middleware"
+      ],
+      "patternsMissing": [],
+      "details": [
+        {
+          "file": "src/store/store.ts",
+          "patternsFound": [
+            "reducer",
+            "middleware"
+          ],
+          "patternsMissing": []
+        },
+        {
+          "file": "src/store/slices/filtersSlice.ts",
+          "patternsFound": [],
+          "patternsMissing": []
+        },
+        {
+          "file": "src/components/PostsWithFilters.tsx",
+          "patternsFound": [],
+          "patternsMissing": []
+        }
+      ]
+    },
+    "bestPracticesResults": {
+      "score": 100,
+      "passed": true,
+      "issues": [],
+      "details": [],
+      "note": "No best practices requirements specified in challenge"
+    },
+    "e2eResults": {
+      "score": 100,
+      "passed": true,
+      "totalTests": 2,
+      "passedTests": 2,
+      "failedTests": 0,
+      "details": [
+        {
+          "title": "challenge-11.spec.ts",
+          "file": "challenge-11.spec.ts",
+          "column": 0,
+          "line": 0,
+          "specs": [],
+          "suites": [
+            {
+              "title": "Challenge 11: API and Local State - E2E",
+              "file": "challenge-11.spec.ts",
+              "line": 3,
+              "column": 6,
+              "specs": [
+                {
+                  "title": "should load challenge 11 page with PostsWithFilters",
+                  "ok": true,
+                  "tags": [],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 0,
+                          "parallelIndex": 0,
+                          "status": "passed",
+                          "duration": 290,
+                          "errors": [],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2026-08-21T07:05:58.614Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "1017095ef2170c8a8deb-fae6402d7bdc74a17551",
+                  "file": "challenge-11.spec.ts",
+                  "line": 8,
+                  "column": 3
+                },
+                {
+                  "title": "should have filter controls",
+                  "ok": true,
+                  "tags": [],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 0,
+                          "parallelIndex": 0,
+                          "status": "passed",
+                          "duration": 218,
+                          "errors": [],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2026-08-21T07:05:59.013Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "1017095ef2170c8a8deb-8d519fcb89ba7307e5f5",
+                  "file": "challenge-11.spec.ts",
+                  "line": 13,
+                  "column": 3
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "screenshots": []
+    },
+    "aiReviewResults": {
+      "challengeId": "11-api-local-state",
+      "timestamp": "2026-08-21T07:05:59.474Z",
+      "score": 89,
+      "feedback": [],
+      "strengths": [
+        "Clear separation of concerns: API logic lives in `apiSlice`, UI state in `filtersSlice`, and presentation in `PostsWithFilters`.",
+        "Consistent use of typed hooks (`useAppDispatch`, `useAppSelector`) that keep the rest of the codebase type‑safe.",
+        "Derived data is memoised with `useMemo`, preventing unnecessary re‑renders when posts, filter or sort state change."
+      ],
+      "improvements": [
+        "Add the route for `/challenge/11-api-local-state` in the main router (e.g. `App.tsx`). Without it the component will never be rendered.",
+        "Extract the filter controls into a dedicated component (`FilterControls.tsx`) to keep `PostsWithFilters` focused on data handling and rendering.",
+        "In `store/hooks.ts` use the generic form of `useDispatch` to avoid potential type inference issues: `export const useAppDispatch = () => useDispatch<AppDispatch>();`.",
+        "Add a `FiltersState` export from `filtersSlice.ts` so other modules can import the shape if needed.",
+        "Consider adding a `selectFilteredAndSortedPosts` selector that encapsulates the filtering/sorting logic. This would make the component simpler and allow reuse in tests.",
+        "Add a small unit test for the selector logic to ensure sorting and filtering behave correctly when the slice state changes."
+      ],
+      "readability": 88,
+      "maintainability": 85,
+      "overall": "The implementation satisfies the core functional requirements: a filter/sort slice is added to the store, `PostsWithFilters` consumes both RTK Query data and local state, and the UI correctly renders filtered and sorted posts. The code follows RTK Query best practices and is well‑structured, though a missing route and a few small refactor opportunities remain.",
+      "requirementCompliance": 92
+    },
+    "aiResults": {
+      "challengeId": "11-api-local-state",
+      "timestamp": "2026-08-21T07:05:59.474Z",
+      "score": 89,
+      "feedback": [],
+      "strengths": [
+        "Clear separation of concerns: API logic lives in `apiSlice`, UI state in `filtersSlice`, and presentation in `PostsWithFilters`.",
+        "Consistent use of typed hooks (`useAppDispatch`, `useAppSelector`) that keep the rest of the codebase type‑safe.",
+        "Derived data is memoised with `useMemo`, preventing unnecessary re‑renders when posts, filter or sort state change."
+      ],
+      "improvements": [
+        "Add the route for `/challenge/11-api-local-state` in the main router (e.g. `App.tsx`). Without it the component will never be rendered.",
+        "Extract the filter controls into a dedicated component (`FilterControls.tsx`) to keep `PostsWithFilters` focused on data handling and rendering.",
+        "In `store/hooks.ts` use the generic form of `useDispatch` to avoid potential type inference issues: `export const useAppDispatch = () => useDispatch<AppDispatch>();`.",
+        "Add a `FiltersState` export from `filtersSlice.ts` so other modules can import the shape if needed.",
+        "Consider adding a `selectFilteredAndSortedPosts` selector that encapsulates the filtering/sorting logic. This would make the component simpler and allow reuse in tests.",
+        "Add a small unit test for the selector logic to ensure sorting and filtering behave correctly when the slice state changes."
+      ],
+      "readability": 88,
+      "maintainability": 85,
+      "overall": "The implementation satisfies the core functional requirements: a filter/sort slice is added to the store, `PostsWithFilters` consumes both RTK Query data and local state, and the UI correctly renders filtered and sorted posts. The code follows RTK Query best practices and is well‑structured, though a missing route and a few small refactor opportunities remain.",
+      "requirementCompliance": 92
     }
   }
 ]

@@ -241,28 +241,56 @@
     }
   },
   {
+    "challengeId": "11-api-local-state",
+    "challengeName": "API and Local State Together",
+    "aiReview": {
+      "challengeId": "11-api-local-state",
+      "timestamp": "2026-08-21T07:05:59.474Z",
+      "score": 89,
+      "feedback": [],
+      "strengths": [
+        "Clear separation of concerns: API logic lives in `apiSlice`, UI state in `filtersSlice`, and presentation in `PostsWithFilters`.",
+        "Consistent use of typed hooks (`useAppDispatch`, `useAppSelector`) that keep the rest of the codebase type‑safe.",
+        "Derived data is memoised with `useMemo`, preventing unnecessary re‑renders when posts, filter or sort state change."
+      ],
+      "improvements": [
+        "Add the route for `/challenge/11-api-local-state` in the main router (e.g. `App.tsx`). Without it the component will never be rendered.",
+        "Extract the filter controls into a dedicated component (`FilterControls.tsx`) to keep `PostsWithFilters` focused on data handling and rendering.",
+        "In `store/hooks.ts` use the generic form of `useDispatch` to avoid potential type inference issues: `export const useAppDispatch = () => useDispatch<AppDispatch>();`.",
+        "Add a `FiltersState` export from `filtersSlice.ts` so other modules can import the shape if needed.",
+        "Consider adding a `selectFilteredAndSortedPosts` selector that encapsulates the filtering/sorting logic. This would make the component simpler and allow reuse in tests.",
+        "Add a small unit test for the selector logic to ensure sorting and filtering behave correctly when the slice state changes."
+      ],
+      "readability": 88,
+      "maintainability": 85,
+      "overall": "The implementation satisfies the core functional requirements: a filter/sort slice is added to the store, `PostsWithFilters` consumes both RTK Query data and local state, and the UI correctly renders filtered and sorted posts. The code follows RTK Query best practices and is well‑structured, though a missing route and a few small refactor opportunities remain.",
+      "requirementCompliance": 92
+    }
+  },
+  {
     "challengeId": "10-optimistic-updates",
     "challengeName": "Optimistic Updates",
     "aiReview": {
       "challengeId": "10-optimistic-updates",
-      "timestamp": "2026-08-21T06:52:31.663Z",
+      "timestamp": "2026-08-21T07:06:31.980Z",
       "score": 0,
       "feedback": [],
       "strengths": [
-        "Implemented optimistic update in `addPost` using `onQueryStarted` and `updateQueryData`.\",",
-        "Properly undo the optimistic change with `patchResult.undo()` inside the error catch block.\",",
-        "Clean TypeScript usage with explicit `Post` and `User` types and no console statements.",
+        "Implemented optimistic update with `onQueryStarted` and `patchResult.undo()` for the `addPost` mutation, satisfying the core requirement.\",",
+        "Used TypeScript throughout, defining clear interfaces (`User`, `Post`) and typing all API endpoints and mutations.\",",
+        "Clean separation of concerns: API logic lives in `apiSlice.ts`, mock data and server logic in `mockServer.ts`, keeping the codebase modular.",
         "improvements\": [",
-        "Use the resolved data from `queryFulfilled` to replace the optimistic post with the real server response. This ensures the cache stays in sync with the backend and avoids duplicate IDs.\","
+        "After a successful `addPost` mutation, replace the optimistic post (with `Date.now()` id) with the server‑returned post to keep the cache consistent.  Add a `queryFulfilled.then(...)` block that updates the cache with the real id.  (src/api/apiSlice.ts)\","
       ],
       "improvements": [
-        "Use the resolved data from `queryFulfilled` to replace the optimistic post with the real server response. This ensures the cache stays in sync with the backend and avoids duplicate IDs.\",",
-        "Add explicit error handling or user feedback in the catch block (e.g., dispatch an error toast) so the UI can inform the user when the mutation fails.\",",
-        "Consider using `getState` to read the current posts list before pushing the optimistic post, which can help avoid race conditions when multiple mutations are"
+        "After a successful `addPost` mutation, replace the optimistic post (with `Date.now()` id) with the server‑returned post to keep the cache consistent.  Add a `queryFulfilled.then(...)` block that updates the cache with the real id.  (src/api/apiSlice.ts)\",",
+        "Extract the repeated error‑handling pattern from each `queryFn` into a small helper (e.g., `handleQueryError`) to reduce duplication and improve readability.  (src/api/apiSlice.ts)\",",
+        "Add a minimal Redux store configuration that imports `apiSlice.reducer` and applies the middleware.  This makes the slice immediately usable in a real app and demonstrates the full RTK Query integration.  (src/store.ts or equivalent)",
+        "overall\": \"The implementation correctly demonstrates optimistic updates using RTK Query’s `"
       ],
       "readability": 0,
       "maintainability": 0,
-      "overall": "```json\n{\n  \"readability\": 85,\n  \"maintainability\": 80,\n  \"strengths\": [\n    \"Implemented optimistic update in `addPost` using `onQueryStarted` and `updateQueryData`.\",\n    \"Properly undo the optimistic change with `patchResult.undo()` inside the error catch block.\",\n    \"Clean TypeScript usage with explicit `Post` and `User` types and no console statements.\"\n  ],\n  \"improvements\": [\n    \"Use the resolved data from `queryFulfilled` to replace the optimistic post with the real server response. Th",
+      "overall": "{\n  \"readability\": 85,\n  \"maintainability\": 80,\n  \"strengths\": [\n    \"Implemented optimistic update with `onQueryStarted` and `patchResult.undo()` for the `addPost` mutation, satisfying the core requirement.\",\n    \"Used TypeScript throughout, defining clear interfaces (`User`, `Post`) and typing all API endpoints and mutations.\",\n    \"Clean separation of concerns: API logic lives in `apiSlice.ts`, mock data and server logic in `mockServer.ts`, keeping the codebase modular.\"\n  ],\n  \"improvements\"",
       "requirementCompliance": 0
     }
   }
